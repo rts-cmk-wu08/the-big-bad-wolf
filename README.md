@@ -1,152 +1,70 @@
-# **Projektopgave HI-FI Corner**
+# Getting Started with Create React App
 
-## Om opgaven
-Denne opgave omhandler opsætning af en react applikation, routing og hentning og præsentation af data i henholdsvis liste- og detaljevisning. Læs hele opgavebeskrivelsen grundigt igennem inden I stiller spørgsmål.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Opgavebeskrivelse
+## Available Scripts
 
-I skal fremstille en webapplikation til en HI-FI webbutik, som præsenterer butikkens produkter inddelt efter kategori eller producent. Brugeren af sitet skal nemt og overskueligt kunne finde rundt i de forskellige produkter og kunne fremsøge produkter vha. søgeord. Der er **udelukkende** tale om præsentation af produkterne, man skal ikke kunne handle produkter på siden.
+In the project directory, you can run:
 
-Opgaven varer ca. 3 uger og omhandler både planlægningen og produktionen af client-side produktet. Opgaven skal planlægges, der skal udarbejdes designanalyse (identifikation af komponenter/moduler). Der skal udarbejdes issues til de identificerede komponenter og moduler. I skal i denne proces huske at tage stiling til de enkelte issues kompleksitet, og om et issue muligvis skal opdeles i flere issues. I skal samarbejde om projektet digitalt ved hjælp af GitHub Projects, men det er også et krav, at I undervejs i processen vedligeholder et fysisk kanban-board, som kan bruges ved statusmøder med jeres product-owner (lærer) scrum-møder.
+### `npm start`
 
-Tag jer god tid til den indledende planlægning.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Det arbejde der forventes udført når projektet er slut, er en funktionel offentlig tilgængelig (fx. netlify) client-side som henter data og billeder fra en (eller flere) JSON-datakilde(r). Applikationen skal være sat op, så den matcher det udleverede design.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Et HI-FI produkt består af et navn, en beskrivelse, en pris, et billede, samt hører til i en kategori og er knyttet til en producent. I skal selv udtænke hvordan datastrukturen stilles op i JSON.
-*(billederne findes i den medfølgende .zip fil, men ved alle de andre produktdata finder I selv på noget, benyt evt https://lipsum.com/feed/html )*
+### `npm test`
 
-### Tekniske krav
-**Client-Side** skal løses vha. react, og hente data fra en ekstern kilde (json-server). Jeres CSS skal være modulær, og I bør overveje brug af navngivningskonventioner som fx BEM. Produktet **kan** designes efter mobile first princippet, men ikke nødvendigvis implementeret til begge medier *(prioriter browser varianten som den primære der produceres)*.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run build`
 
-### Planlægning
-* Layoutanalyse - identificer komponenter/moduler i layoutet.
-* Udarbejd 'definition of done' på de enkelte issues/komponenter/moduler. Hvilke kriterier skal komponentet/modulet opfylde for at være færdigt? Hvad skal den som laver review kontrollere om er i orden?
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### Forslag til arbejdsprocess
-* Opsæt applikationen med dummy-data (som et statisk site)
-* Design datastrukturer i JSON, og opret json-server (vær opmærksom på muligheden for at oprette relationer)
-* Programmér funktionaliteten til dataudtræk
-* Byg alle nødvendige fetch, og udskriv data fra fetch.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npm run eject`
 
-### Sider og indhold
-* Forside
-* Liste visning af produkter med mulighed for sortering (se nedenfor)
-* Detaljevisning af et enkelt produkt
-* Sammenligning af flere produkter
-* Kontakt
-* "Our History"
-* FAQ
-* Indkøbskurv
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-**Ekstra opgaver_**
-* "Checkout flow" (Paymentpage + invoicepage)
-* Login / opret bruger / Brugerprofil / ordrer
-* en simuleret chat funktion
- 
-### Forsiden 
-* Forsidetekst og billeder af produkter
-* Visning af ét eller flere udvalgte produkter (kan være de senest oprettede, et tilfældige produkter eller andet I finder relevant)
- 
-### Listevisning af produkter
-Der er flere forskellige funktioner under produkter:
-* Visning af alle produkter inden for en bestemt kategori, uden produkt beskrivelse
-* Visning af alle produkter der hører til en bestemt producent, uden produkt beskrivelse
-* Visning af alle produkter i en bestemt farve
-* Visning af alle produkter i et bestemt pris-interval
-* Visning af alle produkter som matcher brugerens søgning 
-* Viderestilling til detaljevisning ved klik på et produkt fra listerne
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Alle data hentes fra en json-server og udskrives ved hjælp af fetch/axios, alle produkter vises med deres billede.
- 
-### Alle sider 
-* Menu 
-* Fritekst-søgefunktion (visning på produktsiden) 
-* Footer med kontaktinfo 
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-### Github
-* Projektet accepteres som en GitHub assignment.
-* Der skal *committes ved væsentlige ændringer eller færdiggørelse af en funktionalitet* - og altid inden fyraften.
-* Alle commit tekster på GitHub skal kort beskrive ændringerne. **Der må ikke skrives ligegyldige beskrivelser!**.
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-### Billedfiler
-Alle billeder ligger i en zippet fil fordelt i mapper.
+## Learn More
 
-I vælger om alle billeder skal ligge i én mappe eller om I vil bevare mappestrukturen.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Brug følgende liste, hvis I er i tvivl om hvilke kategorier de forskellige billeder tilhører:
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-  
-**CD Afspillere**
+### Code Splitting
 
-    * creek_classic_cd.jpg
-    * creek_Destiny_CD.jpg
-    * creek_evo_cd.jpg
-    * Exp_2010S_CD.gif
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
+### Analyzing the Bundle Size
 
-**DVD Afspillere**
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-    * creek_classic.jpg
-    * exposure_2010S.jpg
-    * parasound_d200.jpg
-    * parasound_halod3.jpg
+### Making a Progressive Web App
 
-**Effektforstærkere**
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-    * manley_mahi.jpg
-    * manley_neoclassic300b.jpg
-    * manley_snapper.jpg
-    * parasound_haloa23.jpg
+### Advanced Configuration
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-**Forforstærkere**
+### Deployment
 
-    * Creek_OBH_22_Passive_Preamp.jpg
-    * parasound_classic7100.jpg
-    * parasound_halop3.jpg
-    * Project_prebox.jpg
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
+### `npm run build` fails to minify
 
-**Højtalere**
-
-    * boesendorfer_vcs_wall.gif
-    * epos_m5.gif
-    * harbeth_hl7es2.jpg
-    * harbeth_monitor30.jpg
-    * harbeth_p3es2.jpg
-
-
-**Int. Forstærkere**
-
-    * creek_a50I.jpg
-    * creek_classic5350SE.jpg
-    * creek_destinyamp.jpg
-    * manley_snapper.jpg
-    * Manley_Stingray.jpg
-
-
-**Pladespillere**
-
-    * Pro_ject_Debut_3_bl.jpg
-    * Pro_ject_Debut_III_red_1.jpg
-    * Pro_ject_Debut_III_yellow_1.jpg
-    * Pro_ject_rpm_5.jpg
-    * Pro_ject_rpm10.jpg
-
-
-**Rørforstærkere**
-
-    * jolida_JD102b.jpg
-    * jolida_JD202a.jpg
-    * jolida_JD300b.jpg
-    * jolida_JD302b.jpg
-    * jolida_JD502b.jpg 
- 
-## EKSTRA-EKSTRAOPGAVE
-Hvis I har mega overskud!
-
-Indsæt reklmebannere på hjemmesiden. I skal selv beslutte hvor på siden reklamebannere vil passe ind. Find et API på nettet, som lader jer fetche bannere og indsæt vilkårlige bannere på hjemmesiden.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
