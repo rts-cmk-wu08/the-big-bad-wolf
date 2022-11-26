@@ -19,8 +19,8 @@ const router = createBrowserRouter(
         <Route path="/" element={<App />}>
 
             <Route index element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:id" element={<Product />} />
+            <Route path="/shop" element={<Products />} />
+            <Route path="/shop/:id" element={<Product />} />
             <Route path="/comparison" element={<Comparison />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
@@ -33,7 +33,6 @@ const router = createBrowserRouter(
     )
 );
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -41,4 +40,3 @@ root.render(
         <RouterProvider router={router} />
     </React.StrictMode>
 );
-
