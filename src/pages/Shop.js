@@ -24,7 +24,7 @@ const Shop = () => {
         <>
         
             <h1>Her er Shop</h1>
-            { isLoading }
+            { isLoading && <p>Loading</p> }
             { error && <p>{error}</p>}
             { shop && 
                 <ul>

@@ -4,7 +4,6 @@ const Card = (props) => {
 
     const product = props.attributes
 
-
     return (
         
         <li>

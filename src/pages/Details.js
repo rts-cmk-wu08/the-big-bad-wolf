@@ -25,7 +25,7 @@ const Details = () => {
         <>
 
             <h1>Here are the details</h1>
-            { isLoading }
+            { isLoading && <p>Loading</p> }
             { error && <p>{error}</p>}
             { details && 
                 <article>
