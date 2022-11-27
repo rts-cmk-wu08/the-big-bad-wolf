@@ -7,6 +7,10 @@ const Card = (props) => {
     let product = props.attributes
     let link = '/shop/' + props.id
 
+    if (!product.Images.data[0].attributes) {
+        return <p>...</p>
+    }
+
     return (
         
         <div>
