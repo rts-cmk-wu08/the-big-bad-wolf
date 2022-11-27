@@ -1,18 +1,21 @@
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 const Card = (props) => {
 
-    const product = props.attributes
+    let product = props.attributes
+    let link = '/shop/' + props.id
 
     return (
         
         <div>
 
             {product.Images.data.map(img => ( 
-                <Link to={`/shop/${props.id}`} key={img.id} ><img src={img.attributes.url} alt={product.Name} /></Link>
+                <Link to={link} key={img.id} ><LazyLoadImage effect="opacity" src={img.attributes.url} alt={product.Name} /></Link>
             ))}
 
-            <h3>{product.Name}</h3>
+            <h3><Link to={link}>{product.Name}</Link></h3>
             <p>{product.Description}</p>
 
         </div>

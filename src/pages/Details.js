@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
@@ -22,6 +24,7 @@ const Details = () => {
     }, [id]);
 
     return ( 
+
         <>
 
             <h1>Here are the details</h1>
@@ -31,7 +34,7 @@ const Details = () => {
                 <div>
 
                     {details.data.attributes.Images.data.map(img => ( 
-                        <img key={img.id} src={img.attributes.url} alt="" />
+                        <LazyLoadImage effect="opacity" key={img.id} src={img.attributes.url} alt="" />
                     ))}
 
                     <h2>{details.data.attributes.Name}</h2>
@@ -41,6 +44,7 @@ const Details = () => {
             }
 
         </> 
+
      );
 
 }
