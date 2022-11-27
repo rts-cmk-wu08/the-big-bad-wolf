@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Product from "../components/Product";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
@@ -28,12 +29,8 @@ const Shop = () => {
             { shop && 
                 <ul className="items">
                     {shop.data.map(product => ( 
-                        <li key={product.id}>
-                            <h3>{product.attributes.Name}</h3>
-                            <p>{product.attributes.Description}</p>
-                        </li>
+                        <Product {...product} key={product.id} />
                     ))}
-
                 </ul> 
             }
 
