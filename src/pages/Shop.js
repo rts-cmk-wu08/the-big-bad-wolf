@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Product from "../components/Product";
+import Card from "../components/Card";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
@@ -12,7 +12,7 @@ const Shop = () => {
     const [shop, setShop] = useState(); 
 
     useEffect(() => {
-        axios.get(url)
+        axios.get(`${url}?populate=*`)
             .then(response => setShop(response.data))
             .catch(() => setError("Something went wrong"))
             .finally(() => setIsLoading(false))
@@ -27,9 +27,9 @@ const Shop = () => {
             { isLoading }
             { error && <p>{error}</p>}
             { shop && 
-                <ul className="items">
+                <ul>
                     {shop.data.map(product => ( 
-                        <Product {...product} key={product.id} />
+                        <Card {...product} key={product.id} />
                     ))}
                 </ul> 
             }
