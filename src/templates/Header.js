@@ -6,7 +6,7 @@ const Header = () => {
 
         <header>
 
-            <Link to={"/"}><img src="" alt="Logo" /></Link>
+            <Link to={"/"}><img src="/logo_sml.png" alt="Logo" /></Link>
 
             <nav>
                 <Link to={"/shop"}>Shop</Link>
@@ -17,7 +17,7 @@ const Header = () => {
         </header>
 
      );
-     
+
 }
 
 export default Header;
