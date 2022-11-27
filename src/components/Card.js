@@ -6,7 +6,7 @@ const Card = (props) => {
 
     return (
         
-        <li>
+        <div>
 
             {product.Images.data.map(img => ( 
                 <Link to={`/shop/${props.id}`} key={img.id} ><img src={img.attributes.url} alt={product.Name} /></Link>
@@ -15,7 +15,7 @@ const Card = (props) => {
             <h3>{product.Name}</h3>
             <p>{product.Description}</p>
 
-        </li>
+        </div>
 
      );
      

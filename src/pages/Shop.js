@@ -27,11 +27,11 @@ const Shop = () => {
             { isLoading && <p>Loading</p> }
             { error && <p>{error}</p>}
             { shop && 
-                <ul>
+                <div>
                     {shop.data.map(product => ( 
                         <Card {...product} key={product.id} />
                     ))}
-                </ul> 
+                </div> 
             }
 
         </>

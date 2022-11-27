@@ -28,7 +28,7 @@ const Details = () => {
             { isLoading && <p>Loading</p> }
             { error && <p>{error}</p>}
             { details && 
-                <article>
+                <div>
 
                     {details.data.attributes.Images.data.map(img => ( 
                         <img key={img.id} src={img.attributes.url} alt="" />
@@ -37,7 +37,7 @@ const Details = () => {
                     <h2>{details.data.attributes.Name}</h2>
                     <p>{details.data.attributes.Description}</p>
 
-                </article> 
+                </div> 
             }
 
         </> 
