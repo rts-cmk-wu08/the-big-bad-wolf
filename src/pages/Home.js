@@ -40,7 +40,10 @@ const Shop = () => {
                     ))}
                 </div> 
             }
-
+        
+        <div className="home__blackbox">
+            <h2>What we do</h2>
+        </div>
         </section>
 
      );
