@@ -16,7 +16,7 @@ const Details = () => {
     const [details, setDetails] = useState();
 
     useEffect(() => {
-        axios.get(`${url}/${id}?populate=*`)
+        axios.get(`${url}/${id}?populate[0]=Images`)
             .then(response => setDetails(response.data))
             .catch(() => setError("Something went wrong"))
             .finally(() => setIsLoading(false))

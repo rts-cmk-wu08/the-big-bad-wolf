@@ -7,15 +7,11 @@ const Card = (props) => {
     let product = props.attributes
     let link = '/shop/' + props.id
 
-    if (!product.Images.data[0].attributes) {
-        return <p>...</p>
-    }
-
     return (
         
         <div>
 
-            {product.Images.data.map(img => ( 
+            {product.Images?.data.map(img => ( 
                 <Link to={link} key={img.id} ><LazyLoadImage effect="opacity" src={img.attributes.url} alt={product.Name} /></Link>
             ))}
 

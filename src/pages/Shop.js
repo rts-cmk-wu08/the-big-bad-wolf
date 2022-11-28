@@ -12,7 +12,8 @@ const Shop = () => {
     const [shop, setShop] = useState(); 
 
     useEffect(() => {
-        axios.get(`${url}?populate=*`)
+        axios.get(`${url}?populate[0]=Images`)
+        
             .then(response => setShop(response.data))
             .catch(() => setError("Something went wrong"))
             .finally(() => setIsLoading(false))
@@ -27,11 +28,25 @@ const Shop = () => {
             { isLoading && <p>Loading</p> }
             { error && <p>{error}</p>}
             { shop && 
-                <div>
-                    {shop.data.map(product => ( 
-                        <Card {...product} key={product.id} />
-                    ))}
-                </div> 
+
+                <section>
+                    <div>
+                        <label>
+                        <span>Black</span>
+                        <input 
+                            type='radio'
+                            name='black'
+                        />
+
+                        </label>
+
+                    </div>
+                    <div>
+                        {shop.data.map(product => ( 
+                            <Card {...product} key={product.id} />
+                        ))}
+                    </div> 
+                </section>
             }
 
         </>
