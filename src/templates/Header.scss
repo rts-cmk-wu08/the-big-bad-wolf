@@ -1,0 +1,57 @@
+nav {
+    background-color: black;
+    width: 1200px;
+    height: 99px;
+    display: flex;
+    align-items: center;
+    & img {
+        margin-left: 34px;
+    }
+}
+
+.nav__menu {
+    display: flex;
+    gap: 32px;
+    margin-right: 444px;
+    & li {
+        list-style: none;
+    }
+    & a {
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.header__icons {
+    margin-left: 32px;
+    display: flex;
+    gap: 26px;
+    i {
+        font-size: 29px;
+        color: aliceblue;
+    }
+}
+
+.search-form {
+    display: flex;
+    height: 38px;
+    border-radius: 2px;
+    font-size: 12px;
+    overflow: hidden;
+    &__button {
+        background: #E8E8E8;
+        border: none;
+        margin-left: -1px;
+        i {
+            color: black;
+            font-size: 22px;
+        }
+    }
+    &__input {
+        border: none;
+        background: #E8E8E8;
+        &::placeholder {
+            color: black;
+        }
+    }
+}
