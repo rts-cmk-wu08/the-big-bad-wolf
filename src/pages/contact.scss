@@ -1,0 +1,55 @@
+.orange {
+    color: #FF6900;
+}
+
+
+.contact__headline {
+    color: #495464;
+    font-size: 3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-left: 2rem;
+}
+.contact__form {
+    background-color: white;
+    padding: 3rem;
+    margin: 2rem;
+    box-shadow: 0.3rem 0.3rem 0.2rem #BBBFCA;
+}
+.contact__input {
+    width: 60rem;
+    height: 2rem;
+    background-color: #E8E8E8;
+    border: none;
+    box-shadow: 0.3rem 0.3rem 0.2rem #BBBFCA;
+}
+.contact__msg {
+    background-color: #E8E8E8;
+    border: none;
+    box-shadow: 0.3rem 0.3rem 0.2rem #BBBFCA;
+}
+
+.submit__btn {
+    display: flex;
+    justify-content: right;
+    padding-top: 2rem;
+}
+.submit__btn button{
+    background-color: #FF6900;
+    border: none;
+    padding: 0.5rem 2rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem #BBBFCA;
+}
+.submit__btn input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: light;
+}
+
+
+.contact__btmText {
+    text-align: center;
+    font-size: 2rem;
+}
