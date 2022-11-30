@@ -5,6 +5,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./details.scss"
 
+import AddToCart from "../components/AddToCart";
+
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
 
@@ -48,68 +50,17 @@ const Details = () => {
 
                         <div className="detail__info">
 
-                            <h2 className="mb-0">{details.data.attributes.Name}</h2>
-                            <p className="">Digital Output</p>
+                            <h2 className="detail__title mb-0">{details.data.attributes.Name}</h2>
+                            <h3 className="detail__subtitle">(Digital Output)</h3>
                             <p>{details.data.attributes.Description}</p>
 
-                            <form className="color-select">
-
-                                <div className="color-select__item">
-                                    <label className="form-control">
-                                        <input type="radio" id="black" name="color-select" value="black" />
-                                        Black
-                                    </label>
-                                </div>
-
-                                <div className="color-select__item">
-                                    <label className="form-control">
-                                        <input type="radio" id="silver" name="color-select" value="silver" />
-                                        Silver
-                                    </label>
-                                </div>
-
-                                <div className="color-select__item">
-                                    <label className="form-control">
-                                        <input type="radio" id="gold" name="color-select" value="gold" />
-                                        Gold
-                                    </label>
-                                </div>
-
-                            </form>
-
-                            <div className="grid col-slim mb-1">
-                                <div className="grid__item">
-                                    <h3 className="detail__price">£ {details.data.attributes.Price}.00</h3>
-                                </div>
-                                <div className="grid__item">
-                                    <div className="detail__stock">{details.data.attributes.Stock} <span className="inStock"></span></div>
-                                </div>
-                            </div>
-
-
-                            <div className="detail__amount">
-
-                                <div className="amount">
-                                    <p className="bigger">-</p>
-                                    <input className="detail__input" type="number" name="amount" id="amount" />
-                                    <p className="bigger">+</p>
-                                </div>
-
-                                <div className="btn">
-                                    <button className="detail__btn">Add to cart</button>
-                                </div>
-
-                            </div>
+                            <AddToCart {...details.data.attributes} />
 
                         </div>
 
                     </div>
 
                 }
-
-
-
-                
 
             </article> 
         </>
