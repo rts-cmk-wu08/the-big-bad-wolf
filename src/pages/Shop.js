@@ -31,7 +31,7 @@ const Shop = () => {
                 { isLoading && <p>Loading</p> }
                 { error && <p>{error}</p>}
                 { shop && 
-                    <div className="grid col-3">
+                    <div className="grid">
                         {shop.data.map(product => ( 
                             <Card {...product} key={product.id} />
                         ))}

@@ -38,7 +38,7 @@ const Details = () => {
                 { error && <p>{error}</p>}
                 { details &&
 
-                    <div className="detail whitebox grid col-2"> 
+                    <div className="detail whitebox grid"> 
 
                         <div className="detail__img">
                             {details.data.attributes.Images.data.map(img => ( 
@@ -78,7 +78,7 @@ const Details = () => {
 
                             </form>
 
-                            <div className="grid col-2 mb-1">
+                            <div className="grid col-slim mb-1">
                                 <div className="grid__item">
                                     <h3 className="detail__price">£ {details.data.attributes.Price}.00</h3>
                                 </div>

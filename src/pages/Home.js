@@ -34,7 +34,7 @@ const Shop = () => {
             { isLoading && <p>Loading</p> }
             { error && <p>{error}</p>}
             { shop && 
-                <div className="grid col-4">
+                <div className="grid">
                     {shop.data.slice(0,4).map(product => ( 
                         <Card {...product} key={product.id} />
                     ))}
@@ -45,7 +45,7 @@ const Shop = () => {
 
         <section className="blackbox alignfull">
 
-            <div className="grid col-2 container">
+            <div className="grid container">
 
                 <div className="grid__item">
                     <h2>What we do</h2>

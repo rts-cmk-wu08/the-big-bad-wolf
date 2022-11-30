@@ -55,8 +55,9 @@ section {
 }
 
 .container {
-    max-width: 1250px;
+    max-width: calc(1298px + 3rem);
     margin: 0 auto;
+    padding: 0 3rem;
 }
 
 .page-content {
@@ -99,21 +100,14 @@ section {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns:  repeat( auto-fit, minmax(250px, 1fr) );
     gap: 2rem;
+    max-width: 100%;
 }
 
 
-.col-2 {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.col-3 {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.col-4 {
-    grid-template-columns: repeat(4, 1fr);
+.col-slim {
+    grid-template-columns:  repeat( auto-fit, minmax(150px, 1fr) );
 }
 
 
