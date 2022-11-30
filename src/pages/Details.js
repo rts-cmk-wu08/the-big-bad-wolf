@@ -51,7 +51,6 @@ const Details = () => {
                             <h2 className="mb-0">{details.data.attributes.Name}</h2>
                             <p className="">Digital Output</p>
                             <p>{details.data.attributes.Description}</p>
-                            <p>{details.data.attributes.Description}</p>
 
                             <form className="color-select">
 
