@@ -78,9 +78,13 @@ const Details = () => {
 
                             </form>
 
-                            <div className="price">
-                                <h3 className="detail__price">£ {details.data.attributes.Price}.00</h3>
-                                <p className="flex">{details.data.attributes.Stock}<div className="inStock"></div></p>
+                            <div className="grid col-2 mb-1">
+                                <div className="grid__item">
+                                    <h3 className="detail__price">£ {details.data.attributes.Price}.00</h3>
+                                </div>
+                                <div className="grid__item">
+                                    <div className="detail__stock">{details.data.attributes.Stock} <span className="inStock"></span></div>
+                                </div>
                             </div>
 
 
