@@ -1,56 +1,84 @@
-nav {
+.top-navigation {
     background-color: black;
-    height: 99px;
-    display: flex;
-    align-items: center;
-    & img {
-        margin-left: 34px;
-    }
-}
+    padding: 1rem 0;
 
-.nav__menu {
-    display: flex;
-    gap: 32px;
-    margin-right: 444px;
-    & li {
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__main,
+    &__right {
+        display: flex;
+        align-items: center;
+    }
+
+    .header-search {
+        margin-right: 3rem;
+    }
+    
+    .main-logo {
+        margin-right: 2rem;
+
+        img {
+            float: left;
+        }
+    }
+
+    .main-menu {
+        display: flex;
+        margin: 0;
+        padding: 0;
+    
+    
+        &__item {
+            list-style: none;
+            margin-right: 2rem;
+    
+            a {
+                text-decoration: none;
+                color: white;
+                font-size: .875rem;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .header-icons {
+        display: flex;
+        align-items: center;
         list-style: none;
-    }
-    & a {
-        text-decoration: none;
-        color: white;
-    }
-}
+        padding: 0;
+        margin: 0;
+        color: #F4F4F2;
+    
+        &__link {
+            height: 2rem;
+            width: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.header__icons {
-    margin-left: 32px;
-    display: flex;
-    gap: 26px;
-    i {
-        font-size: 29px;
-        color: aliceblue;
-    }
-}
-
-.search-form {
-    display: flex;
-    height: 38px;
-    border-radius: 2px;
-    font-size: 12px;
-    overflow: hidden;
-    &__button {
-        background: #E8E8E8;
-        border: none;
-        margin-left: -1px;
+        li {
+            margin-right: 1rem;
+            &:last-child { margin-right: 0; }
+        }
+    
         i {
-            color: black;
-            font-size: 22px;
+            font-size: 1.5rem;
         }
     }
-    &__input {
-        border: none;
-        background: #E8E8E8;
-        &::placeholder {
-            color: black;
-        }
-    }
+
 }
+
+
+
+
+
+
+
+
+
+

@@ -6,50 +6,34 @@ const Header = () => {
 
     return (
 
-        <header>
-
+        <header className="top-navigation">
+            <div className="container">
             
-
-            <nav>
-
-            <Link to={"/"}><img src="/logo_sml.png" alt="Logo" /></Link>
-
-               
-z
-        
-         <ul className="nav__menu">
-               <li> <Link to={"/shop"}>SHOP</Link> </li>
-                <li> <Link to={"/about"}>ABOUT US</Link> </li>
-                <li><Link to={"/contact"}>CONTACT</Link></li>
-                </ul>
-        
-              
-            
-
-           
-          
-          
-   
-
-    
-                <form className="search-form">
-                    <input className="search-form__input" type="text" placeholder="Search product..." name="search"/>
-                    <button className="search-form__button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </form>
-                    
-
-<div className="header__icons">
-    <Link to={"/#"}><i class="fa-solid fa-user"></i></Link>
-    <Link to={"/cart"}><i class="fa-solid fa-cart-shopping"></i> </Link>
-
-</div>
-
-
- 
-
-    
-    </nav>
-
+                <div className="top-navigation__main">
+                    <div className="main-logo">
+                        <Link to={"/"}><img src="/logo_sml.png" alt="Logo" /></Link>
+                    </div>
+                    <nav className="main-nav">
+                        <ul className="main-menu">
+                            <li className="main-menu__item"><Link to={"/shop"}>Shop</Link></li>
+                            <li className="main-menu__item"><Link to={"/about"}>About Us</Link></li>
+                            <li className="main-menu__item"><Link to={"/contact"}>Contact</Link></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div className="top-navigation__right">
+                    <div className="header-search">
+                        <form className="search-form">
+                            <input className="search-form__input" type="text" placeholder="Search product..." name="search"/>
+                            <button className="search-form__button" type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                    <ul className="header-icons">
+                        <li><Link to={"/#"} className="header-icons__link"><i className="fa-solid fa-user"></i></Link></li>
+                        <li><Link to={"/cart"} className="header-icons__link"><i className="fa-solid fa-cart-shopping"></i></Link></li>
+                    </ul>
+                </div>
+            </div>
         </header>
 
      );
