@@ -1,24 +1,25 @@
-.center {
-    text-align: center;
-}
 .card {
-    height: 25rem;
+    padding: 2rem;
     background-color: white;
-    margin: 1rem;
-    box-shadow: 0.3rem 0.3rem 0.2rem #BBBFCA;
-}
-.card img {
-    padding-top: 3rem;
-    width: 18rem;
-    height: 6rem;
-}
-.card__link {
-    text-decoration: none;
-    color: black;
-}
-.card__btn {
-    background-color: #ff6900;
-    color: white;
-    border: none;
-    padding: 1rem 3rem;
+    box-shadow: 3px 3px 3px rgba($color: #000000, $alpha: .25);
+    text-align: center;
+    height: 100%; 
+
+    &__img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 8rem;
+        margin-bottom: 1rem;
+    }
+
+    &__title {
+        font-size: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    &__price {
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
 }

@@ -27,56 +27,88 @@ const Details = () => {
     return ( 
 
         <>
-            <h1  className="detail__headline">Product</h1>
-        <section className="details">
 
-            { isLoading && <p>Loading</p> }
-            { error && <p>{error}</p>}
-            { details && 
-                <article className="detail">
-                    <div className="detail__img">
-                        {details.data.attributes.Images.data.map(img => ( 
-                            <LazyLoadImage effect="opacity" key={img.id} src={img.attributes.url} alt="" />
-                        ))}
-                    </div>
-                    <div className="detail__info">
-                        <h2 className="zero--margin">{details.data.attributes.Name}</h2>
-                        <p className="zero--margin fat">Digital Output</p>
-                        <p>{details.data.attributes.Description}</p>
-                        <p>{details.data.attributes.Description}</p>
-                        <div className="buttons">
-                            <button className="black"></button>
-                            <button className="silver"></button>
-                            <button className="gold"></button>
+            <header className="page-header">
+                <h1 className="page-header__title">Product</h1>
+            </header>
+
+            <article className="page-content">
+
+                { isLoading && <p>Loading</p> }
+                { error && <p>{error}</p>}
+                { details &&
+
+                    <div className="detail whitebox grid col-2"> 
+
+                        <div className="detail__img">
+                            {details.data.attributes.Images.data.map(img => ( 
+                                <LazyLoadImage effect="opacity" key={img.id} src={img.attributes.url} alt="" />
+                            ))}
                         </div>
-                        <div className="price">
-                            <h3 className="detail__price">£ {details.data.attributes.Price}.00</h3>
-                            <p className="flex">{details.data.attributes.Stock}<div className="inStock"></div></p>
-                            
-                        </div>
+
+                        <div className="detail__info">
+
+                            <h2 className="mb-0">{details.data.attributes.Name}</h2>
+                            <p className="">Digital Output</p>
+                            <p>{details.data.attributes.Description}</p>
+                            <p>{details.data.attributes.Description}</p>
+
+                            <form className="color-select">
+
+                                <div className="color-select__item">
+                                    <label className="form-control">
+                                        <input type="radio" id="black" name="color-select" value="black" />
+                                        Black
+                                    </label>
+                                </div>
+
+                                <div className="color-select__item">
+                                    <label className="form-control">
+                                        <input type="radio" id="silver" name="color-select" value="silver" />
+                                        Silver
+                                    </label>
+                                </div>
+
+                                <div className="color-select__item">
+                                    <label className="form-control">
+                                        <input type="radio" id="gold" name="color-select" value="gold" />
+                                        Gold
+                                    </label>
+                                </div>
+
+                            </form>
+
+                            <div className="price">
+                                <h3 className="detail__price">£ {details.data.attributes.Price}.00</h3>
+                                <p className="flex">{details.data.attributes.Stock}<div className="inStock"></div></p>
+                            </div>
 
 
                             <div className="detail__amount">
-                            <div className="amount">
-                                <p className="bigger">-</p>
-                                <input className="detail__input" type="number" name="amount" id="amount" />
-                                <p className="bigger">+</p>
+
+                                <div className="amount">
+                                    <p className="bigger">-</p>
+                                    <input className="detail__input" type="number" name="amount" id="amount" />
+                                    <p className="bigger">+</p>
+                                </div>
+
+                                <div className="btn">
+                                    <button className="detail__btn">Add to cart</button>
+                                </div>
+
                             </div>
 
+                        </div>
 
-                            <div className="btn">
-                                <button className="detail__btn">Add to cart</button>
-                            </div>
-                            </div>
                     </div>
 
+                }
 
 
-                </article> 
-            }
-            <div className="line"></div>
 
-        </section> 
+                
+
+            </article> 
         </>
      );
 

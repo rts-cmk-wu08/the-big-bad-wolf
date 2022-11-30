@@ -1,33 +1,48 @@
-import "./contact.scss"
-
-
 const Contact = () => {
 
     return (
 
-        <section className="contact">
-        <h1 className="contact__headline">Get in touch with us</h1>
+        <>
 
-        <article className="contact__form">
-            <h3>Full name  <span className="orange">*</span></h3>
-            <input className="contact__input" type="text" name="fullName" id="fullName" />
+            <header className="page-header">
+                <h1 className="page-header__title">Get in touch with us</h1>
+            </header>
 
-            <h3>Email <span className="orange">*</span></h3>
-            <input className="contact__input" type="email" name="email" id="email" />
+            <article className="page-content">
 
-            <h3>Subject  <span className="orange">*</span></h3>
-            <input className="contact__input" type="text" name="subject" id="subject"/>
+                <form action="" className="form contact-form whitebox mb-3">
 
-            <h3>Message  <span className="orange">*</span></h3>
-            <textarea className="contact__msg" name="message" id="message" cols="174" rows="10"></textarea>
+                    <div className="form__fieldgroup">
+                        <label for="fullName">Full name  <span className="req">*</span></label><br/>
+                        <input className="form__input" type="text" name="fullName" id="fullName" />
+                    </div>
 
-            <div className="submit__btn">
-                <button><input type="submit" value="submit" /></button>
+                    <div className="form__fieldgroup">
+                        <label for="email">Email  <span className="req">*</span></label><br/>
+                        <input className="form__input" type="email" name="email" id="email" />
+                    </div>
+
+                    <div className="form__fieldgroup">
+                        <label for="subject">Subject <span className="req">*</span></label><br/>
+                        <input className="form__input" type="text" name="subject" id="subject"/>
+                    </div>
+                    
+                    <div className="form__fieldgroup">
+                        <label for="message">Message <span className="req">*</span></label><br/>
+                        <textarea className="form__msg" name="message" id="message" rows="10"></textarea>
+                    </div>
+
+                    <div className="form__fieldgroup submit">
+                        <input className="btn form__submit" type="submit" value="submit" />
+                    </div>
+
+                </form>
                 
-            </div>
-        </article>
-        <p className="contact__btmText">Visit our sister companies <span className="orange">Home Sound</span> and <span className="orange">The Movie Rooms</span> part of the Hi-Fi Corner Group.</p>
-        </section>
+                <p className="big center"><b>Visit our sister companies <span className="orange">Home Sound</span> and <span className="orange">The Movie Rooms</span> part of the Hi-Fi Corner Group.</b></p>
+                
+            </article>
+
+        </>
 
      );
      
