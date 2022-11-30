@@ -149,12 +149,13 @@
         width: 40px;
         text-align: center;
         border-radius: 3px;
-    
+        appearance: textfield;
         -moz-appearance: textfield;
     
         &::-webkit-inner-spin-button,
         &::-webkit-outer-spin-button {
             -webkit-appearance: none;
+            appearance: none;
             margin: 0;
         }
     
