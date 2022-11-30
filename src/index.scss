@@ -41,6 +41,8 @@ a {
     font-weight: 400;
 }
 
+
+
 .subhead {
     text-transform: uppercase;
     margin-top: 2rem;
@@ -112,22 +114,30 @@ section {
 
 /* Button */
 
-button,
-.btn {
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 16px;
-    background-color: #ff6900;
-    color: white;
+
+.btn,
+button {
+    appearance: none;
     border: none;
-    padding: .75rem 2rem;
-    border-radius: 3px;
-    line-height: 1;
     cursor: pointer;
+    padding: 0;
+    background-color: transparent;
 
     &:hover {
         border: none;
         outline: none;
     }
+}
+
+
+.btn {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    background-color: #ff6900;
+    color: white;
+    padding: .75rem 2rem;
+    border-radius: 3px;
+    line-height: 1;
 }
 
 
