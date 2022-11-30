@@ -42,7 +42,7 @@ const Shop = () => {
 
                     </div>
                     <div>
-                        {shop.data.map(product => ( 
+                        {shop.data?.map(product => ( 
                             <Card {...product} key={product.id} />
                         ))}
                     </div> 

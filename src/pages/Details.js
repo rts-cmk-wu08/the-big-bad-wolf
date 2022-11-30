@@ -33,7 +33,7 @@ const Details = () => {
             { details && 
                 <div>
 
-                    {details.data.attributes.Images.data.map(img => ( 
+                    {details.data.attributes.Images?.data.map(img => ( 
                         <LazyLoadImage effect="opacity" key={img.id} src={img.attributes.url} alt="" />
                     ))}
 
