@@ -7,6 +7,8 @@ const Footer = () => {
 
 
 <footer>
+    
+    <div className="container"> 
 
 
    <div className="footer-txt">
@@ -51,6 +53,8 @@ const Footer = () => {
      
 <p>Hi Fi Corner Edinburgh Ltd is registered in Scotland. No: SC049298. Registered office: 2 Joppa Rd, Edinburgh EH15 2EU</p>
 <p>Designed & Built by WU07</p>
+</div>  
+
 </div>
         </footer>
 
