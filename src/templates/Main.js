@@ -4,7 +4,7 @@ const Main = () => {
 
     return ( 
 
-        <main>
+        <main className="main container">
 
             <Outlet />
 

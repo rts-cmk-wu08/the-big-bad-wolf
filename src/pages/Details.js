@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from "axios";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
+import "./details.scss"
+
+import AddToCart from "../components/AddToCart";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
@@ -27,23 +30,41 @@ const Details = () => {
 
         <>
 
-            <h1>Here are the details</h1>
-            { isLoading && <p>Loading</p> }
-            { error && <p>{error}</p>}
-            { details && 
-                <div>
+            <header className="page-header">
+                <h1 className="page-header__title">Product</h1>
+            </header>
 
-                    {details.data.attributes.Images?.data.map(img => ( 
-                        <LazyLoadImage effect="opacity" key={img.id} src={img.attributes.url} alt="" />
-                    ))}
+            <article className="page-content">
 
-                    <h2>{details.data.attributes.Name}</h2>
-                    <p>{details.data.attributes.Description}</p>
+                { isLoading && <p>Loading</p> }
+                { error && <p>{error}</p>}
+                { details &&
 
-                </div> 
-            }
+                    <div className="detail whitebox grid"> 
 
-        </> 
+                        <div className="detail__img">
+                            {details.data.attributes.Images.data.map(img => ( 
+                                <LazyLoadImage effect="opacity" key={img.id} src={img.attributes.url} alt="" />
+                            ))}
+                        </div>
+
+                        <div className="detail__info">
+
+                            <h2 className="detail__title mb-0">{details.data.attributes.Name}</h2>
+                            <h3 className="detail__subtitle">(Digital Output)</h3>
+                            <p>{details.data.attributes.Description}</p>
+
+                            <AddToCart {...details.data.attributes} />
+
+                        </div>
+
+                    </div>
+
+                }
+
+            </article> 
+            
+        </>
 
      );
 

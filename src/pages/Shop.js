@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "../components/Card";
+import ShopCard from "../components/ShopCard";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
@@ -22,33 +22,24 @@ const Shop = () => {
 
     return (
 
-        <>
-        
-            <h1>Her er Shop</h1>
-            { isLoading && <p>Loading</p> }
-            { error && <p>{error}</p>}
-            { shop && 
-
-                <section>
-                    <div>
-                        <label>
-                        <span>Black</span>
-                        <input 
-                            type='radio'
-                            name='black'
-                        />
-
-                        </label>
-
-                    </div>
-                    <div>
-                        {shop.data?.map(product => ( 
-                            <Card {...product} key={product.id} />
+        <>  
+            <header className="page-header">
+                <h1 className="page-header__title">Products</h1>
+            </header>
+            
+            <article className="page-content">
+                
+                { isLoading && <p>Loading</p> }
+                { error && <p>{error}</p>}
+                { shop && 
+                    <div className="grid">
+                        {shop.data.map(product => ( 
+                            <ShopCard {...product} key={product.id} />
                         ))}
                     </div> 
-                </section>
-            }
+                }
 
+            </article>
         </>
 
      );

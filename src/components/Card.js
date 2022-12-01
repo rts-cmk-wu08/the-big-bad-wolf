@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
+import "./card.scss";
 
 const Card = (props) => {
 
@@ -9,14 +10,21 @@ const Card = (props) => {
 
     return (
         
-        <div>
+        <div className="card grid__item">
 
-            {product.Images?.data.map(img => ( 
-                <Link to={link} key={img.id} ><LazyLoadImage effect="opacity" src={img.attributes.url} alt={product.Name} /></Link>
-            ))}
+            <div className="card__img" >
 
-            <h3><Link to={link}>{product.Name}</Link></h3>
-            <p>{product.Description}</p>
+                {product.Images.data.map(img => ( 
+                    <Link to={link} key={img.id} ><LazyLoadImage effect="opacity" src={img.attributes.url} alt={product.Name} /></Link>
+                ))}
+
+            </div>
+
+            <h3 className="card__title"><Link to={link}>{product.Name}</Link></h3>
+            <p className='card__price'>£ {product.Price}.00</p>
+         
+                <Link to={link} className="btn card__btn">Read more</Link>
+           
 
         </div>
 
