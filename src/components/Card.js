@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
-import "./card.scss"
+import "./card.scss";
 
 const Card = (props) => {
 
     let product = props.attributes
     let link = '/shop/' + props.id
-
-    if (!product.Images.data[0].attributes) {
-        return <p>...</p>
-    }
 
     return (
         
