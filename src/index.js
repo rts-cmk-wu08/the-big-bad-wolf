@@ -10,6 +10,7 @@ import About from "./pages/About";
 import FAQ from "./pages/FAQ";
 import Cart from "./pages/Cart";
 import NotFound from './pages/NotFound';
+import LoginPage from './pages/Login';
 
 import './index.scss';
 import App from './App';
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<LoginPage />}/>
 
             <Route path="*" element={<NotFound />} />
 
