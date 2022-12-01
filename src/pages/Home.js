@@ -28,9 +28,11 @@ const Shop = () => {
 
             <section className="featured-products">
 
-                <video width="750" height="500" controls >
-                    <source src={video} type="video/mp4"/>
-                </video>
+                <div className="hero__video alignfull">
+                    <video className="video" width="1465" height="1000" controls >
+                        <source src={video} type="video/mp4"/>
+                    </video>
+                </div>
 
                 <header className="block-header">
                     <h1 className="block-header__title">Popular products</h1>
