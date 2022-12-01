@@ -3,6 +3,9 @@ import axios from "axios";
 import Card from "../components/Card";
 import "./home.scss"
 
+
+
+
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
 
@@ -23,6 +26,7 @@ const Shop = () => {
     return (
 
         <>
+
 
         <section className="featured-products">
 
