@@ -26,13 +26,15 @@ const Shop = () => {
 
         <>
 
+            <section className="hero-video alignfull">
+                <video className="video" width="1465" height="1000" controls >
+                    <source src={video} type="video/mp4"/>
+                </video>
+            </section>
+
             <section className="featured-products">
 
-                <div className="hero__video alignfull">
-                    <video className="video" width="1465" height="1000" controls >
-                        <source src={video} type="video/mp4"/>
-                    </video>
-                </div>
+                
 
                 <header className="block-header">
                     <h1 className="block-header__title">Popular products</h1>
