@@ -1,16 +1,17 @@
 footer {
-    height: 359px;
+    padding: 11rem auto;
     background-color: black;
 }
 
 .footer-txt {
     padding-left: 3rem;
     display: flex;
-    gap: 12rem;
+    gap: 14rem;
     align-items: center;
     p,
     li,
-    i {
+    i,
+    h3 {
         color: white;
         font-size: 18px;
     }
@@ -29,8 +30,24 @@ footer {
     }
 }
 
-.footer-list li {
+.footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.footer-contact {
     padding-top: 1rem;
+    p {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    i {
+        padding-right: 1rem;
+    }
+    h3 {
+        font-weight: 400;
+    }
 }
 
 .footer-icons {
@@ -51,8 +68,8 @@ hr {
 
 .footer-bottom {
     display: flex;
-    justify-content: space-around;
-    padding-top: 3rem;
+    gap: 8rem;
+    padding: 7rem 17rem 1rem 3rem;
     p {
         font-size: 0.7rem;
         color: white;

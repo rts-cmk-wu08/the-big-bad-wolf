@@ -47,6 +47,7 @@ const Footer = () => {
     </div>
     <hr/>
     <div className="footer-bottom">
+        <img src="cards1.png" alt="billeder af betalingskort"/>
 <p>Hi Fi Corner Edinburgh Ltd is registered in Scotland. No: SC049298. Registered office: 2 Joppa Rd, Edinburgh EH15 2EU</p>
 <p>Designed & Built by WU07</p>
 </div>
