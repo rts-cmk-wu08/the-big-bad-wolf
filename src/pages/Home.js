@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import Card from "../components/Card";
 import "./home.scss"
-
 import video from "../video/hero_video.mp4";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
@@ -36,7 +36,7 @@ const Shop = () => {
 
                 <header className="block-header">
                     <h1 className="block-header__title">Popular products</h1>
-                    <button className="btn block-header__btn">See all products</button>
+                    <Link to={`/shop`} className="btn block-header__btn">See all products</Link>
                 </header>
 
                 { isLoading && <p>Loading...</p> }
