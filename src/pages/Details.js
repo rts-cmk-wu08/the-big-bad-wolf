@@ -63,7 +63,9 @@ const Details = () => {
                 }
 
             </article> 
+            
         </>
+
      );
 
 }
