@@ -1,110 +1,15 @@
-.fat {
-    font-weight: bold;
-}
-.bigger {
-    font-size: 3rem;
-    margin-top: -2.5rem;
-    padding: 1rem;
-}
-.flex {
-    display: flex;
-    gap: 1rem;
-}
-.details {
-        background-color: white;
-}
-
 .detail {
-    padding: 1rem;
-    margin: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-bottom: 5rem;
-}
-.detail__headline {
-    color: #495464;
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    padding-left: 2rem;
-}
-.detail img {
-    width: 25rem;
-}
-.detail__img {
-    text-align: center;
-    padding-top: 10em;
-}
+    
+    &__title,
+    &__subtitle {
+        font-weight: 600;
+    }
 
-//color buttons
-.buttons {
-    gap: 1rem;
-    display: flex;
-}
-.buttons button {
-    width: 2rem;
-    height: 2rem;
-    border-radius: 2rem;
-    border: none;
-}
-.black {
-    background-color: black;
-}
-.silver {
-    background-image: linear-gradient(to bottom left, rgb(121, 121, 121),rgb(224, 224, 224));
-}
-.gold {
-    background-image: linear-gradient(to bottom left, rgb(181, 156, 13),rgb(255, 238, 145));
-}
-button:hover {
-    border: 0.2rem solid grey;
-    outline: 0.1rem solid black;
-}
-button:active {
-    border: 0.2rem solid white;
-    outline: 0.1rem solid black; 
-}
+    &__img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-
-//Price and in stock
-.price {
-    display: flex;
-    justify-content: space-between;
-}
-.inStock {
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: green;
-    border-radius: 2rem;
-}
-
-
-//amount and cart btn
-
-.detail__price {
-    font-size: 1.7rem;
-}
-
-.detail__amount {
-    display: flex;
-    justify-content: space-between;
-}
-.amount {
-    display: flex;
-}
-.detail__input {
-    width: 2rem;
-    height: 2rem;
-}
-.detail__btn {
-    background-color: #FF6900;
-    border: none;
-    color: white;
-    padding: 1rem 14rem;
-}
-
-.line {
-    height: 0.1rem;
-    background-color: #c6c6c6;
-    margin: 0 3rem;
+    
 }

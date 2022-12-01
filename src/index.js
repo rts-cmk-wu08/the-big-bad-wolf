@@ -11,7 +11,7 @@ import FAQ from "./pages/FAQ";
 import Cart from "./pages/Cart";
 import NotFound from './pages/NotFound';
 
-import './index.css';
+import './index.scss';
 import App from './App';
 
 const router = createBrowserRouter(

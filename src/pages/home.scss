@@ -1,39 +1,10 @@
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4, 20rem);
-    gap: 2rem;
-    padding-left: 3rem;
-}
-.home__top {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 4rem;
-}
-.home__headline {
-    text-transform: uppercase;
-    color: #495464;
-}
-.home__btn {
-    background-color: #ff6900;
-    color: white;
-    border: none;
-    padding: 0rem 3rem;
-    margin: 1rem 0;
-}
-.bold {
-    font-weight: bold;
-    padding-top: 1rem;
-}
-
-.home__blackbox {
+.blackbox {
     background-color: black;
     color: white;
-    display: grid;
-    grid-template-columns: 34rem 25rem;
-    padding: 3rem;
-    justify-content: space-between;
-    margin: 5rem 0;
+    padding: 6rem 0 3rem;
 }
-.blackbox__right p {
-    margin: 0;
+
+.opening-hours {
+    max-width: 400px;
+    float: right;
 }

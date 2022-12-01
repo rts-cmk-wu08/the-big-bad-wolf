@@ -21,19 +21,24 @@ const Shop = () => {
 
     return (
 
-        <>
-        
-            <h1>Her er Shop</h1>
-            { isLoading && <p>Loading</p> }
-            { error && <p>{error}</p>}
-            { shop && 
-                <div>
-                    {shop.data.map(product => ( 
-                        <Card {...product} key={product.id} />
-                    ))}
-                </div> 
-            }
+        <>  
+            <header className="page-header">
+                <h1 className="page-header__title">Products</h1>
+            </header>
+            
+            <article className="page-content">
+                
+                { isLoading && <p>Loading</p> }
+                { error && <p>{error}</p>}
+                { shop && 
+                    <div className="grid">
+                        {shop.data.map(product => ( 
+                            <Card {...product} key={product.id} />
+                        ))}
+                    </div> 
+                }
 
+            </article>
         </>
 
      );
