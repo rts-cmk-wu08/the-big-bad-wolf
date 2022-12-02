@@ -1,4 +1,5 @@
 import "./login.scss"
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
     return ( 
@@ -30,7 +31,8 @@ const LoginPage = () => {
         <article className="page-content white shadow center">
             <h2 className="thinner">New Customer</h2>
             <p>Creating an account has many benefits: check out faster, track orders and more.</p>
-            <button className="btn shadow">Create an Account</button>
+            <Link to="/createUser"><button className="btn shadow">Create an Account</button></Link>
+        
         </article>
         </>
      );
