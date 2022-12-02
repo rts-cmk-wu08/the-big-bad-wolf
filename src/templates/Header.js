@@ -29,7 +29,7 @@ const Header = () => {
                         </form>
                     </div>
                     <ul className="header-icons">
-                        <li><Link to={"/#"} className="header-icons__link"><i className="fa-solid fa-user"></i></Link></li>
+                        <li><Link to={"/createUser"} className="header-icons__link"><i className="fa-solid fa-user"></i></Link></li>
                         <li><Link to={"/cart"} className="header-icons__link"><i className="fa-solid fa-cart-shopping"></i></Link></li>
                     </ul>
                 </div>
