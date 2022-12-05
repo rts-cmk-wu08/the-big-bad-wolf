@@ -15,10 +15,13 @@ const Shop = () => {
     const [shop, setShop] = useState(); 
 
     useEffect(() => {
-        axios.get(`${url}?populate=*`)
-            .then(response => setShop(response.data))
-            .catch(() => setError("Something went wrong"))
-            .finally(() => setIsLoading(false))
+        try {
+            axios.get(`${url}?populate=*`)
+                .then(response => setShop(response.data))
+                .finally(() => setIsLoading(false))
+        } catch (err) {
+            setError("Something went wrong");
+        }
 
     }, []);
 
