@@ -14,8 +14,8 @@ const Card = (props) => {
 
             <div className="card__img" >
 
-                {product.Images.data.map(img => ( 
-                    <Link to={link} key={img.id} ><LazyLoadImage effect="opacity" src={img.attributes.url} alt={product.Name} /></Link>
+                {Object.values(product.Images).map(img => ( 
+                        <Link to={link} key={img[0].id} ><LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={product.Name} /></Link>
                 ))}
 
             </div>

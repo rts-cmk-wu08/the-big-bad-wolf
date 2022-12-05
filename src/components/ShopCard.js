@@ -10,35 +10,36 @@ const Card = (props) => {
     let product = props.attributes
     let link = '/shop/' + props.id
 
-    return (
-        
-        <div className="card grid__item">
-            <div className='card__compare'>
-                <button className='card__compare-btn'>Compare <IoOptionsOutline /></button>
-            </div>
+        return (
             
-            
-            <div className="card__img" >
-
-                {product.Images.data.map(img => ( 
-                    <Link to={link} key={img.id} ><LazyLoadImage effect="opacity" src={img.attributes.url} alt={product.Name} /></Link>
-                ))}
-
-            </div>
-
-            <h3 className="card__title"><Link to={link}>{product.Name}</Link></h3>
-            <p className='card__price'>£ {product.Price}.00</p>
-            <div className='card__submit'>
+            <div className="card grid__item">
+                <div className='card__compare'>
+                    <button className='card__compare-btn'>Compare <IoOptionsOutline /></button>
+                </div>
                 
-                <button className="btn card__btn" >Add to cart</button>
-            
-                <span className="addtocart__stock">{product.Stock} <span className="inStock"></span></span>
+                <div className="card__img" >
+
+                    {Object.values(product.Images).map(img => ( 
+                        <Link to={link} key={img[0].id} ><LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={product.Name} /></Link>
+                    ))}
+
+
+                </div>
+
+                <h3 className="card__title"><Link to={link}>{product.Name}</Link></h3>
+                <p className='card__price'>£ {product.Price}.00</p>
+                <div className='card__submit'>
+                    
+                    <button className="btn card__btn" >Add to cart</button>
+                
+                    <span className="addtocart__stock">{product.Stock} <span className="inStock"></span></span>
+                </div>
+
             </div>
 
-        </div>
+        );
 
-     );
-     
-}
+
+};
 
 export default Card;

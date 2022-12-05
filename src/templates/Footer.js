@@ -33,14 +33,14 @@ const Footer = () => {
     <div className="footer-contact">
         <h3>Contact</h3>
         <p>2 Joppa Rd, Edinburgh, EH15 2EU</p>
-        <p> <i class="fa-solid fa-phone"></i> 0131 556 7901</p>
+        <p> <i className="fa-solid fa-phone"></i> 0131 556 7901</p>
         <p>44 Cow Wynd, Falkirk, Central Region, FK1 1PU</p>
-        <p> <i class="fa-solid fa-phone"></i> 01324 629 011</p>
+        <p> <i className="fa-solid fa-phone"></i> 01324 629 011</p>
         <div className="footer-icons">
-            <Link to="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></Link>
-            <Link to="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></Link>
-            <Link to="https://twitter.com/"><i class="fa-brands fa-twitter"></i></Link>
-            <Link to="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></Link>
+            <Link to="https://www.facebook.com/"><i className="fa-brands fa-facebook"></i></Link>
+            <Link to="https://www.youtube.com/"><i className="fa-brands fa-youtube"></i></Link>
+            <Link to="https://twitter.com/"><i className="fa-brands fa-twitter"></i></Link>
+            <Link to="https://www.instagram.com/"><i className="fa-brands fa-instagram"></i></Link>
             
             
             </div>

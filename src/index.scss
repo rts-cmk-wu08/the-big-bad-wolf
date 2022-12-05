@@ -64,7 +64,35 @@ section {
 
 .page-content {
     margin-bottom: 4rem;
+
+    &.sidebar-right,
+    &.sidebar-left {
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    .sidebar {
+        padding: 3rem 2.25rem;
+        width: 300px;
+        max-width: 300px;
+        min-height: 100vh;
+        background-color: #fff;
+        margin-right: 2rem;
+
+        &__filter {
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+        }
+    }
+
+    .content {
+        flex: 1;
+    }
 }
+
+
+
 
 /* Page Header */
 
@@ -94,6 +122,10 @@ section {
         margin: 0;
     }
 }
+
+
+
+
 
 
 /* Grid */

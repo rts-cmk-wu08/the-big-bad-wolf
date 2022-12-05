@@ -19,7 +19,7 @@ const Details = () => {
     const [details, setDetails] = useState();
 
     useEffect(() => {
-        axios.get(`${url}/${id}?populate=*`)
+        axios.get(`${url}/${id}?populate[0]=Images`)
             .then(response => setDetails(response.data))
             .catch(() => setError("Something went wrong"))
             .finally(() => setIsLoading(false))
@@ -38,14 +38,22 @@ const Details = () => {
 
                 { isLoading && <p>Loading</p> }
                 { error && <p>{error}</p>}
-                { details &&
+                { details && (
 
                     <div className="detail whitebox grid"> 
 
                         <div className="detail__img">
-                            {details.data.attributes.Images.data.map(img => ( 
-                                <LazyLoadImage effect="opacity" key={img.id} src={img.attributes.url} alt="" />
+
+                            {details.data.attributes.Images && 
+                                Object.values(details.data.attributes.Images).map(img => ( 
+                                    <LazyLoadImage 
+                                        effect="opacity" 
+                                        key={img[0].id} 
+                                        src={img[0].attributes.url} 
+                                        alt={details.data.attributes.Name} 
+                                    />
                             ))}
+
                         </div>
 
                         <div className="detail__info">
@@ -60,7 +68,7 @@ const Details = () => {
 
                     </div>
 
-                }
+                )}
 
             </article> 
             
@@ -71,7 +79,3 @@ const Details = () => {
 }
  
 export default Details;
-
-
-
-
