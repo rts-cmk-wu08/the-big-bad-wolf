@@ -10,8 +10,6 @@ const Card = (props) => {
     let product = props.attributes
     let link = '/shop/' + props.id
 
-    if (product.Images && product.Images.data) {
-
         return (
             
             <div className="card grid__item">
@@ -19,25 +17,11 @@ const Card = (props) => {
                     <button className='card__compare-btn'>Compare <IoOptionsOutline /></button>
                 </div>
                 
-                
                 <div className="card__img" >
 
-                    {product.Images.data?.map(img => {
-
-                        if (typeof img.attributes.url === 'string' && img.attributes.url.trim() !== '') {
-                           
-                            return (
-                                <Link to={link} key={img.id} ><LazyLoadImage effect="opacity" src={img.attributes.url} alt={product.Name} /></Link>
-                            );
-
-                        } else {
-
-                            return (
-                                <p>Error loading image</p>
-                            );
-                        }
-
-                    })}
+                    {Object.values(product.Images).map(img => ( 
+                        <Link to={link} key={img[0].id} ><LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={product.Name} /></Link>
+                    ))}
 
 
                 </div>
@@ -55,12 +39,7 @@ const Card = (props) => {
 
         );
 
-    } else {
-        return (
-            <p>Could not connect to API</p>
-        );
-    }
-     
+
 };
 
 export default Card;
