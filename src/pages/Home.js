@@ -30,7 +30,7 @@ const Shop = () => {
         <>
 
             <section className="hero-video alignfull">
-                <video className="video" width="1465" height="1000" controls >
+                <video className="video" controls >
                     <source src={video} type="video/mp4"/>
                 </video>
             </section>
