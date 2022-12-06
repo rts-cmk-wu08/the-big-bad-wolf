@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ShopCard from "../components/ShopCard";
 import ColorFilters from "../components/ColorFilters";
@@ -15,7 +15,7 @@ const Shop = () => {
     const [error, setError] = useState();
     const [shop, setShop] = useState(); 
 
-    const fetchShop = async () => {
+    const fetchShop = useCallback(async () => {
 
         try {
 
@@ -38,15 +38,14 @@ const Shop = () => {
             setError("Something went wrong");
         }
         
-    };
+    }, [selectedColors, selectedBrands]);
 
-    useEffect(() => { fetchShop(); }, [selectedColors, selectedBrands]);
+    useEffect(() => { fetchShop(); }, [fetchShop]);
     
     const onFilterChange = (event) => {
 
         const { name, checked, value } = event.target;
 
-        // Check if the filter belongs to the "Colors" taxonomy
         if (name.includes("color_")) {
             if (checked) {
                 setSelectedColors([...selectedColors, value]);
@@ -55,7 +54,6 @@ const Shop = () => {
             }
         }
 
-        // Check if the filter belongs to the "Brands" taxonomy
         if (name.includes("brand_")) {
             if (checked) {
               setSelectedBrands([...selectedBrands, value]);
@@ -75,7 +73,9 @@ const Shop = () => {
             <article className="page-content sidebar-left">
 
                         <div className="sidebar">
-                            <div className="sidebar__filter">
+                            <h3 className="sidebar__title">Sort by</h3>
+
+                            <div className="sidebar__content">                               
                                 <ColorFilters onFilterChange={onFilterChange} />
                                 <BrandFilters onFilterChange={onFilterChange} />
                             </div>

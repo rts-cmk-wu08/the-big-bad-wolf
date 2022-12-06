@@ -17,34 +17,38 @@ function BrandFilters({onFilterChange}) {
     }, []);
 
     return (
-        <div className="sidebar__filter-options">
+        <details className='acc-filters' open>
 
-            <h3 className="sidebar__filter-title">Filter by brand</h3>
+            <summary className="acc-filters__title">Brand</summary>
 
-            { isLoading && <p>Loading filters...</p> }
-            { error && <p>{error}</p>}
-            { brands.data &&
+            <div className='acc-filters__options'>
 
-            <>
-                {brands.data.map(brand => (
-                    <div key={brand.id} className="sidebar__filter-option">
-                        <input
-                            type="checkbox"
-                            id={brand.Name.toLowerCase()}
-                            name={"brand_" + brand.Name}
-                            value={brand.Name}
-                            onChange={onFilterChange}
-                        />
-                        <label htmlFor={brand.Name.toLowerCase()}>{brand.Name}</label>
-                    </div>
-                    
-                ))}
-            
-            </>
+                { isLoading && <p>Loading filters...</p> }
+                { error && <p>{error}</p>}
+                { brands.data &&
 
-            }
+                <>
+                    {brands.data.map(brand => (
+                        <div key={brand.id} className="acc-filters__option">
+                            <input
+                                type="checkbox"
+                                id={brand.Name.toLowerCase()}
+                                name={"brand_" + brand.Name}
+                                value={brand.Name}
+                                onChange={onFilterChange}
+                            />
+                            <label htmlFor={brand.Name.toLowerCase()}>{brand.Name}</label>
+                        </div>
+                        
+                    ))}
+                
+                </>
 
-        </div>
+                }
+
+            </div>
+
+        </details>
 
     );
 
