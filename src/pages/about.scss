@@ -1,0 +1,42 @@
+.bold {
+  font-weight: bold;
+}
+.center {
+  text-align: center;
+}
+.thick {
+  font-weight: 600;
+}
+
+  .aboutContainer {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 2rem;
+  }
+  .item {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 5rem;
+  }
+  .item {
+    color: rgb(93, 12, 12);
+  }
+  .item {
+    display: flex;
+    gap: 2rem;
+  }
+ 
+ 
+  .item p {
+    line-height: 1.625rem;
+
+  }
+  .item__img img {
+    width: 35rem;
+    height: 100%;
+
+  }
+
+  .p-col {
+    color: #FF6900;
+}
