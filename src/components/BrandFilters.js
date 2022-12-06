@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
-function ColorFilters({onFilterChange}) {
+function BrandFilters({onFilterChange}) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
-    const [colors, setColors] = useState([]);
+    const [brands, setBrands] = useState([]);
 
     useEffect(() => {
         // Fetch the list of colors from the API
-        axios.get('https://cryptic-genre-365612.appspot.com/api/colors')
-            .then(response => setColors(response.data))
+        axios.get('https://cryptic-genre-365612.appspot.com/api/brands')
+            .then(response => setBrands(response.data))
             .finally(() => setIsLoading(false))
             .catch(error => setError(error));
 
@@ -19,23 +19,23 @@ function ColorFilters({onFilterChange}) {
     return (
         <div className="sidebar__filter-options">
 
-            <h3 className="sidebar__filter-title">Filter by color</h3>
+            <h3 className="sidebar__filter-title">Filter by brand</h3>
 
             { isLoading && <p>Loading filters...</p> }
             { error && <p>{error}</p>}
-            { colors.data &&
+            { brands.data &&
 
             <>
-                {colors.data.map(color => (
-                    <div key={color.id} className="sidebar__filter-option">
+                {brands.data.map(brand => (
+                    <div key={brand.id} className="sidebar__filter-option">
                         <input
                             type="checkbox"
-                            id={color.Name.toLowerCase()}
-                            name={"color_" + color.Name}
-                            value={color.Name}
+                            id={brand.Name.toLowerCase()}
+                            name={"brand_" + brand.Name}
+                            value={brand.Name}
                             onChange={onFilterChange}
                         />
-                        <label htmlFor={color.Name.toLowerCase()}>{color.Name}</label>
+                        <label htmlFor={brand.Name.toLowerCase()}>{brand.Name}</label>
                     </div>
                     
                 ))}
@@ -50,4 +50,4 @@ function ColorFilters({onFilterChange}) {
 
 }
 
-export default ColorFilters;
+export default BrandFilters;
