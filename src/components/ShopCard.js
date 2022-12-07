@@ -34,7 +34,7 @@ const Card = (props) => {
                 
                 <div className="card__img" >
 
-                    {Object.values(product.Images).map(img => ( 
+                    {Object.values(product?.Images).map(img => ( 
                         <Link to={link} key={img[0].id} ><LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={product.Name} /></Link>
                     ))}
 
