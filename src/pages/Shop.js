@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ShopCard from "../components/ShopCard";
+import CompProdWidget from "../components/CompProdWidget";
 import ColorFilters from "../components/ColorFilters";
 import BrandFilters from "../components/BrandFilters";
 
@@ -63,6 +64,7 @@ const Shop = () => {
         }
     }
 
+
     return (
 
         <>  
@@ -98,8 +100,14 @@ const Shop = () => {
 
                 }
             </article>
+
+            <CompProdWidget />
+
+            
         </>
+
      );
+
 }
 
 export default Shop;

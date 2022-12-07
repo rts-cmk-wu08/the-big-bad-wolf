@@ -1,20 +1,35 @@
 import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { CompareContext } from "../contexts/CompareContext";
+import { IoOptionsOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./card.scss";
 
-import { IoOptionsOutline } from 'react-icons/io5';
-
 const Card = (props) => {
 
-    let product = props.attributes
-    let link = '/shop/' + props.id
+    const product = props.attributes
+    const link = '/shop/' + props.id
+
+    const [compCards, setCompCards] = useContext(CompareContext);
 
         return (
             
             <div className="card grid__item">
                 <div className='card__compare'>
-                    <button className='card__compare-btn'>Compare <IoOptionsOutline /></button>
+                    <button className='card__compare-btn'
+                        onClick={() => {
+                            if ( compCards === undefined ) {
+                                setCompCards([ props ]);
+                            } else if ( compCards.length < 3 && compCards.find(compCard => compCard.id === props.id) === undefined ) {
+                                setCompCards(prevArray => [...prevArray,  props ]);
+                            }
+                            
+                        }}
+
+                        >
+                        Compare <IoOptionsOutline /> 
+                    </button>
                 </div>
                 
                 <div className="card__img" >
