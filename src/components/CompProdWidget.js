@@ -1,4 +1,5 @@
 import { IoCloseOutline } from 'react-icons/io5';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useContext } from "react";
 import { CompareContext } from "../contexts/CompareContext";
 import "./CompProdWidget.scss";
@@ -21,9 +22,14 @@ const CompProdWidget = () => {
                 
                     {compCards?.map((card) => (
                         <div className="compProdWidgetCard" key={card.id}>
+                            <div className="card__img" >
+                                {Object.values(card.attributes.Images).map(img => ( 
+                                    <LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={'...'} />
+                                ))}
+                            </div>
                             <button className='compProdWidgetCard__remove' onClick={() => {removeCard(card.id)}}><IoCloseOutline /></button>
                             <p>{card.attributes.Name}</p>
-                            <p>{card.id}</p>
+                            <p>{card.attributes.Price}</p>
                         </div>
                     ))} 
 
