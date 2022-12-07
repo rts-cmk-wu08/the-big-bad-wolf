@@ -12,19 +12,17 @@ const CompProdWidget = () => {
         setCompCards(compCards.filter(compCard => compCard.id !== id ));
     };
 
-    console.log(compCards);
-
     return ( 
 
         <div className="compProdWidget alignfull">
             <div className="compProdWidget__inner container">
                 <div className="compProdWidget__cards">
                 
-                    {compCards?.map((card) => (
-                        <div className="compProdWidgetCard" key={card.id}>
-                            <div className="card__img" >
-                                {Object.values(card.attributes.Images).map(img => ( 
-                                    <LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={'...'} />
+                    {compCards?.map((card, index) => (
+                        <div className="compProdWidgetCard" key={index}>
+                            <div className="compProdWidgetCard__img" >
+                                {Object.values(card.attributes.Images).map((img, index) => ( 
+                                    <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
                                 ))}
                             </div>
                             <button className='compProdWidgetCard__remove' onClick={() => {removeCard(card.id)}}><IoCloseOutline /></button>
