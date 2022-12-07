@@ -10,7 +10,7 @@
 }
 
 .hero-video {
-    height: calc(100vh - 300px);
+    height: 70vh;
     position: relative; 
     overflow: hidden; 
     
@@ -18,7 +18,7 @@
         position: absolute; 
         top: 50%; 
         left: 50%; 
-        transform: translate(-50%, -45%) scale(1.1); 
+        transform: translate(-50%, -45%); 
         min-width: 100%;
     }
 
