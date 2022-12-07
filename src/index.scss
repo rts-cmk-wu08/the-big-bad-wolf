@@ -76,7 +76,12 @@ section {
 
         &__title {
             font-weight: 400;
-            padding: 0rem .75rem;
+            padding: 0rem .25rem;
+        }
+
+        &__inner {
+            position: sticky;
+            top: 1rem;
         }
     }
 

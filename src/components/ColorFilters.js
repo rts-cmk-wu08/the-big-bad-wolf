@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import Filters from "./Filters.scss";
+import "./Filters.scss";
+
+import { IoChevronDownOutline } from 'react-icons/io5';
 
 function ColorFilters({onFilterChange}) {
 
@@ -21,7 +23,7 @@ function ColorFilters({onFilterChange}) {
 
             <details className='acc-filters' open>
 
-                <summary className="acc-filters__title">Color</summary>
+                <summary className="acc-filters__title">Color <IoChevronDownOutline /></summary>
 
                 <div className='acc-filters__options'>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { IoChevronDownOutline } from 'react-icons/io5';
 
 function BrandFilters({onFilterChange}) {
 
@@ -19,7 +20,7 @@ function BrandFilters({onFilterChange}) {
     return (
         <details className='acc-filters' open>
 
-            <summary className="acc-filters__title">Brand</summary>
+            <summary className="acc-filters__title">Brand <IoChevronDownOutline /></summary>
 
             <div className='acc-filters__options'>
 

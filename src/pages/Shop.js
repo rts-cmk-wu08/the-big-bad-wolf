@@ -73,11 +73,13 @@ const Shop = () => {
             <article className="page-content sidebar-left">
 
                         <div className="sidebar">
-                            <h3 className="sidebar__title">Sort by</h3>
+                            <div className="sidebar__inner">
+                                <h3 className="sidebar__title">Sort by</h3>
 
-                            <div className="sidebar__content">                               
-                                <ColorFilters onFilterChange={onFilterChange} />
-                                <BrandFilters onFilterChange={onFilterChange} />
+                                <div className="sidebar__content">                               
+                                    <ColorFilters onFilterChange={onFilterChange} />
+                                    <BrandFilters onFilterChange={onFilterChange} />
+                                </div>
                             </div>
                         </div>
                 
