@@ -20,7 +20,7 @@ const CompProdWidget = () => {
                 
                     {compCards?.map((card, index) => (
                         <div className="compProdWidgetCard" key={index}>
-                            <div className="compProdWidgetCard__img" >
+                            <div className="card__img" >
                                 {Object.values(card.attributes.Images).map((img, index) => ( 
                                     <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
                                 ))}
