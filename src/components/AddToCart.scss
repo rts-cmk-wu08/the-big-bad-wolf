@@ -96,19 +96,19 @@
 }
 
 
-#black {
+.color-select #black {
     &::before {
         background: black;
     }
 }
 
-#silver {
+.color-select #silver {
     &::before {
         background-image: linear-gradient(to bottom left, rgb(121, 121, 121),rgb(224, 224, 224));
     }
 }
 
-#gold {
+.color-select #gold {
     &::before {
         background-image: linear-gradient(to bottom left, rgb(181, 156, 13),rgb(255, 238, 145));
     }

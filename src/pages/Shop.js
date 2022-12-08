@@ -1,47 +1,69 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import ShopCard from "../components/ShopCard";
+import CompProdWidget from "../components/CompProdWidget";
 import ColorFilters from "../components/ColorFilters";
+import BrandFilters from "../components/BrandFilters";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
 
 const Shop = () => {
 
-    const [selectedFilters, setSelectedFilters] = useState([]);
-
-    const [isLoading, setIsLoading] = useState(true);
+    const [selectedColors, setSelectedColors] = useState([]);
+    const [selectedBrands, setSelectedBrands] = useState([]);
+    
     const [error, setError] = useState();
     const [shop, setShop] = useState(); 
 
-    useEffect(() => {
+    const fetchShop = useCallback(async () => {
+
         try {
 
-            let fetchUrl = `${url}?populate[0]=Images`;	
-            if (selectedFilters.length > 0) {
-                fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedFilters.join('&')}&populate[0]=Images`;
-            }
+            let fetchUrl = `${url}?populate[0]=Images`;
 
-            axios.get(fetchUrl) 
-                .then(response => setShop(response.data))
-                .finally(() => setIsLoading(false))
-                .catch(error => setError(error));
+            if (selectedColors.length > 0 && selectedBrands.length === 0) {
+                fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&populate[0]=Images`;
+            }
+            if (selectedColors.length === 0 && selectedBrands.length > 0) {
+                fetchUrl = `${url}?filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+            }
+            if (selectedColors.length > 0 && selectedBrands.length > 0) {
+                fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+            }
+        
+            const response = await axios.get(fetchUrl);
+            setShop(response.data);
 
         } catch (err) {
             setError("Something went wrong");
         }
+        
+    }, [selectedColors, selectedBrands]);
 
-    }, [selectedFilters]);
-
+    useEffect(() => { fetchShop(); }, [fetchShop]);
+    
     const onFilterChange = (event) => {
-        const { name, checked } = event.target;
-      
-        if (checked) {
-          setSelectedFilters([...selectedFilters, name]);
-        } else {
-          setSelectedFilters(selectedFilters.filter(filter => filter !== name));
+
+        const { name, checked, value } = event.target;
+
+        if (name.includes("color_")) {
+            if (checked) {
+                setSelectedColors([...selectedColors, value]);
+            } else {
+                setSelectedColors(selectedColors.filter((filter) => filter !== value));
+            }
+        }
+
+        if (name.includes("brand_")) {
+            if (checked) {
+              setSelectedBrands([...selectedBrands, value]);
+            } else {
+              setSelectedBrands(selectedBrands.filter(filter => filter !== value));
+            }
         }
     }
+
 
     return (
 
@@ -53,16 +75,16 @@ const Shop = () => {
             <article className="page-content sidebar-left">
 
                         <div className="sidebar">
-                            <div className="sidebar__filter">
-                                <h3 className="sidebar__filter-title">Filter by</h3>
+                            <div className="sidebar__inner">
+                                <h3 className="sidebar__title">Sort by</h3>
 
-                                <ColorFilters onFilterChange={onFilterChange} />
-
+                                <div className="sidebar__content">                               
+                                    <ColorFilters onFilterChange={onFilterChange} />
+                                    <BrandFilters onFilterChange={onFilterChange} />
+                                </div>
                             </div>
-
                         </div>
                 
-                { isLoading && <p>Loading products...</p> }
                 { error && <p>{error}</p>}
                 { shop && 
 
@@ -77,9 +99,11 @@ const Shop = () => {
                     </>
 
                 }
-
             </article>
 
+            <CompProdWidget />
+
+            
         </>
 
      );

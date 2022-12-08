@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import "./Filters.scss";
+
+import { IoChevronDownOutline } from 'react-icons/io5';
 
 function ColorFilters({onFilterChange}) {
 
@@ -17,37 +20,41 @@ function ColorFilters({onFilterChange}) {
     }, []);
 
     return (
-        <div className="sidebar__filter-options">
 
-            { isLoading && <p>Loading filters...</p> }
-            { error && <p>{error}</p>}
-            { colors.data &&
+            <details className='acc-filters' open>
 
-            <>
-                {colors.data.map(color => (
-                    <div key={color.id} className="sidebar__filter-option">
-                        <input
-                            type="checkbox"
-                            id={color.Name.toLowerCase()}
-                            name={color.Name}
-                            value={color.Name}
-                            onChange={onFilterChange}
-                        />
-                        <label htmlFor={color.Name.toLowerCase()}>{color.Name}</label>
-                    </div>
+                <summary className="acc-filters__title">Color <IoChevronDownOutline /></summary>
+
+                <div className='acc-filters__options'>
+
+                    { isLoading && <p>Loading filters...</p> }
+                    { error && <p>{error}</p>}
+                    { colors.data &&
+
+                    <>
+                        {colors.data.map(color => (
+                            <div key={color.id} className="acc-filters__option">
+                                <input
+                                    type="checkbox"
+                                    id={color.Name.toLowerCase()}
+                                    name={"color_" + color.Name}
+                                    value={color.Name}
+                                    onChange={onFilterChange}
+                                />
+                                <label htmlFor={color.Name.toLowerCase()}>{color.Name}</label>
+                            </div>
+                            
+                        ))}
                     
-                ))}
-            
-            </>
+                    </>
 
-            }
+                    }
+                </div>
 
-        </div>
+            </details>
 
     );
 
 }
 
 export default ColorFilters;
-
-
