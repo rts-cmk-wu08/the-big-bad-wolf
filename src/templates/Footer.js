@@ -1,6 +1,8 @@
 import "./footer.scss";
 import { Link } from "react-router-dom";
 import "https://kit.fontawesome.com/9c2542a137.js";
+import Image from "../images/cards1.png";
+
 const Footer = () => {
 
     return (
@@ -48,7 +50,9 @@ const Footer = () => {
     </div>
     </div>
     <hr/>
-    <img src="images/cards1.png" alt="visa kort"/>
+    <img src={Image} alt="visa cards" />
+                 
+           
     <div className="footer-bottom">
      
 <p>Hi Fi Corner Edinburgh Ltd is registered in Scotland. No: SC049298. Registered office: 2 Joppa Rd, Edinburgh EH15 2EU</p>
