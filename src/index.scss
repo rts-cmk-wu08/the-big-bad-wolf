@@ -65,14 +65,17 @@ section {
     &.sidebar-right,
     &.sidebar-left {
         display: flex;
-        align-items: stretch;
+        align-items: flex-start;
+        flex-direction: row;
     }
     
     .sidebar {
         width: 260px;
         max-width: 260px;
-        min-height: 100%;
         margin-right: 2rem;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
 
         &__title {
             font-weight: 400;
@@ -129,6 +132,7 @@ section {
 
 .grid {
     display: grid;
+
     grid-template-columns:  repeat( auto-fit, minmax(250px, 1fr) );
     gap: 2rem;
 }
