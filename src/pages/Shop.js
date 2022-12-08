@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ShopCard from "../components/ShopCard";
 import CompProdWidget from "../components/CompProdWidget";
@@ -16,32 +16,33 @@ const Shop = () => {
     const [error, setError] = useState();
     const [shop, setShop] = useState(); 
 
-    const fetchShop = useCallback(async () => {
+    useEffect(() => { 
+    
+        (async () => {
 
-        try {
-
-            let fetchUrl = `${url}?populate[0]=Images`;
-
-            if (selectedColors.length > 0 && selectedBrands.length === 0) {
-                fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&populate[0]=Images`;
+            try {
+    
+                let fetchUrl = `${url}?populate[0]=Images`;
+    
+                if (selectedColors.length > 0 && selectedBrands.length === 0) {
+                    fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&populate[0]=Images`;
+                }
+                if (selectedColors.length === 0 && selectedBrands.length > 0) {
+                    fetchUrl = `${url}?filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+                }
+                if (selectedColors.length > 0 && selectedBrands.length > 0) {
+                    fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+                }
+            
+                const response = await axios.get(fetchUrl);
+                setShop(response.data);
+    
+            } catch (err) {
+                setError("Something went wrong");
             }
-            if (selectedColors.length === 0 && selectedBrands.length > 0) {
-                fetchUrl = `${url}?filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
-            }
-            if (selectedColors.length > 0 && selectedBrands.length > 0) {
-                fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
-            }
-        
-            const response = await axios.get(fetchUrl);
-            setShop(response.data);
-
-        } catch (err) {
-            setError("Something went wrong");
-        }
-        
+        })();
+    
     }, [selectedColors, selectedBrands]);
-
-    useEffect(() => { fetchShop(); }, [fetchShop]);
     
     const onFilterChange = (event) => {
 
@@ -63,6 +64,8 @@ const Shop = () => {
             }
         }
     }
+
+    
 
 
     return (
@@ -91,9 +94,13 @@ const Shop = () => {
                     <>
                         
                         <div className="content grid">
-                            {shop.data.map(product => (
-                                <ShopCard {...product} key={product.id} />
-                            ))}
+
+                            {shop.data && shop.data.length > 0 ? ( 
+                                shop.data.map(product => <ShopCard {...product} key={product.id} />)
+                            ) : (
+                                <p>Ups! Couldn't fetch product.</p>
+                            )}
+
                         </div> 
 
                     </>
