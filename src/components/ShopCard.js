@@ -17,7 +17,8 @@ const Card = (props) => {
             
             <div className="card grid__item">
                 <div className='card__compare'>
-                    <button className='card__compare-btn'
+                 
+                    <button className={`card__compare-btn ${ compCards.find(compCard => compCard.id === props.id) !== undefined ? 'card__compare-btn--active' : '' }`}
                         onClick={() => {
                             if ( compCards === undefined ) {
                                 setCompCards([ props ]);

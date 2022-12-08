@@ -65,13 +65,13 @@ section {
     &.sidebar-right,
     &.sidebar-left {
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
     }
     
     .sidebar {
         width: 260px;
         max-width: 260px;
-        min-height: 100vh;
+        min-height: 100%;
         margin-right: 2rem;
 
         &__title {

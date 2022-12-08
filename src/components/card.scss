@@ -54,13 +54,17 @@
         margin-bottom: 1rem;
 
         svg {
-            margin-left: .75rem;
-            font-size: 1.5rem;
+            margin-left: .5rem;
+            font-size: 1.25rem;
         }
     }
 
     &__compare-btn {
         display: flex;
         align-items: center;
+    }
+
+    &__compare-btn--active {
+        color: red;
     }
 }
