@@ -6,21 +6,38 @@
     height: 100%; 
 
     &__img {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 8rem;
+        
+        height: 150px;
         margin-bottom: 1rem;
+        overflow: hidden;
+
+        span,
+        a {
+            display: block;
+            height: 100%;
+        }
+
+        span {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        img {
+            max-height: 100%;
+            max-width: 80%;
+        }
     }
 
     &__title {
+        font-weight: 600;
         font-size: 1rem;
         margin-bottom: 2rem;
     }
 
     &__price {
-        font-weight: 700;
-        font-size: 1.5rem;
+        font-weight: 600;
+        font-size: 1.25rem;
         margin-bottom: 2rem;
     }
 
@@ -38,7 +55,7 @@
 
         svg {
             margin-left: .75rem;
-            font-size: 1.875rem;
+            font-size: 1.5rem;
         }
     }
 
