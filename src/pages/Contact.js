@@ -1,5 +1,5 @@
-import { validateForm } from "./ContactValidation";
 import { useState } from "react";
+
 
 
 
@@ -14,31 +14,34 @@ const Contact = ({ onChange, onSubmit }) => {
     const [errors, setErrors] = useState({});
   
   
+   // update form input values when the user types
+   const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+  
     const handleSubmit = (event) => {
-      event.preventDefault();
+        event.preventDefault();
       
+        // validate form using current input values
+        const errors = validateForm(formData);
+      
+        if (errors) {
+          setErrors(errors);
+          return;
+        }
+      
+        // submit the form and refresh the page
+        window.location.reload()
+        alert ("OMG JEG HAR FÅET FORMEN TIL AT VALIDERE! BETTER BELIEVE IT CARSTEN!");
+        onSubmit(formData);
+       
+      };
   
-      // validate form using current input values
-      const errors = validateForm(formData);
   
-      if (errors) {
-        setErrors(errors);
-        return;
-      }
-
-      onSubmit(formData);
-      window.location.reload();
-  
-    };
-  
-  
-    // update form input values when the user types
-    const handleChange = (event) => {
-      setFormData({
-        ...formData,
-        [event.target.name]: event.target.value,
-      });
-    };
+ 
   
     
     return (
@@ -101,7 +104,29 @@ const Contact = ({ onChange, onSubmit }) => {
         
  }
  
+ function validateForm(formData) {
+    const errors = {};
+    
+    if (!formData.fullName || formData.fullName.length < 2) {
+    errors.fullName = "Full name must be at least 2 letters long";
+    }
+    
+    if (!formData.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i.test(formData.email)) {
+    errors.email = "Please enter a valid email";
+    }
+    
+    if (!formData.subject) {
+    errors.subject = "Please enter a subject";
+    }
+    
+    if (!formData.message) {
+    errors.message = "Please enter your message";
+    }
+    
+    return Object.keys(errors).length === 0 ? null : errors;
+    }
+    
      
 
-
 export default Contact;
+
