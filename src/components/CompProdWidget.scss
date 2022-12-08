@@ -19,12 +19,32 @@
         flex-wrap: wrap;
     }
 
-    
+    &__btn-compare {
+        
+        .btn {
+            height: 150px;
+            width: 200px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                margin-left: .75rem;
+                font-size: 1.5rem;
+            }
+        }
+    }
 }
 
 
 .compProdWidgetCard {
     position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
     flex: 0 1 calc(33.333% - 1rem);
     min-width: 240px;
     background: #fff;
@@ -44,5 +64,51 @@
         right: 0.75rem;
         font-size: 20px;
         cursor: pointer;
+    }
+
+    .lazy-load-image-background,
+    a {
+        display: block;
+        height: 100%;
+    }
+
+    .lazy-load-image-background {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__img {
+        img {
+            max-height: 100%;
+            max-width: 100%;
+            float: left;
+        }
+    }
+
+    &__img, &__content {
+        flex: 0 1 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1rem;
+
+    }
+    
+    &__content {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+
+        .card__title {
+            margin-bottom: 0rem;
+        }
+
+        .card__price {
+            position:absolute;
+            bottom: 1rem;
+            right: 1rem;
+            margin-bottom: 0rem;
+        }
     }
 }
