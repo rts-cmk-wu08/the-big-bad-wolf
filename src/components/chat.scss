@@ -1,0 +1,73 @@
+
+//button
+.chat__btn {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 3rem;
+    background-color: white;
+    margin-left: 70rem;
+}
+.chat__icon {
+    font-size: 4rem;
+    color: #FF6900;
+}
+
+
+//popup box
+.chat__popup {
+    display: none;
+    background-color: #E8E8E8;
+    height: 22em;
+    width: 20rem;
+    margin-left: 50rem;
+}
+.chat__msg {
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem 5rem 3rem 1rem;
+}
+.chat__popup input {
+    width: 100%;
+    height: 4rem;
+    background-color: #FF6900;
+    color: white;
+    border: none;
+}
+.chat__popup textarea {
+    width: 100%;
+    height: 4rem;
+}
+.chat__top {
+    background-color: #495464;
+    display: flex;
+}
+.chat-top__text {
+    padding-left: 1rem;
+    padding-top: 1rem;
+}
+.chat-top__text p {
+    margin: 0;
+}
+.chat-top__text h3 {
+    color: white;
+}
+.black__cirkel {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 3rem;
+    background-color: black;
+    margin: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+//functionality
+.chat__popup--visible {
+    display: block;
+}
