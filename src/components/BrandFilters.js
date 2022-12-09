@@ -33,13 +33,13 @@ function BrandFilters({onFilterChange, selectedBrands}) {
                         <div key={brand.id} className="acc-filters__option">
                             <input
                                 type="checkbox"
-                                id={brand.Name.toLowerCase()}
-                                name={"brand_" + brand.Name}
-                                value={brand.Name.toLowerCase()}
-                                checked={selectedBrands.includes(brand.Name.toLowerCase())}
+                                id={brand.attributes.Name.toLowerCase()}
+                                name={"brand_" + brand.attributes.Name}
+                                value={brand.attributes.Name.toLowerCase()}
+                                checked={selectedBrands.includes(brand.attributes.Name.toLowerCase())}
                                 onChange={onFilterChange}
                             />
-                            <label htmlFor={brand.Name.toLowerCase()}>{brand.Name}</label>
+                            <label htmlFor={brand.attributes.Name.toLowerCase()}>{brand.attributes.Name}</label>
                         </div>
                         
                     ))}

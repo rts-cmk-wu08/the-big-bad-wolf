@@ -33,16 +33,17 @@ function ColorFilters({onFilterChange, selectedColors}) {
 
                     <>
                         {colors.data.map(color => (
+
                             <div key={color.id} className="acc-filters__option">
                                 <input
                                     type="checkbox"
-                                    id={color.Name.toLowerCase()}
-                                    name={"color_" + color.Name}
-                                    value={color.Name.toLowerCase()}
-                                    checked={selectedColors.includes(color.Name.toLowerCase())}
+                                    id={color.attributes.Name.toLowerCase()}
+                                    name={"color_" + color.attributes.Name}
+                                    value={color.attributes.Name.toLowerCase()}
+                                    checked={selectedColors.includes(color.attributes.Name.toLowerCase())}
                                     onChange={onFilterChange}
                                 />
-                                <label htmlFor={color.Name.toLowerCase()}>{color.Name}</label>
+                                <label htmlFor={color.attributes.Name.toLowerCase()}>{color.attributes.Name}</label>
                             </div>
                             
                         ))}

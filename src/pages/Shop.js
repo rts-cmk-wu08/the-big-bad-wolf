@@ -29,29 +29,20 @@ const Shop = () => {
     const colorParams = extractParams('colors');
     const brandParams = extractParams('brands');
 
-    // Get the values for the "colors" parameter and split them into an array
-
-    console.log(colorParams);
-
     const [selectedColors, setSelectedColors] = useState(colorParams);
     const [selectedBrands, setSelectedBrands] = useState(brandParams);
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
-    const [shop, setShop] = useState(); 
-
+    const [shop, setShop] = useState({ data: [] }); 
 
     useEffect(() => { 
-    
         (async () => {
-
             try {
-
                 let fetchUrl = `${url}?populate[0]=Images`;
                 let colorFilters = 'filters[Colors][Name][$containsi]=';
                 let brandFilters = 'filters[Brand][Name][$containsi]=';
     
-
                 if (selectedColors.length === 0 && selectedBrands.length === 0) {
                     fetchUrl = `${url}?populate[0]=Images`;
                     navigate(``, { replace: true }) 
@@ -104,7 +95,6 @@ const Shop = () => {
         if (name.includes("brand_")) {
             if (checked) {
               setSelectedBrands([...selectedBrands, value]);
-
             } else {
               setSelectedBrands(selectedBrands.filter(filter => filter !== value));
             }
@@ -112,31 +102,25 @@ const Shop = () => {
     }
 
     return (
-
         <>  
             <header className="page-header">
                 <h1 className="page-header__title">Products</h1>
             </header>
-            
             <article className="page-content sidebar-left">
-
-                        <div className="sidebar">
-                            <div className="sidebar__inner">
-                                <h3 className="sidebar__title">Sort by</h3>
-
-                                <div className="sidebar__content">                               
-                                    <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
-                                    <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
-                                </div>
+                    <div className="sidebar">
+                        <div className="sidebar__inner">
+                            <h3 className="sidebar__title">Sort by</h3>
+                            <div className="sidebar__content">                               
+                                <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
+                                <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
                             </div>
                         </div>
+                    </div>
                 
                 { isLoading && <p>Loading...</p> }
                 { error && <p>{error}</p>}
-                { shop && 
-
+                { shop && shop.data &&
                     <>
-                        
                         <div className="content grid">
 
                             {shop.data && shop.data.length > 0 ? ( 
@@ -145,19 +129,13 @@ const Shop = () => {
                                 <p>No results.</p>
                             )}
 
-                        </div> 
-
+                        </div>
                     </>
-
                 }
             </article>
-
             <CompProdWidget />
-
         </>
-
      );
-
 }
 
 export default Shop;
