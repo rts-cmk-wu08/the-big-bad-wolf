@@ -7,8 +7,8 @@ import CompProdWidget from "../components/CompProdWidget";
 import ColorFilters from "../components/ColorFilters";
 import BrandFilters from "../components/BrandFilters";
 
-var baseUrl = 'https://cryptic-genre-365612.appspot.com';
-var url = baseUrl + '/api/products';
+let baseUrl = 'https://cryptic-genre-365612.appspot.com';
+let url = baseUrl + '/api/products';
 
 const Shop = () => {
 
@@ -18,62 +18,70 @@ const Shop = () => {
     // Create an instance of the URLSearchParams class
     const urlParams = new URLSearchParams(location.search);
 
-    // Get the values for the "colors" and "brands" parameters
-    const colors = urlParams.getAll('colors');
-    const brands = urlParams.getAll('brands');
+    const extractParams = (paramName) => {
+        if (!urlParams.has(paramName)) {
+          return [];
+        }
+        return urlParams.getAll(paramName)[0].split(',').filter((param) => param !== '');
+      }
 
-    const colorArray = colors.split(',');
+    // Use the extractParams function to get the values for the "colors" and "brands" parameters
+    const colorParams = extractParams('colors');
+    const brandParams = extractParams('brands');
 
-    console.log(colorArray);
+    // Get the values for the "colors" parameter and split them into an array
 
-    const [selectedColors, setSelectedColors] = useState(colors);
-    const [selectedBrands, setSelectedBrands] = useState(brands);
-    
+    console.log(colorParams);
+
+    const [selectedColors, setSelectedColors] = useState(colorParams);
+    const [selectedBrands, setSelectedBrands] = useState(brandParams);
+
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
     const [shop, setShop] = useState(); 
 
-    console.log(selectedColors);
 
     useEffect(() => { 
     
         (async () => {
 
             try {
-    
+
                 let fetchUrl = `${url}?populate[0]=Images`;
+                let colorFilters = 'filters[Colors][Name][$containsi]=';
+                let brandFilters = 'filters[Brand][Name][$containsi]=';
+    
 
                 if (selectedColors.length === 0 && selectedBrands.length === 0) {
                     fetchUrl = `${url}?populate[0]=Images`;
                     navigate(``, { replace: true }) 
-                }
+                } 
                 
                 if (selectedColors.length > 0 && selectedBrands.length === 0) {                    
-                    const colorsQueryString = selectedColors.map(color => `filters[Colors][Name][$containsi]=${color}`);
+                    const colorsQueryString = selectedColors.map(color => colorFilters + color);
                     fetchUrl = `${url}?${colorsQueryString.join('&')}&populate[0]=Images`;
                     navigate(`?colors=${selectedColors.join(',')}`, { replace: true }) 
                 }
 
                 if (selectedColors.length === 0 && selectedBrands.length > 0) {
-                    const brandsQueryString = selectedBrands.map(brand => `filters[Brands][Name][$containsi]=${brand}`);
+                    const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
                     fetchUrl = `${url}?${brandsQueryString.join('&')}&populate[0]=Images`;
                     navigate(`?brands=${selectedBrands.join(',')}`, { replace: true }) 
                 }
 
                 if (selectedColors.length > 0 && selectedBrands.length > 0) {
-                    const colorsQueryString = selectedColors.map(color => `filters[Colors][Name][$containsi]=${color}`);
-                    const brandsQueryString = selectedBrands.map(brand => `filters[Brands][Name][$containsi]=${brand}`);
+                    const colorsQueryString = selectedColors.map(color => colorFilters + color);
+                    const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
                     fetchUrl = `${url}?${colorsQueryString.join('&')}&${brandsQueryString.join('&')}&populate[0]=Images`;
                     navigate(`?colors=${selectedColors.join(',')}&brands=${selectedBrands.join(',')}`, { replace: true }) 
-
                 }
 
-                console.log(fetchUrl);
-            
                 const response = await axios.get(fetchUrl);
                 setShop(response.data);
-
+                setIsLoading(false);
     
             } catch (err) {
+                console.log(err);
                 setError("Something went wrong");
             }
 
@@ -81,8 +89,6 @@ const Shop = () => {
     
     }, [selectedColors, selectedBrands, navigate]);
     
-    console.log(shop);
-
     const onFilterChange = (event) => {
 
         const { name, checked, value } = event.target;
@@ -105,9 +111,6 @@ const Shop = () => {
         }
     }
 
-    
-
-
     return (
 
         <>  
@@ -122,12 +125,13 @@ const Shop = () => {
                                 <h3 className="sidebar__title">Sort by</h3>
 
                                 <div className="sidebar__content">                               
-                                    <ColorFilters onFilterChange={onFilterChange} />
-                                    <BrandFilters onFilterChange={onFilterChange} />
+                                    <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
+                                    <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
                                 </div>
                             </div>
                         </div>
                 
+                { isLoading && <p>Loading...</p> }
                 { error && <p>{error}</p>}
                 { shop && 
 
@@ -138,7 +142,7 @@ const Shop = () => {
                             {shop.data && shop.data.length > 0 ? ( 
                                 shop.data.map(product => <ShopCard {...product} key={product.id} />)
                             ) : (
-                                <p>Ups! Couldn't fetch product.</p>
+                                <p>No results.</p>
                             )}
 
                         </div> 
@@ -150,7 +154,6 @@ const Shop = () => {
 
             <CompProdWidget />
 
-            
         </>
 
      );

@@ -4,7 +4,7 @@ import "./Filters.scss";
 
 import { IoChevronDownOutline } from 'react-icons/io5';
 
-function ColorFilters({onFilterChange}) {
+function ColorFilters({onFilterChange, selectedColors}) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
@@ -39,6 +39,7 @@ function ColorFilters({onFilterChange}) {
                                     id={color.Name.toLowerCase()}
                                     name={"color_" + color.Name}
                                     value={color.Name.toLowerCase()}
+                                    checked={selectedColors.includes(color.Name.toLowerCase())}
                                     onChange={onFilterChange}
                                 />
                                 <label htmlFor={color.Name.toLowerCase()}>{color.Name}</label>
