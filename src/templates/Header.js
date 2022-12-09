@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
+import Search from "../components/Search";
 
 
 const Header = () => {
@@ -23,10 +24,7 @@ const Header = () => {
                 </div>
                 <div className="top-navigation__right">
                     <div className="header-search">
-                        <form className="search-form">
-                            <input className="search-form__input" type="text" placeholder="Search product..." name="search"/>
-                            <button className="search-form__button" type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
+                      <Search />
                     </div>
                     <ul className="header-icons">
                         <li><Link to={"/login"} className="header-icons__link"><i className="fa-solid fa-user"></i></Link></li>
