@@ -38,7 +38,7 @@ function ColorFilters({onFilterChange}) {
                                     type="checkbox"
                                     id={color.Name.toLowerCase()}
                                     name={"color_" + color.Name}
-                                    value={color.Name}
+                                    value={color.Name.toLowerCase()}
                                     onChange={onFilterChange}
                                 />
                                 <label htmlFor={color.Name.toLowerCase()}>{color.Name}</label>

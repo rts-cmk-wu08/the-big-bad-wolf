@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router';
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import ShopCard from "../components/ShopCard";
 import CompProdWidget from "../components/CompProdWidget";
@@ -10,11 +12,27 @@ var url = baseUrl + '/api/products';
 
 const Shop = () => {
 
-    const [selectedColors, setSelectedColors] = useState([]);
-    const [selectedBrands, setSelectedBrands] = useState([]);
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    // Create an instance of the URLSearchParams class
+    const urlParams = new URLSearchParams(location.search);
+
+    // Get the values for the "colors" and "brands" parameters
+    const colors = urlParams.getAll('colors');
+    const brands = urlParams.getAll('brands');
+
+    const colorArray = colors.split(',');
+
+    console.log(colorArray);
+
+    const [selectedColors, setSelectedColors] = useState(colors);
+    const [selectedBrands, setSelectedBrands] = useState(brands);
     
     const [error, setError] = useState();
     const [shop, setShop] = useState(); 
+
+    console.log(selectedColors);
 
     useEffect(() => { 
     
@@ -23,27 +41,48 @@ const Shop = () => {
             try {
     
                 let fetchUrl = `${url}?populate[0]=Images`;
-    
-                if (selectedColors.length > 0 && selectedBrands.length === 0) {
-                    fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&populate[0]=Images`;
+
+                if (selectedColors.length === 0 && selectedBrands.length === 0) {
+                    fetchUrl = `${url}?populate[0]=Images`;
+                    navigate(``, { replace: true }) 
                 }
+                
+                if (selectedColors.length > 0 && selectedBrands.length === 0) {                    
+                    const colorsQueryString = selectedColors.map(color => `filters[Colors][Name][$containsi]=${color}`);
+                    fetchUrl = `${url}?${colorsQueryString.join('&')}&populate[0]=Images`;
+                    navigate(`?colors=${selectedColors.join(',')}`, { replace: true }) 
+                }
+
                 if (selectedColors.length === 0 && selectedBrands.length > 0) {
-                    fetchUrl = `${url}?filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+                    const brandsQueryString = selectedBrands.map(brand => `filters[Brands][Name][$containsi]=${brand}`);
+                    fetchUrl = `${url}?${brandsQueryString.join('&')}&populate[0]=Images`;
+                    navigate(`?brands=${selectedBrands.join(',')}`, { replace: true }) 
                 }
+
                 if (selectedColors.length > 0 && selectedBrands.length > 0) {
-                    fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+                    const colorsQueryString = selectedColors.map(color => `filters[Colors][Name][$containsi]=${color}`);
+                    const brandsQueryString = selectedBrands.map(brand => `filters[Brands][Name][$containsi]=${brand}`);
+                    fetchUrl = `${url}?${colorsQueryString.join('&')}&${brandsQueryString.join('&')}&populate[0]=Images`;
+                    navigate(`?colors=${selectedColors.join(',')}&brands=${selectedBrands.join(',')}`, { replace: true }) 
+
                 }
+
+                console.log(fetchUrl);
             
                 const response = await axios.get(fetchUrl);
                 setShop(response.data);
+
     
             } catch (err) {
                 setError("Something went wrong");
             }
+
         })();
     
-    }, [selectedColors, selectedBrands]);
+    }, [selectedColors, selectedBrands, navigate]);
     
+    console.log(shop);
+
     const onFilterChange = (event) => {
 
         const { name, checked, value } = event.target;
@@ -59,6 +98,7 @@ const Shop = () => {
         if (name.includes("brand_")) {
             if (checked) {
               setSelectedBrands([...selectedBrands, value]);
+
             } else {
               setSelectedBrands(selectedBrands.filter(filter => filter !== value));
             }
