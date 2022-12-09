@@ -29,7 +29,7 @@ const ShopCard = (product) => {
             </div>
             <div className="card__img" >
                 {Object.values(product.attributes.Images).map(img => ( 
-                    <Link to={link} key={img.id} >
+                    <Link to={link} key={img[0].id} >
                         <LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={product.attributes.Name} />
                     </Link>
                 ))}
