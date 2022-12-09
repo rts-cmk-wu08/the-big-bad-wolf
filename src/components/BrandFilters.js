@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { IoChevronDownOutline } from 'react-icons/io5';
 
-function BrandFilters({onFilterChange}) {
+function BrandFilters({onFilterChange, selectedBrands}) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
@@ -33,12 +33,13 @@ function BrandFilters({onFilterChange}) {
                         <div key={brand.id} className="acc-filters__option">
                             <input
                                 type="checkbox"
-                                id={brand.Name.toLowerCase()}
-                                name={"brand_" + brand.Name}
-                                value={brand.Name}
+                                id={brand.attributes.Name.toLowerCase()}
+                                name={"brand_" + brand.attributes.Name}
+                                value={brand.attributes.Name.toLowerCase()}
+                                checked={selectedBrands.includes(brand.attributes.Name.toLowerCase())}
                                 onChange={onFilterChange}
                             />
-                            <label htmlFor={brand.Name.toLowerCase()}>{brand.Name}</label>
+                            <label htmlFor={brand.attributes.Name.toLowerCase()}>{brand.attributes.Name}</label>
                         </div>
                         
                     ))}

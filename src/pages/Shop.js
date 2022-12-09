@@ -1,48 +1,84 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router';
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import ShopCard from "../components/ShopCard";
 import CompProdWidget from "../components/CompProdWidget";
 import ColorFilters from "../components/ColorFilters";
 import BrandFilters from "../components/BrandFilters";
 
-var baseUrl = 'https://cryptic-genre-365612.appspot.com';
-var url = baseUrl + '/api/products';
+let baseUrl = 'https://cryptic-genre-365612.appspot.com';
+let url = baseUrl + '/api/products';
 
 const Shop = () => {
 
-    const [selectedColors, setSelectedColors] = useState([]);
-    const [selectedBrands, setSelectedBrands] = useState([]);
-    
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    // Create an instance of the URLSearchParams class
+    const urlParams = new URLSearchParams(location.search);
+
+    const extractParams = (paramName) => {
+        if (!urlParams.has(paramName)) {
+          return [];
+        }
+        return urlParams.getAll(paramName)[0].split(',').filter((param) => param !== '');
+      }
+
+    // Use the extractParams function to get the values for the "colors" and "brands" parameters
+    const colorParams = extractParams('colors');
+    const brandParams = extractParams('brands');
+
+    const [selectedColors, setSelectedColors] = useState(colorParams);
+    const [selectedBrands, setSelectedBrands] = useState(brandParams);
+
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
-    const [shop, setShop] = useState(); 
+    const [shop, setShop] = useState({ data: [] }); 
 
     useEffect(() => { 
-    
         (async () => {
-
             try {
-    
                 let fetchUrl = `${url}?populate[0]=Images`;
+                let colorFilters = 'filters[Colors][Name][$containsi]=';
+                let brandFilters = 'filters[Brand][Name][$containsi]=';
     
-                if (selectedColors.length > 0 && selectedBrands.length === 0) {
-                    fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&populate[0]=Images`;
+                if (selectedColors.length === 0 && selectedBrands.length === 0) {
+                    fetchUrl = `${url}?populate[0]=Images`;
+                    navigate(``, { replace: true }) 
+                } 
+                
+                if (selectedColors.length > 0 && selectedBrands.length === 0) {                    
+                    const colorsQueryString = selectedColors.map(color => colorFilters + color);
+                    fetchUrl = `${url}?${colorsQueryString.join('&')}&populate[0]=Images`;
+                    navigate(`?colors=${selectedColors.join(',')}`, { replace: true }) 
                 }
+
                 if (selectedColors.length === 0 && selectedBrands.length > 0) {
-                    fetchUrl = `${url}?filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+                    const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
+                    fetchUrl = `${url}?${brandsQueryString.join('&')}&populate[0]=Images`;
+                    navigate(`?brands=${selectedBrands.join(',')}`, { replace: true }) 
                 }
+
                 if (selectedColors.length > 0 && selectedBrands.length > 0) {
-                    fetchUrl = `${url}?filters[Colors][Name][$containsi]=${selectedColors.join('&')}&filters[Brand][Name][$eq]=${selectedBrands.join('&')}&populate[0]=Images`;
+                    const colorsQueryString = selectedColors.map(color => colorFilters + color);
+                    const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
+                    fetchUrl = `${url}?${colorsQueryString.join('&')}&${brandsQueryString.join('&')}&populate[0]=Images`;
+                    navigate(`?colors=${selectedColors.join(',')}&brands=${selectedBrands.join(',')}`, { replace: true }) 
                 }
-            
+
                 const response = await axios.get(fetchUrl);
                 setShop(response.data);
+                setIsLoading(false);
     
             } catch (err) {
+                console.log(err);
                 setError("Something went wrong");
             }
+
         })();
     
-    }, [selectedColors, selectedBrands]);
+    }, [selectedColors, selectedBrands, navigate]);
     
     const onFilterChange = (event) => {
 
@@ -65,56 +101,41 @@ const Shop = () => {
         }
     }
 
-    
-
-
     return (
-
         <>  
             <header className="page-header">
                 <h1 className="page-header__title">Products</h1>
             </header>
-            
             <article className="page-content sidebar-left">
-
-                        <div className="sidebar">
-                            <div className="sidebar__inner">
-                                <h3 className="sidebar__title">Sort by</h3>
-
-                                <div className="sidebar__content">                               
-                                    <ColorFilters onFilterChange={onFilterChange} />
-                                    <BrandFilters onFilterChange={onFilterChange} />
-                                </div>
+                    <div className="sidebar">
+                        <div className="sidebar__inner">
+                            <h3 className="sidebar__title">Sort by</h3>
+                            <div className="sidebar__content">                               
+                                <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
+                                <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
                             </div>
                         </div>
+                    </div>
                 
+                { isLoading && <p>Loading...</p> }
                 { error && <p>{error}</p>}
-                { shop && 
-
+                { shop && shop.data &&
                     <>
-                        
                         <div className="content grid">
 
                             {shop.data && shop.data.length > 0 ? ( 
                                 shop.data.map(product => <ShopCard {...product} key={product.id} />)
                             ) : (
-                                <p>Ups! Couldn't fetch product.</p>
+                                <p>No results.</p>
                             )}
 
-                        </div> 
-
+                        </div>
                     </>
-
                 }
             </article>
-
             <CompProdWidget />
-
-            
         </>
-
      );
-
 }
 
 export default Shop;
