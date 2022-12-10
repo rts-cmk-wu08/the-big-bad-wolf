@@ -7,8 +7,7 @@ import CompProdWidget from "../components/compareWidget/CompProdWidget";
 import ColorFilters from "../components/shopFilters/ColorFilters";
 import BrandFilters from "../components/shopFilters/BrandFilters";
 
-let baseUrl = 'https://cryptic-genre-365612.appspot.com';
-let url = baseUrl + '/api/products';
+let baseUrl = 'https://cryptic-genre-365612.appspot.com/api/products';
 
 const Shop = () => {
 
@@ -19,9 +18,7 @@ const Shop = () => {
     const urlParams = new URLSearchParams(location.search);
 
     const extractParams = (paramName) => {
-        if (!urlParams.has(paramName)) {
-          return [];
-        }
+        if (!urlParams.has(paramName)) { return []; }
         return urlParams.getAll(paramName)[0].split(',').filter((param) => param !== '');
       }
 
@@ -39,31 +36,31 @@ const Shop = () => {
     useEffect(() => { 
         (async () => {
             try {
-                let fetchUrl = `${url}?populate[0]=Images`;
+                let fetchUrl = `${baseUrl}?populate[0]=Images`;
                 let colorFilters = 'filters[Colors][Name][$containsi]=';
                 let brandFilters = 'filters[Brand][Name][$containsi]=';
     
                 if (selectedColors.length === 0 && selectedBrands.length === 0) {
-                    fetchUrl = `${url}?populate[0]=Images`;
+                    fetchUrl = `${baseUrl}?populate[0]=Images`;
                     navigate(``, { replace: true }) 
                 } 
                 
                 if (selectedColors.length > 0 && selectedBrands.length === 0) {                    
                     const colorsQueryString = selectedColors.map(color => colorFilters + color);
-                    fetchUrl = `${url}?${colorsQueryString.join('&')}&populate[0]=Images`;
+                    fetchUrl = `${baseUrl}?${colorsQueryString.join('&')}&populate[0]=Images`;
                     navigate(`?colors=${selectedColors.join(',')}`, { replace: true }) 
                 }
 
                 if (selectedColors.length === 0 && selectedBrands.length > 0) {
                     const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
-                    fetchUrl = `${url}?${brandsQueryString.join('&')}&populate[0]=Images`;
+                    fetchUrl = `${baseUrl}?${brandsQueryString.join('&')}&populate[0]=Images`;
                     navigate(`?brands=${selectedBrands.join(',')}`, { replace: true }) 
                 }
 
                 if (selectedColors.length > 0 && selectedBrands.length > 0) {
                     const colorsQueryString = selectedColors.map(color => colorFilters + color);
                     const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
-                    fetchUrl = `${url}?${colorsQueryString.join('&')}&${brandsQueryString.join('&')}&populate[0]=Images`;
+                    fetchUrl = `${baseUrl}?${colorsQueryString.join('&')}&${brandsQueryString.join('&')}&populate[0]=Images`;
                     navigate(`?colors=${selectedColors.join(',')}&brands=${selectedBrands.join(',')}`, { replace: true }) 
                 }
 
@@ -85,19 +82,13 @@ const Shop = () => {
         const { name, checked, value } = event.target;
 
         if (name.includes("color_")) {
-            if (checked) {
-                setSelectedColors([...selectedColors, value]);
-            } else {
-                setSelectedColors(selectedColors.filter((filter) => filter !== value));
-            }
+            if (checked) { setSelectedColors([...selectedColors, value]); } 
+            else { setSelectedColors(selectedColors.filter((filter) => filter !== value)); }
         }
 
         if (name.includes("brand_")) {
-            if (checked) {
-              setSelectedBrands([...selectedBrands, value]);
-            } else {
-              setSelectedBrands(selectedBrands.filter(filter => filter !== value));
-            }
+            if (checked) { setSelectedBrands([...selectedBrands, value]); } 
+            else { setSelectedBrands(selectedBrands.filter(filter => filter !== value)); }
         }
     }
 
@@ -133,6 +124,7 @@ const Shop = () => {
                     </>
                 }
             </article>
+            
             <CompProdWidget />
         </>
      );
