@@ -32,11 +32,6 @@ const ShopCard = (product) => {
                  <>Compare <IoCloseCircleOutline className='icon-close'/></> : <>Compare <IoOptionsOutline className='icon-compare'/></> }
             </button>
 
-
-
-                
-
-
             </div>
             <div className="card__img" >
                 {Object.values(product.attributes.Images).map(img => ( 
