@@ -7,9 +7,7 @@ import CompProdWidget from "../components/compareWidget/CompProdWidget";
 import ColorFilters from "../components/shopFilters/ColorFilters";
 import BrandFilters from "../components/shopFilters/BrandFilters";
 
-let baseUrl = 'https://cryptic-genre-365612.appspot.com/api/products';
-
-const Shop = () => {
+const Shop = (props) => {
 
     let navigate = useNavigate();
     let location = useLocation();
@@ -25,9 +23,11 @@ const Shop = () => {
     // Use the extractParams function to get the values for the "colors" and "brands" parameters
     const colorParams = extractParams('colors');
     const brandParams = extractParams('brands');
+    const searchParams = extractParams('search');
 
     const [selectedColors, setSelectedColors] = useState(colorParams);
     const [selectedBrands, setSelectedBrands] = useState(brandParams);
+    const [search, setSearch] = useState(searchParams);
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
@@ -36,33 +36,66 @@ const Shop = () => {
     useEffect(() => { 
         (async () => {
             try {
-                let fetchUrl = `${baseUrl}?populate[0]=Images`;
+                
+                let baseUrl = 'https://cryptic-genre-365612.appspot.com/api/products';
                 let colorFilters = 'filters[Colors][Name][$containsi]=';
                 let brandFilters = 'filters[Brand][Name][$containsi]=';
-    
-                if (selectedColors.length === 0 && selectedBrands.length === 0) {
-                    fetchUrl = `${baseUrl}?populate[0]=Images`;
-                    navigate(``, { replace: true }) 
-                } 
+                let searchFilters = 'filters[Name][$containsi]=';
+                let populateImages = 'populate[0]=Images';
+                let hasFilters = false;
+
+                // Create an array containing all of the filter values
+                const filterValues = [selectedColors, selectedBrands, search];
+
+                // Use the reduce() method to build the fetch URL based on the filter values
+                let fetchUrl = filterValues.reduce((url, filterValues, i) => {
+                    if (filterValues.length === 0) { return url; }
+                        hasFilters = true;
+                        // Use a switch statement to handle each filter type
+                        switch (i) {
+                            case 0:
+                                // Handle the color filter
+                                const colorQueryString = filterValues.map(color => colorFilters + color).join('&');
+                                return `${url}${url !== baseUrl ? "&" : "?"}${colorQueryString}`;
+                            case 1:
+                                // Handle the brand filter
+                                const brandQueryString = filterValues.map(brand => brandFilters + brand).join('&');
+                                return `${url}${url !== baseUrl ? "&" : "?"}${brandQueryString}`;
+                            case 2:
+                                // Handle the search filter
+                                const searchQueryString = filterValues.map(searchTerm => searchFilters + searchTerm).join('&');
+                                return `${url}${url !== baseUrl ? "&" : "?"}${searchQueryString}`;
+                        }
+                    }, baseUrl);
+
+
+                // Update the URL query string to include the filter values
+                let queryParams = "";
+                filterValues.forEach((filterValues, i) => {
+                    if (filterValues.length === 0) { return; }
+                    console.log(filterValues, "filterValues") 
+                    let prefix = "";
+                    if (queryParams === "") {
+                        prefix = "?";
+                    } else {
+                        prefix = "&";
+                    }
+
+                    switch (i) {
+                        case 0: queryParams += `${prefix}colors=${filterValues.join(',')}`; break;
+                        case 1: queryParams += `${prefix}brands=${filterValues.join(',')}`; break;
+                        case 2: queryParams += `${prefix}search=${filterValues.join(',')}`; break;
+                    }
+                });
                 
-                if (selectedColors.length > 0 && selectedBrands.length === 0) {                    
-                    const colorsQueryString = selectedColors.map(color => colorFilters + color);
-                    fetchUrl = `${baseUrl}?${colorsQueryString.join('&')}&populate[0]=Images`;
-                    navigate(`?colors=${selectedColors.join(',')}`, { replace: true }) 
-                }
+                navigate(queryParams, { replace: true });
 
-                if (selectedColors.length === 0 && selectedBrands.length > 0) {
-                    const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
-                    fetchUrl = `${baseUrl}?${brandsQueryString.join('&')}&populate[0]=Images`;
-                    navigate(`?brands=${selectedBrands.join(',')}`, { replace: true }) 
-                }
+                // Add the populateImages parameter to the end of the fetch URL, prefixed with '?' if there are no filters, or '&' if there are filters
+                fetchUrl += hasFilters ? `&${populateImages}` : `?${populateImages}`;
 
-                if (selectedColors.length > 0 && selectedBrands.length > 0) {
-                    const colorsQueryString = selectedColors.map(color => colorFilters + color);
-                    const brandsQueryString = selectedBrands.map(brand => brandFilters + brand);
-                    fetchUrl = `${baseUrl}?${colorsQueryString.join('&')}&${brandsQueryString.join('&')}&populate[0]=Images`;
-                    navigate(`?colors=${selectedColors.join(',')}&brands=${selectedBrands.join(',')}`, { replace: true }) 
-                }
+                
+
+                console.log(fetchUrl);
 
                 const response = await axios.get(fetchUrl);
                 setShop(response.data);
@@ -75,7 +108,7 @@ const Shop = () => {
 
         })();
     
-    }, [selectedColors, selectedBrands, navigate]);
+    }, [selectedColors, selectedBrands, search, navigate]);
     
     const onFilterChange = (event) => {
 

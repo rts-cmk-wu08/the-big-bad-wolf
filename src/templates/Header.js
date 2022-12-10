@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import Search from "../components/Search";
-
+import SearchWidget from "../components/SearchWidget";
 
 const Header = () => {
 
@@ -24,7 +23,7 @@ const Header = () => {
                 </div>
                 <div className="top-navigation__right">
                     <div className="header-search">
-                      <Search />
+                      <SearchWidget />
                     </div>
                     <ul className="header-icons">
                         <li><Link to={"/login"} className="header-icons__link"><i className="fa-solid fa-user"></i></Link></li>

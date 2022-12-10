@@ -15,9 +15,8 @@ const chatBtnActive = () => {
 
 };
 useEffect(() => {
-    console.log("chatFunction is: ", chatFunction)
+   // console.log("chatFunction is: ", chatFunction)
 }, [chatFunction]);
-
 
     return ( 
     <>
