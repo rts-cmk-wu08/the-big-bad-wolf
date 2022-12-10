@@ -8,16 +8,26 @@ import './CartWidget.scss';
 const CartWidget = () => {
 
     const [cartItems, setCartItems] = useContext(CartContext);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
     useEffect(() => {
+        const calculateTotalPrice = () => {
+            const totalPrice = cartItems.reduce((acc, cartItem) => {
+              return acc + cartItem.attributes.Price;
+            }, 0);
+            setTotalPrice(totalPrice);
+        };
+
+        calculateTotalPrice();
+
         const handleClickOutside = event => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } };
         document.addEventListener("click", handleClickOutside);
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [dropdownRef]);
+    }, [dropdownRef, cartItems]);
 
     const removeCard = (id) => {
         setCartItems(cartItems.filter(cartItem => cartItem.id !== id ));
@@ -60,6 +70,9 @@ const CartWidget = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                    <div className="cart-widget--dropdown__footer">
+                        <span className="cart-widget--dropdown__total">Total: <span className="cart-widget--dropdown__total-price">£{totalPrice}.00</span></span>
                     </div>
                 </div>
             )}
