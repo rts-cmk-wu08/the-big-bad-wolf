@@ -12,7 +12,6 @@ const Shop = (props) => {
     let navigate = useNavigate();
     let location = useLocation();
 
-    // Create an instance of the URLSearchParams class
     const urlParams = new URLSearchParams(location.search);
 
     const extractParams = (paramName) => {
@@ -20,14 +19,14 @@ const Shop = (props) => {
         return urlParams.getAll(paramName)[0].split(',').filter((param) => param !== '');
       }
 
-    // Use the extractParams function to get the values for the "colors" and "brands" parameters
     const colorParams = extractParams('colors');
     const brandParams = extractParams('brands');
     const searchParams = extractParams('search');
 
+    // Create state variables for each filter type
     const [selectedColors, setSelectedColors] = useState(colorParams);
     const [selectedBrands, setSelectedBrands] = useState(brandParams);
-    const [search, setSearch] = useState(searchParams);
+    const [search] = useState(searchParams);
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
@@ -36,7 +35,7 @@ const Shop = (props) => {
     useEffect(() => { 
         (async () => {
             try {
-                
+
                 let baseUrl = 'https://cryptic-genre-365612.appspot.com/api/products';
                 let colorFilters = 'filters[Colors][Name][$containsi]=';
                 let brandFilters = 'filters[Brand][Name][$containsi]=';
@@ -44,11 +43,11 @@ const Shop = (props) => {
                 let populateImages = 'populate[0]=Images';
                 let hasFilters = false;
 
-                // Create an array containing all of the filter values
-                const filterValues = [selectedColors, selectedBrands, search];
+                // Create an array of filter values
+                const dependencies = [selectedColors, selectedBrands, search];
 
                 // Use the reduce() method to build the fetch URL based on the filter values
-                let fetchUrl = filterValues.reduce((url, filterValues, i) => {
+                let fetchUrl = dependencies.reduce((url, filterValues, i) => {
                     if (filterValues.length === 0) { return url; }
                         hasFilters = true;
                         // Use a switch statement to handle each filter type
@@ -65,26 +64,25 @@ const Shop = (props) => {
                                 // Handle the search filter
                                 const searchQueryString = filterValues.map(searchTerm => searchFilters + searchTerm).join('&');
                                 return `${url}${url !== baseUrl ? "&" : "?"}${searchQueryString}`;
+                            default:
+                                // Handle any other cases
+                                return url;
                         }
                     }, baseUrl);
 
 
                 // Update the URL query string to include the filter values
                 let queryParams = "";
-                filterValues.forEach((filterValues, i) => {
+                dependencies.forEach((filterValues, i) => {
                     if (filterValues.length === 0) { return; }
-                    console.log(filterValues, "filterValues") 
-                    let prefix = "";
-                    if (queryParams === "") {
-                        prefix = "?";
-                    } else {
-                        prefix = "&";
-                    }
 
+                    let prefix = queryParams === "" ? "?" : "&";
+                   
                     switch (i) {
                         case 0: queryParams += `${prefix}colors=${filterValues.join(',')}`; break;
                         case 1: queryParams += `${prefix}brands=${filterValues.join(',')}`; break;
                         case 2: queryParams += `${prefix}search=${filterValues.join(',')}`; break;
+                        default: break;
                     }
                 });
                 
@@ -92,10 +90,6 @@ const Shop = (props) => {
 
                 // Add the populateImages parameter to the end of the fetch URL, prefixed with '?' if there are no filters, or '&' if there are filters
                 fetchUrl += hasFilters ? `&${populateImages}` : `?${populateImages}`;
-
-                
-
-                console.log(fetchUrl);
 
                 const response = await axios.get(fetchUrl);
                 setShop(response.data);
