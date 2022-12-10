@@ -18,6 +18,8 @@
         flex-direction: row;
         width: 100%;
         flex-wrap: wrap;
+        height: auto;
+        overflow: visible;
     }
 
     &__btn-compare {
@@ -54,6 +56,7 @@
     margin-bottom: 1rem;
     padding: 1rem;
     min-height: 120px;
+    animation: cardOpen .25s ease-in-out;
 
     &:last-child {
         margin-right: 0;
@@ -112,5 +115,16 @@
             right: 1rem;
             margin-bottom: 0rem;
         }
+    }
+}
+
+@keyframes cardOpen {
+    0% {
+        opacity: 0;
+        transform: scale(.75) translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0); 
     }
 }
