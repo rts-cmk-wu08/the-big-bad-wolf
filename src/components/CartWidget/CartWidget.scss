@@ -21,13 +21,20 @@
         line-height: 0;
     }
 }
-
-.cart-widget--dropdown {
-    display: flex;
-    flex-direction: column;
+.cart-widget--dropdown--wrapper {
     position: absolute;
     top: calc( 89px + 1rem);
     right: 1rem;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.cart-widget--dropdown {
+    pointer-events: all;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 1rem; 
     padding: 1rem;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -51,4 +58,5 @@
         align-items: stretch;
         margin-right: 0;
     }
+    
 }

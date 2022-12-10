@@ -46,33 +46,35 @@ const CartWidget = () => {
             </span>
 
             {isOpen && (
-                <div ref={dropdownRef} className="cart-widget--dropdown">
-                    <div className="cart-widget--dropdown__header">
-                        <h3 className="cart-widget--dropdown__title">Shopping Cart</h3>
-                        <Link to={"/cart"} className="btn cart-widget__btn">Go to Cart</Link>
-                    </div>
-                    <div className="cart-widget--dropdown__body">
-                        {cartItems.map(card => (
-                            <div className="card compProdWidgetCard cart-widget--dropdown__item" key={card.id}>
-                                <div className='card_compare compProdWidgetCard__compare'>
-                                    <button className='card__compare-btn' onClick={() => {removeCard(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
-                                </div>
-                                <div className="compProdWidgetCard__inner" >
-                                    <div className="compProdWidgetCard__img" >
-                                        {Object.values(card.attributes?.Images).map((img, index) => ( 
-                                            <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
-                                        ))}
+                <div className="cart-widget--dropdown--wrapper">
+                    <div ref={dropdownRef} className="cart-widget--dropdown">
+                        <div className="cart-widget--dropdown__header">
+                            <h3 className="cart-widget--dropdown__title">Cart <span>({cartItems.length} items)</span></h3>
+                            <Link to={"/cart"} className="btn cart-widget__btn">Go to Cart</Link>
+                        </div>
+                        <div className="cart-widget--dropdown__body">
+                            {cartItems.map(card => (
+                                <div className="card compProdWidgetCard cart-widget--dropdown__item" key={card.id}>
+                                    <div className='card_compare compProdWidgetCard__compare'>
+                                        <button className='card__compare-btn' onClick={() => {removeCard(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
                                     </div>
-                                    <div className="compProdWidgetCard__content">
-                                        <h3 className='card__title'>{card.attributes.Name}</h3>
-                                        <span className='card__price'><span>£</span>{card.attributes.Price}.00</span>
+                                    <div className="compProdWidgetCard__inner" >
+                                        <div className="compProdWidgetCard__img" >
+                                            {Object.values(card.attributes?.Images).map((img, index) => ( 
+                                                <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
+                                            ))}
+                                        </div>
+                                        <div className="compProdWidgetCard__content">
+                                            <h3 className='card__title'>{card.attributes.Name}</h3>
+                                            <span className='card__price'><span>£</span>{card.attributes.Price}.00</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="cart-widget--dropdown__footer">
-                        <span className="cart-widget--dropdown__total">Total: <span className="cart-widget--dropdown__total-price">£{totalPrice}.00</span></span>
+                            ))}
+                        </div>
+                        <div className="cart-widget--dropdown__footer">
+                            <span className="cart-widget--dropdown__total">Total: <span className="cart-widget--dropdown__total-price">£{totalPrice}.00</span></span>
+                        </div>
                     </div>
                 </div>
             )}
