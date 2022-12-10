@@ -77,6 +77,8 @@
         }
         
     }
+
+    &__readmore { display: none; }
 }
 
 .icon-compare,
@@ -86,9 +88,17 @@
     animation: iconfadein .25s ease-in-out;
 }
 
-.icon-compare {
+.card-homepage {
+    .card__compare-btn {
+        display: none;
+    }
+    .card__submit {
+        display: none;
+    }
+    .card__readmore { 
+        display: block; 
+    }
 }
-
 
 @keyframes iconfadein {
     0% {

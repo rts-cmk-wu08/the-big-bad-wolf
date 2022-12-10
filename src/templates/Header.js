@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import SearchWidget from "../components/SearchWidget";
+import CartWidget from "../components/CartWidget/CartWidget";
 
 const Header = () => {
 
@@ -27,7 +28,7 @@ const Header = () => {
                     </div>
                     <ul className="header-icons">
                         <li><Link to={"/login"} className="header-icons__link"><i className="fa-solid fa-user"></i></Link></li>
-                        <li><Link to={"/cart"} className="header-icons__link"><i className="fa-solid fa-cart-shopping"></i></Link></li>
+                        <li><CartWidget /></li>
                     </ul>
                 </div>
             </div>

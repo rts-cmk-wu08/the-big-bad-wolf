@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router';
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import ShopCard from "../components/shopCards/ShopCard";
-import CompProdWidget from "../components/compareWidget/CompProdWidget";
-import ColorFilters from "../components/shopFilters/ColorFilters";
-import BrandFilters from "../components/shopFilters/BrandFilters";
+import ProductCard from "../components/ProductCard/ProductCard";
+import CompProdWidget from "../components/CompareWidget/CompProdWidget";
+import ColorFilters from "../components/ProductFilters/ColorFilters";
+import BrandFilters from "../components/ProductFilters/BrandFilters";
 
 const Shop = () => {
 
@@ -141,7 +141,7 @@ const Shop = () => {
                         <div className="content grid">
 
                             {shop.data && shop.data.length > 0 ? ( 
-                                shop.data.map(product => <ShopCard {...product} key={product.id} />)
+                                shop.data.map(product => <ProductCard {...product} key={product.id} />)
                             ) : (
                                 <p>No results.</p>
                             )}

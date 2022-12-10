@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import Card from "../components/shopCards/Card";
+import ProductCard from "../components/ProductCard/ProductCard";
 import "./home.scss"
 import video from "../video/hero_video.mp4";
 
@@ -49,7 +49,7 @@ const Shop = () => {
                 { shop && 
                     <div className="grid">
                         {shop.data.slice(0,4).map(product => ( 
-                            <Card {...product} key={product.id} />
+                            <ProductCard {...product} key={product.id} />
                         ))}
                     </div> 
                 }
