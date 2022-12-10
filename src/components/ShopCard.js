@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
 import { CompareContext } from "../contexts/CompareContext";
-import { IoOptionsOutline } from 'react-icons/io5';
+import { IoOptionsOutline, IoCloseCircleOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./card.scss";
@@ -15,17 +15,28 @@ const ShopCard = (product) => {
     return (
         <div className="card grid__item">
             <div className='card__compare'>
-                <button className={`card__compare-btn ${ compCards.find(compCard => compCard.id === product.id) !== undefined ? 'card__compare-btn--active' : '' }`}
-                    onClick={() => {
-                        if ( compCards === undefined ) {
-                            setCompCards([ product ]);
-                        } else if ( compCards.length < 3 && compCards.find(compCard => compCard.id === product.id) === undefined ) {
-                            setCompCards(prevArray => [...prevArray,  product ]);
-                        } 
-                    }}
-                >
-                    Compare <IoOptionsOutline /> 
-                </button>
+
+            <button className={`card__compare-btn ${ compCards.find(compCard => compCard.id === product.id) !== undefined ? 'card__compare-btn--active' : '' }`}
+                onClick={() => {
+                    if ( compCards === undefined ) {
+                        setCompCards([ product ]);
+                    } else if ( compCards.length < 3 && compCards.find(compCard => compCard.id === product.id) === undefined ) {
+                        setCompCards(prevArray => [...prevArray, product ]);
+                    } else if ( compCards.find(compCard => compCard.id === product.id) !== undefined ) {
+                        setCompCards(prevArray => prevArray.filter(compCard => compCard.id !== product.id));
+                    }
+                }}
+            >
+                 {compCards.length === 3 && compCards.find(compCard => compCard.id === product.id) === undefined ? 
+                 <>Compare is full <IoOptionsOutline className='icon-compare'/></> : compCards.find(compCard => compCard.id === product.id) !== undefined ? 
+                 <>Compare <IoCloseCircleOutline className='icon-close'/></> : <>Compare <IoOptionsOutline className='icon-compare'/></> }
+            </button>
+
+
+
+                
+
+
             </div>
             <div className="card__img" >
                 {Object.values(product.attributes.Images).map(img => ( 
