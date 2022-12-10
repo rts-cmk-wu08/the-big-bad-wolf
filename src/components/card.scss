@@ -3,7 +3,6 @@
     background-color: white;
     box-shadow: 0px 2px 5px rgba($color: #000000, $alpha: .1);
     text-align: center;
-    height: 100%; 
     animation: cardOpen .25s ease-in-out;
 
     &__img {
@@ -40,6 +39,11 @@
         font-weight: 700;
         font-size: 1.25rem;
         margin-bottom: 2rem;
+
+        span {
+            margin-right: .2rem;
+            font-weight: 400;
+        }
     }
 
     &__submit {
@@ -53,18 +57,6 @@
         justify-content: flex-end;
         font-size: .875rem;
         margin-bottom: 1rem;
-
-        .icon-compare,
-        .icon-close {
-            margin-left: .35rem;
-            font-size: 1rem;
-            animation: fadein .25s ease-in-out;
-        }
-
-        icon-compare {
-            transform: rotate(-90deg) translateX(1px);
-        }
-
     }
 
     &__compare-btn {
@@ -85,6 +77,17 @@
         }
         
     }
+}
+
+.icon-compare,
+.icon-close {
+    margin-left: .35rem;
+    font-size: 1rem;
+    animation: fadein .25s ease-in-out;
+}
+
+.icon-compare {
+    transform: rotate(-90deg) translateX(1px);
 }
 
 

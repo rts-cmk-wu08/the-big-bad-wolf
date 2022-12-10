@@ -1,4 +1,4 @@
-import { IoCloseOutline, IoOptionsOutline } from 'react-icons/io5';
+import { IoCloseCircleOutline, IoOptionsOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useContext } from "react";
 import { CompareContext } from "../contexts/CompareContext";
@@ -19,17 +19,19 @@ const CompProdWidget = () => {
                 <div className="compProdWidget__cards">
                 
                     {compCards?.map((card, index) => (
-                        <div className="compProdWidgetCard" key={index}>
-                            <div className="compProdWidgetCard__img" >
-                                {Object.values(card.attributes?.Images).map((img, index) => ( 
-                                    <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
-                                ))}
+                        <div className="card compProdWidgetCard" key={index}>
+                            <div className='card_compare compProdWidgetCard__compare'>
+                                <button className='card__compare-btn' onClick={() => {removeCard(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
                             </div>
-                            <div className="compProdWidgetCard__content">
-                                <button className='compProdWidgetCard__remove' onClick={() => {removeCard(card.id)}}><IoCloseOutline /></button>
-                                <div className='compProdWidgetCard__content-inner'>
+                            <div className="compProdWidgetCard__inner" >
+                                <div className="compProdWidgetCard__img" >
+                                    {Object.values(card.attributes?.Images).map((img, index) => ( 
+                                        <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
+                                    ))}
+                                </div>
+                                <div className="compProdWidgetCard__content">
                                     <h3 className='card__title'>{card.attributes.Name}</h3>
-                                    <span className='card__price'>£ {card.attributes.Price}.00</span>
+                                    <span className='card__price'><span>£</span>{card.attributes.Price}.00</span>
                                 </div>
                             </div>
                         </div>

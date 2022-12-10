@@ -46,7 +46,7 @@ const ShopCard = (product) => {
                 ))}
             </div>
             <h3 className="card__title"><Link to={link}>{product.attributes.Name}</Link></h3>
-            <p className='card__price'>£ {product.attributes.Price}.00</p>
+            <p className='card__price'><span>£</span>{product.attributes.Price}.00</p>
             <div className='card__submit'>
                 <button className="btn card__btn" >Add to cart</button>
                 <span className="addtocart__stock">{product.attributes.Stock} <span className="inStock"></span></span>
