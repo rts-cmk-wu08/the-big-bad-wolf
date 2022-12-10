@@ -83,22 +83,23 @@
 .icon-close {
     margin-left: .35rem;
     font-size: 1rem;
-    animation: fadein .25s ease-in-out;
+    animation: iconfadein .25s ease-in-out;
 }
 
 .icon-compare {
-    transform: rotate(-90deg) translateX(1px);
 }
 
 
-@keyframes fadein {
+@keyframes iconfadein {
     0% {
         opacity: 0;
         transform: scale(.9);
+
     }
     100% {
         opacity: 1;
         transform: scale(1); 
+
     }
 }
     
