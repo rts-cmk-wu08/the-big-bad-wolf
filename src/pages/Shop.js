@@ -7,7 +7,7 @@ import CompProdWidget from "../components/compareWidget/CompProdWidget";
 import ColorFilters from "../components/shopFilters/ColorFilters";
 import BrandFilters from "../components/shopFilters/BrandFilters";
 
-const Shop = (props) => {
+const Shop = () => {
 
     let navigate = useNavigate();
     let location = useLocation();
@@ -36,6 +36,7 @@ const Shop = (props) => {
         (async () => {
             try {
 
+                // Set the base URLs for the fetch request
                 let baseUrl = 'https://cryptic-genre-365612.appspot.com/api/products';
                 let colorFilters = 'filters[Colors][Name][$containsi]=';
                 let brandFilters = 'filters[Brand][Name][$containsi]=';
@@ -70,14 +71,11 @@ const Shop = (props) => {
                         }
                     }, baseUrl);
 
-
                 // Update the URL query string to include the filter values
                 let queryParams = "";
                 dependencies.forEach((filterValues, i) => {
                     if (filterValues.length === 0) { return; }
-
                     let prefix = queryParams === "" ? "?" : "&";
-                   
                     switch (i) {
                         case 0: queryParams += `${prefix}colors=${filterValues.join(',')}`; break;
                         case 1: queryParams += `${prefix}brands=${filterValues.join(',')}`; break;
@@ -85,7 +83,8 @@ const Shop = (props) => {
                         default: break;
                     }
                 });
-                
+
+                // Update the URL query string
                 navigate(queryParams, { replace: true });
 
                 // Add the populateImages parameter to the end of the fetch URL, prefixed with '?' if there are no filters, or '&' if there are filters
