@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { IoChevronDownOutline } from 'react-icons/io5';
 import axios from "axios";
 import "./Filters.scss";
-
-import { IoChevronDownOutline } from 'react-icons/io5';
 
 function ColorFilters({onFilterChange, selectedColors}) {
 

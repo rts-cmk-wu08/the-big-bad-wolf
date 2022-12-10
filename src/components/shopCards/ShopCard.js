@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
-import { CompareContext } from "../contexts/CompareContext";
+import { CompareContext } from "../../contexts/CompareContext";
 import { IoOptionsOutline, IoCloseCircleOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';

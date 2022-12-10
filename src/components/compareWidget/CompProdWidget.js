@@ -1,7 +1,7 @@
 import { IoCloseCircleOutline, IoOptionsOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useContext } from "react";
-import { CompareContext } from "../contexts/CompareContext";
+import { CompareContext } from "../../contexts/CompareContext";
 import "./CompProdWidget.scss";
 
 const CompProdWidget = () => {

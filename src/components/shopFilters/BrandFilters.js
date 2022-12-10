@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios";
 import { IoChevronDownOutline } from 'react-icons/io5';
+import axios from "axios";
+import "./Filters.scss";
+
 
 function BrandFilters({onFilterChange, selectedBrands}) {
 

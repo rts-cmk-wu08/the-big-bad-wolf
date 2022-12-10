@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router';
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import ShopCard from "../components/ShopCard";
-import CompProdWidget from "../components/CompProdWidget";
-import ColorFilters from "../components/ColorFilters";
-import BrandFilters from "../components/BrandFilters";
+import ShopCard from "../components/shopCards/ShopCard";
+import CompProdWidget from "../components/compareWidget/CompProdWidget";
+import ColorFilters from "../components/shopFilters/ColorFilters";
+import BrandFilters from "../components/shopFilters/BrandFilters";
 
 let baseUrl = 'https://cryptic-genre-365612.appspot.com';
 let url = baseUrl + '/api/products';

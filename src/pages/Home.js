@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import Card from "../components/Card";
+import Card from "../components/shopCards/Card";
 import "./home.scss"
 import video from "../video/hero_video.mp4";
 
