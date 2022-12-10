@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/ProductCard/ProductCard";
-import CompProdWidget from "../components/CompareWidget/CompProdWidget";
+import CompareWidget from "../components/CompareWidget/CompareWidget";
 import ColorFilters from "../components/ProductFilters/ColorFilters";
 import BrandFilters from "../components/ProductFilters/BrandFilters";
 
@@ -151,7 +151,7 @@ const Shop = () => {
                 }
             </article>
             
-            <CompProdWidget />
+            <CompareWidget />
         </>
      );
 }

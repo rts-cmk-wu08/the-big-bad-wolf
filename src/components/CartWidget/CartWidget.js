@@ -18,9 +18,7 @@ const CartWidget = () => {
               return acc + cartItem.attributes.Price;
             }, 0);
             setTotalPrice(totalPrice);
-        };
-
-        calculateTotalPrice();
+        }; calculateTotalPrice();
 
         const handleClickOutside = event => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } };
         document.addEventListener("click", handleClickOutside);
@@ -40,11 +38,11 @@ const CartWidget = () => {
                 <Link to={"/cart"} className="header-icons__link"
                     onMouseEnter={() => setIsOpen(true)}
                 >
-                    <i className="fa-solid fa-cart-shopping cart-widget__icon"></i><span className="cart-widget__counter">{cartItems.length}</span>
+                    <i className="fa-solid fa-cart-shopping cart-widget__icon"></i>
+                    <span className="cart-widget__counter">{cartItems.length}</span>
                 </Link>
-                
             </span>
-
+            
             {isOpen && (
                 <div className="cart-widget--dropdown--wrapper">
                     <div ref={dropdownRef} className="cart-widget--dropdown">

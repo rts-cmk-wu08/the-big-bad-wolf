@@ -2,9 +2,9 @@ import { IoCloseCircleOutline, IoOptionsOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useContext } from "react";
 import { CompareContext } from "../../contexts/CompareContext";
-import "./CompProdWidget.scss";
+import "./CompareWidget.scss";
 
-const CompProdWidget = () => {
+const CompareWidget = () => {
     
     const [compCards, setCompCards] = useContext(CompareContext);
     
@@ -50,4 +50,4 @@ const CompProdWidget = () => {
 
 }
  
-export default CompProdWidget;
+export default CompareWidget;
