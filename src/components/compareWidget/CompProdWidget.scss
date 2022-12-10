@@ -42,6 +42,7 @@
 }
 
 
+.cartWidgetCard,
 .compProdWidgetCard {
     position: relative;
     flex: 0 1 calc(33.333% - 1rem);
@@ -51,7 +52,7 @@
     margin-bottom: 1rem;
     padding: 1rem;
     animation: cardOpen .25s ease-in-out;
-    max-height: 200px;
+    height: 200px;
 
     &:last-child {
         margin-right: 0;
