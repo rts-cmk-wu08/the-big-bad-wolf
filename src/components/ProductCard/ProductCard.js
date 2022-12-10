@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useContext } from "react";
 import classnames from 'classnames';
 import { CompareContext } from "../../contexts/CompareContext";
@@ -9,6 +9,8 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./ProductCard.scss";
 
 const ProductCard = (product) => {
+    
+    let navigate = useNavigate();
 
     const link = '/shop/' + product.id
     const [compCards, setCompCards] = useContext(CompareContext);
@@ -51,27 +53,32 @@ const ProductCard = (product) => {
             <h3 className="card__title"><Link to={link}>{product.attributes.Name}</Link></h3>
             <p className='card__price'><span>£</span>{product.attributes.Price}.00</p>
             <div className='card__submit'>
-            <button className="btn card__btn" 
-                onClick={() => {
-                    if ( cartItems === undefined ) {
-                        setCartItems([ product ]);
-                    } else {
-                        // If the product is in the cart, remove it from the cart
-                        if (cartItems.find(cartItem => cartItem.id === product.id)) {
-                            setCartItems(prevArray => prevArray.filter(cartItem => cartItem.id !== product.id));
+                <button className="btn card__btn" 
+                    onClick={() => {
+                        if ( cartItems === undefined ) {
+                            setCartItems([ product ]);
                         } else {
-                            // If the product is not in the cart, add it to the cart
-                            setCartItems(prevArray => [...prevArray, product]);
+                            // If the product is in the cart, remove it from the cart
+                            if (cartItems.find(cartItem => cartItem.id === product.id)) {
+                                setCartItems(prevArray => prevArray.filter(cartItem => cartItem.id !== product.id));
+                            } else {
+                                // If the product is not in the cart, add it to the cart
+                                setCartItems(prevArray => [...prevArray, product]);
+                            }
                         }
-                    }
-                }}
-            >
-                { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from cart" : "Add to cart" }
-            </button>
+                    }}
+                >
+                    { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from cart" : "Add to cart" }
+                </button>
                 <span className="addtocart__stock">{product.attributes.Stock} <span className="inStock"></span></span>
             </div>
             <div className='card__readmore'>
-                <button className="btn card__btn" >Read more</button>
+                <button className="btn card__btn" 
+                    onClick={() => {
+                        navigate('/shop/' + product.id);
+                    }}
+                
+                >Read more</button>
             </div>
         </div>
     );

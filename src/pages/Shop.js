@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/ProductCard/ProductCard";
 import CompareWidget from "../components/CompareWidget/CompareWidget";
@@ -23,7 +22,6 @@ const Shop = () => {
     const brandParams = extractParams('brands');
     const searchParams = extractParams('search');
 
-    // Create state variables for each filter type
     const [selectedColors, setSelectedColors] = useState(colorParams);
     const [selectedBrands, setSelectedBrands] = useState(brandParams);
     const [search] = useState(searchParams);
@@ -36,7 +34,6 @@ const Shop = () => {
         (async () => {
             try {
 
-                // Set the base URLs for the fetch request
                 let baseUrl = 'https://cryptic-genre-365612.appspot.com/api/products';
                 let colorFilters = 'filters[Colors][Name][$containsi]=';
                 let brandFilters = 'filters[Brand][Name][$containsi]=';
@@ -44,7 +41,6 @@ const Shop = () => {
                 let populateImages = 'populate[0]=Images';
                 let hasFilters = false;
 
-                // Create an array of filter values
                 const dependencies = [selectedColors, selectedBrands, search];
 
                 // Use the reduce() method to build the fetch URL based on the filter values
@@ -87,7 +83,7 @@ const Shop = () => {
                 // Update the URL query string
                 navigate(queryParams, { replace: true });
 
-                // Add the populateImages parameter to the end of the fetch URL, prefixed with '?' if there are no filters, or '&' if there are filters
+                // Add the populateImages parameter to the end of the fetch URL
                 fetchUrl += hasFilters ? `&${populateImages}` : `?${populateImages}`;
 
                 const response = await axios.get(fetchUrl);
@@ -104,9 +100,7 @@ const Shop = () => {
     }, [selectedColors, selectedBrands, search, navigate]);
     
     const onFilterChange = (event) => {
-
         const { name, checked, value } = event.target;
-
         if (name.includes("color_")) {
             if (checked) { setSelectedColors([...selectedColors, value]); } 
             else { setSelectedColors(selectedColors.filter((filter) => filter !== value)); }
