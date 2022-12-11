@@ -67,7 +67,7 @@ const ProductCard = (product) => {
                         }
                     }}
                 >
-                    { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from cart" : "Add to cart" }
+                    { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from Cart" : "Add to Cart" }
                 </button>
                 <span className="addtocart__stock">{product.attributes.Stock} <span className="inStock"></span></span>
             </div>
