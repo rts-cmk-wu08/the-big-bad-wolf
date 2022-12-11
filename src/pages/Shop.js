@@ -13,8 +13,7 @@ const Shop = () => {
 
     const urlParams = new URLSearchParams(location.search);
 
-    const extractParams = (paramName) => {
-        if (!urlParams.has(paramName)) { return []; }
+    const extractParams = (paramName) => { if (!urlParams.has(paramName)) { return []; }
         return urlParams.getAll(paramName)[0].split(',').filter((param) => param !== '');
       }
 
@@ -94,9 +93,8 @@ const Shop = () => {
                 console.log(err);
                 setError("Something went wrong");
             }
-
+            
         })();
-    
     }, [selectedColors, selectedBrands, search, navigate]);
     
     const onFilterChange = (event) => {

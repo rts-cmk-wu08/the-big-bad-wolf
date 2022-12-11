@@ -9,7 +9,7 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./ProductCard.scss";
 
 const ProductCard = (product) => {
-    
+
     let navigate = useNavigate();
 
     const link = '/shop/' + product.id
@@ -24,7 +24,6 @@ const ProductCard = (product) => {
 
     return (
         <div className={classnames('card grid__item', { 'card-homepage': isFrontPage })}>
-
             <div className='card__compare'>
                 <button className={`card__compare-btn ${ compCards.find(compCard => compCard.id === product.id) !== undefined ? 'card__compare-btn--active' : '' }`}
                     onClick={() => {
@@ -74,10 +73,7 @@ const ProductCard = (product) => {
             </div>
             <div className='card__readmore'>
                 <button className="btn card__btn" 
-                    onClick={() => {
-                        navigate('/shop/' + product.id);
-                    }}
-                
+                    onClick={() => { navigate('/shop/' + product.id);}}
                 >Read more</button>
             </div>
         </div>
