@@ -73,7 +73,7 @@ const ProductCard = (product) => {
             </div>
             <div className='card__readmore'>
                 <button className="btn card__btn" 
-                    onClick={() => { navigate('/shop/' + product.id);}}
+                    onClick={() => { navigate(link);}}
                 >Read more</button>
             </div>
         </div>
