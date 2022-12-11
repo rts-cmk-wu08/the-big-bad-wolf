@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useContext } from "react";
 import classnames from 'classnames';
 import { CompareContext } from "../../contexts/CompareContext";
@@ -9,8 +9,6 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./ProductCard.scss";
 
 const ProductCard = (product) => {
-
-    let navigate = useNavigate();
 
     const link = '/shop/' + product.id
     const [compCards, setCompCards] = useContext(CompareContext);
@@ -72,9 +70,7 @@ const ProductCard = (product) => {
                 <span className="addtocart__stock">{product.attributes.Stock} <span className="inStock"></span></span>
             </div>
             <div className='card__readmore'>
-                <button className="btn card__btn" 
-                    onClick={() => { navigate(link);}}
-                >Read more</button>
+                <Link to={link} className="btn card__btn">Read more</Link>
             </div>
         </div>
     );
