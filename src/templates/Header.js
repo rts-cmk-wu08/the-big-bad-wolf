@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./Header.scss";
 import SearchWidget from "../components/SearchWidget";
 import CartWidget from "../components/CartWidget/CartWidget";
+import Dropdown from "../components/Dropdown";
 
 const Header = () => {
 
@@ -16,7 +17,7 @@ const Header = () => {
                     </div>
                     <nav className="main-nav">
                         <ul className="main-menu">
-                            <li className="main-menu__item"><Link to={"/shop"}>Shop</Link></li>
+                            <li className="main-menu__item"> <Dropdown/></li>
                             <li className="main-menu__item"><Link to={"/about"}>About Us</Link></li>
                             <li className="main-menu__item"><Link to={"/contact"}>Contact</Link></li>
                         </ul>
