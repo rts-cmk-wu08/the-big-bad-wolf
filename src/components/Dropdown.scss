@@ -1,12 +1,31 @@
-.dropdown-menu {
-    background-color: white;
+.main-menu .dropdown-menu {
+    position: sticky;
+    z-index: 103;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
     width: 22.5rem;
+    height: 32rem;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    gap: 1.2rem;
+    &__wrapper {
+        position: absolute;
+        top: calc( 73px + 1rem);
+        bottom: 0;
+    }
+    &__header {
+        padding-top: 1rem;
+        color: black;
+        font-size: 1.5rem;
+        list-style: none;
+        font-weight: bold;
+    }
     &__item {
         list-style: none;
-    }
-    &__item button {
-        color: #A39161;
-        font-size: 1.4rem;
-        padding: 0.5rem 0.5rem 1rem 0rem;
+        a {
+            color: #A39161;
+            font-size: 1.4rem;
+            font-weight: 100;
+        }
     }
 }

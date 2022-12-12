@@ -1,42 +1,48 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Dropdown.scss";
+import { useState, useEffect,useRef } from "react";
 
 const Dropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-    
-    
-    const [open, setOpen] = useState(false);
- 
-    return ( 
-        <div className="dropdown"> 
-        <button 
-        
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}>
-            
-            Shop
+  useEffect(() => {
+    const handleClickOutside = event => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+        document.removeEventListener("click", handleClickOutside);
+    };
+}, [dropdownRef]);
 
-        </button>
-        
-        {open && (
-        
-            <ul className="dropdown-menu">
-                <h3>Browse Categories</h3>
-            <li className="dropdown-menu__item" ><button>CD Players</button></li>
-            <li className="dropdown-menu__item" ><button>DVD Players</button></li>
-            <li className="dropdown-menu__item" ><button>Preamps</button></li>
-            <li className="dropdown-menu__item" ><button>Speakers</button></li>
-            <li className="dropdown-menu__item" ><button>Turntables</button></li>
-            <li className="dropdown-menu__item" ><button>Integrated</button></li>
-            <li className="dropdown-menu__item" ><button>Power Amplifiers</button></li>
-            <li className="dropdown-menu__item" ><button>Tube Amplifiers</button></li>
-            </ul>
-        )}
+  return (
+  
+<>
+<Link to={"/shop"} className="nav-menu__item" onMouseEnter={() => setIsOpen(true)}> Shop
+                </Link>
 
 
-     </div>
-     );
-}
+                {isOpen && (
+                  <div ref={dropdownRef} className="dropdown-menu__wrapper">
+             <ul  className="dropdown-menu">
+            <li className="dropdown-menu__header">Browse Categories</li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=cd-players"}>  CD Players</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=dvd-players"}>DVD Players</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=preamps"}>Preamps</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=speakers"}>Speakers</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=turntabels"}>Turntabels</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=integrated-amplifiers"}>Integrated Amplifiers</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=power-amplifiers"}>Power Amplifiers</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/shop?type=tube-amplifiers"}>Tube Amplifiers</Link></li>
+          </ul>
+          
+          </div>
+
+          
+          )}
+
+          </>
+       );
+  }
 
 
  
