@@ -1,0 +1,43 @@
+
+.cart__icons {
+    display: flex;
+    justify-content: space-around;
+    font-size: 3rem;
+    padding: 5rem 15rem 0 15rem;
+
+}
+.cart__items--btn {
+   padding-left: 65rem;
+}
+.icon {
+    height: 7rem;
+    width: 7rem;
+    text-align: center;
+}
+.cart {
+    background-color: #495464;
+    color: #E8E8E8;
+}
+.card, .bill {
+    background-color: #E8E8E8;
+    color: #495464;
+}
+.cart, .bill {
+    padding-top: 1rem;
+}
+.grey--line {
+    background-color: white;
+    width: 30rem;
+    height: 5rem;
+    margin-top: 1rem;
+    position: absolute;
+    z-index: -10;
+}
+
+
+//items 
+.cart__item {
+    background-color: white;
+    height: 10rem;
+    width: 100%;
+}
