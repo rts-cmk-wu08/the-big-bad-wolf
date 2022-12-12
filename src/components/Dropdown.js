@@ -1,41 +1,23 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Dropdown.scss";
 
 const Dropdown = () => {
 
+<>
+             <ul className="dropdown-menu">
+            <li className="dropdown-menu__header">Browse Categories</li>
+            <li className="dropdown-menu__item"><Link to={"/route1"}>Route 1</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/route2"}>Route 2</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/route3"}>Route 3</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/route4"}>Route 4</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/route5"}>Route 5</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/route6"}>Route 6</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/route7"}>Route 7</Link></li>
+            <li className="dropdown-menu__item"><Link to={"/route8"}>Route 8</Link></li>
+          </ul>
+          
+          </>
     
-    
-    const [open, setOpen] = useState(false);
- 
-    return ( 
-        <div className="dropdown"> 
-        <button 
-        
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}>
-            
-            Shop
-
-        </button>
-        
-        {open && (
-        
-            <ul className="dropdown-menu">
-                <h3>Browse Categories</h3>
-            <li className="dropdown-menu__item" ><button>CD Players</button></li>
-            <li className="dropdown-menu__item" ><button>DVD Players</button></li>
-            <li className="dropdown-menu__item" ><button>Preamps</button></li>
-            <li className="dropdown-menu__item" ><button>Speakers</button></li>
-            <li className="dropdown-menu__item" ><button>Turntables</button></li>
-            <li className="dropdown-menu__item" ><button>Integrated</button></li>
-            <li className="dropdown-menu__item" ><button>Power Amplifiers</button></li>
-            <li className="dropdown-menu__item" ><button>Tube Amplifiers</button></li>
-            </ul>
-        )}
-
-
-     </div>
-     );
 }
 
 

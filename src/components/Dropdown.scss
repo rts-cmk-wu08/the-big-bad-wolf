@@ -1,12 +1,18 @@
 .dropdown-menu {
-    background-color: white;
-    width: 22.5rem;
-    &__item {
-        list-style: none;
-    }
-    &__item button {
-        color: #A39161;
-        font-size: 1.4rem;
-        padding: 0.5rem 0.5rem 1rem 0rem;
+    display: none;
+    .main-menu__item:hover .dropdown-menu {
+        display: block;
+        .dropdown-menu {
+            background-color: white;
+            width: 22.5rem;
+            &__item {
+                list-style: none;
+            }
+            &__item button {
+                color: #A39161;
+                font-size: 1.4rem;
+                padding: 0.5rem 0.5rem 1rem 0rem;
+            }
+        }
     }
 }
