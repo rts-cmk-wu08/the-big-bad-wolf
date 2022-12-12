@@ -52,13 +52,13 @@ const ProductCard = (product) => {
             <div className='card__submit'>
                 <button className="btn card__btn" 
                     onClick={() => {
-                        if ( cartItems === undefined ) {
+                        if ( cartItems === undefined && product.attributes.Stock !== "Out of stock" ) {
                             setCartItems([ product ]);
                         } else {
                             // If the product is in the cart, remove it from the cart
-                            if (cartItems.find(cartItem => cartItem.id === product.id)) {
+                            if ( cartItems.find(cartItem => cartItem.id === product.id) ) {
                                 setCartItems(prevArray => prevArray.filter(cartItem => cartItem.id !== product.id));
-                            } else {
+                            } else if ( product.attributes.Stock !== "Out of stock" ) {
                                 // If the product is not in the cart, add it to the cart
                                 setCartItems(prevArray => [...prevArray, product]);
                             }
@@ -67,7 +67,7 @@ const ProductCard = (product) => {
                 >
                     { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from Cart" : "Add to Cart" }
                 </button>
-                <span className="addtocart__stock">{product.attributes.Stock} <span className="inStock"></span></span>
+                <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}>{console.log(product.attributes.Stock)} </span></span>
             </div>
             <div className='card__readmore'>
                 <Link to={link} className="btn card__btn">Read more</Link>

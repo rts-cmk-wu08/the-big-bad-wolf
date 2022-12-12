@@ -13,6 +13,8 @@
         display: flex;
         align-items: center;
         font-size: .875rem;
+
+        .outOfStock,
         .inStock {
             width: 1rem;
             height: 1rem;
@@ -21,6 +23,11 @@
             display: inline-block;
             margin-left: .5rem;
         }
+
+        .outOfStock {
+           background-color: red;
+        }
+
     }
     
     &__price {
