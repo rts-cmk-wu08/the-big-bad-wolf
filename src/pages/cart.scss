@@ -6,8 +6,9 @@
     padding: 5rem 15rem 0 15rem;
 
 }
-.cart__items--btn {
-   padding-left: 65rem;
+.cart__wrapper {
+    display: flex;
+    justify-content: end;
 }
 .icon {
     height: 7rem;
