@@ -15,15 +15,15 @@
     width: 7rem;
     text-align: center;
 }
-.cart {
+.cart__cart {
     background-color: #495464;
     color: #E8E8E8;
 }
-.card, .bill {
+.cart__card, .cart__bill {
     background-color: #E8E8E8;
     color: #495464;
 }
-.cart, .bill {
+.cart__cart, .cart__bill {
     padding-top: 1rem;
 }
 .grey--line {

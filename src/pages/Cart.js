@@ -7,9 +7,9 @@ const Cart = () => {
 
         <>
         <section className="cart__icons">
-            <div className="cart icon shadow"><i className="fa-solid fa-cart-shopping cart-widget__icon"></i></div>
-            <div className="card icon shadow"><i className="fa-solid fa-credit-card"></i></div>
-            <div className="bill icon shadow"><i className="fa-solid fa-receipt"></i></div>
+            <div className="cart__cart icon shadow"><i className="fa-solid fa-cart-shopping cart-widget__icon"></i></div>
+            <div className="cart__card icon shadow"><i className="fa-solid fa-credit-card"></i></div>
+            <div className="cart__bill icon shadow"><i className="fa-solid fa-receipt"></i></div>
             <div className="grey--line"></div>
         </section>
         <h1 className="page-header__title">Cart</h1>
