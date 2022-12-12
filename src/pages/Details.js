@@ -4,6 +4,9 @@ import axios from "axios";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./details.scss"
+import Chat from "../components/ChatFunction";
+
+
 
 import AddToCart from "../components/AddToCart";
 
@@ -34,13 +37,13 @@ const Details = () => {
                 <h1 className="page-header__title">Product</h1>
             </header>
 
-            <article className="page-content">
+            <article className="page-content whitebox">
 
                 { isLoading && <p>Loading</p> }
                 { error && <p>{error}</p>}
                 { details && (
 
-                    <div className="detail whitebox grid"> 
+                    <div className="detail grid"> 
 
                         <div className="detail__img">
 
@@ -69,7 +72,7 @@ const Details = () => {
                     </div>
 
                 )}
-
+                <Chat />
             </article> 
             
         </>

@@ -1,9 +1,9 @@
 .card {
     padding: 1rem;
     background-color: white;
-    box-shadow: 3px 3px 3px rgba($color: #000000, $alpha: .25);
+    box-shadow: 0px 2px 5px rgba($color: #000000, $alpha: .1);
     text-align: center;
-    height: 100%; 
+    animation: cardOpen .25s ease-in-out;
 
     &__img {
         
@@ -31,14 +31,19 @@
 
     &__title {
         font-weight: 600;
-        font-size: 1rem;
+        font-size: .875rem;
         margin-bottom: 2rem;
     }
 
     &__price {
-        font-weight: 600;
+        font-weight: 700;
         font-size: 1.25rem;
         margin-bottom: 2rem;
+
+        span {
+            margin-right: .2rem;
+            font-weight: 400;
+        }
     }
 
     &__submit {
@@ -50,23 +55,61 @@
     &__compare {
         display: flex;
         justify-content: flex-end;
-        font-size: 14px;
+        font-size: .875rem;
         margin-bottom: 1rem;
-
-        svg {
-            margin-left: .5rem;
-            font-size: 1.25rem;
-
-            transform: rotate(-90deg) translateX(1px);
-        }
     }
 
     &__compare-btn {
         display: flex;
         align-items: center;
+        color: #777;
+        font-size: .75rem;
+        transition: color .25s ease-in-out;
+
+        &:hover {
+            color: #ff6900;
+        }
     }
 
     &__compare-btn--active {
-        color: red;
+        .icon-close {
+            color: #ff6900;
+        }
+        
+    }
+
+    &__readmore { display: none; }
+}
+
+.icon-compare,
+.icon-close {
+    margin-left: .35rem;
+    font-size: 1rem;
+    animation: iconfadein .25s ease-in-out;
+}
+
+.card-homepage {
+    .card__compare-btn {
+        display: none;
+    }
+    .card__submit {
+        display: none;
+    }
+    .card__readmore { 
+        display: block; 
     }
 }
+
+@keyframes iconfadein {
+    0% {
+        opacity: 0;
+        transform: scale(.9);
+
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); 
+
+    }
+}
+    

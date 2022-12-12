@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import Dropdown from "../components/Dropdown";
-
+import SearchWidget from "../components/SearchWidget";
+import CartWidget from "../components/CartWidget/CartWidget";
 
 const Header = () => {
 
@@ -16,7 +16,7 @@ const Header = () => {
                     </div>
                     <nav className="main-nav">
                         <ul className="main-menu">
-                        <li className="main-menu__item"> <Link to={"/shop"}>Shop <Dropdown/></Link></li>
+                            <li className="main-menu__item"><Link to={"/shop"}>Shop</Link></li>
                             <li className="main-menu__item"><Link to={"/about"}>About Us</Link></li>
                             <li className="main-menu__item"><Link to={"/contact"}>Contact</Link></li>
                         </ul>
@@ -24,14 +24,11 @@ const Header = () => {
                 </div>
                 <div className="top-navigation__right">
                     <div className="header-search">
-                        <form className="search-form">
-                            <input className="search-form__input" type="text" placeholder="Search product..." name="search"/>
-                            <button className="search-form__button" type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
+                      <SearchWidget />
                     </div>
                     <ul className="header-icons">
                         <li><Link to={"/login"} className="header-icons__link"><i className="fa-solid fa-user"></i></Link></li>
-                        <li><Link to={"/cart"} className="header-icons__link"><i className="fa-solid fa-cart-shopping"></i></Link></li>
+                        <li><CartWidget /></li>
                     </ul>
                 </div>
             </div>

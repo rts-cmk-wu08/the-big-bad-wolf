@@ -2,21 +2,25 @@ import Header from './templates/Header';
 import Footer from './templates/Footer';
 import Main from './templates/Main';
 import { CompareProvider } from './contexts/CompareContext';
+import { CartProvider } from './contexts/CartContext';
 
 function App() {
 
     return (
-        <CompareProvider>
-            <div className="App">
+        
+        <CartProvider>
+            <CompareProvider>
+                <div className="App">
 
-                <Header />
+                    <Header />
 
-                <Main />
+                    <Main />
 
-                <Footer />
+                    <Footer />
 
-            </div>
-        </CompareProvider>
+                </div>
+            </CompareProvider>
+        </CartProvider>
         
     );
 
