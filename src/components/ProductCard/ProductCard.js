@@ -51,7 +51,7 @@ const ProductCard = (product) => {
             <p className='card__price'><span>£</span>{product.attributes.Price}.00</p>
             <div className='card__submit'>
                 <button className="btn card__btn" 
-                    onClick={() => {
+                    onClick={() => { 
                         if ( cartItems === undefined && product.attributes.Stock !== "Out of stock" ) {
                             setCartItems([ product ]);
                         } else {
@@ -67,7 +67,7 @@ const ProductCard = (product) => {
                 >
                     { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from Cart" : "Add to Cart" }
                 </button>
-                <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}>{console.log(product.attributes.Stock)} </span></span>
+                <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}></span></span>
             </div>
             <div className='card__readmore'>
                 <Link to={link} className="btn card__btn">Read more</Link>

@@ -1,8 +1,7 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { Link } from 'react-router-dom';
-import { IoCloseCircleOutline} from 'react-icons/io5';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import CartWidgetCard from "./CartWidgetCard";
 import './CartWidget.scss';
 
 const CartWidget = () => {
@@ -51,23 +50,8 @@ const CartWidget = () => {
                             <Link to={"/cart"} className="btn cart-widget__btn">Go to Cart</Link>
                         </div>
                         <div className="cart-widget--dropdown__body">
-                            {cartItems.map(card => (
-                                <div className="card compProdWidgetCard cart-widget--dropdown__item" key={card.id}>
-                                    <div className='card_compare compProdWidgetCard__compare'>
-                                        <button className='card__compare-btn' onClick={() => {removeCard(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
-                                    </div>
-                                    <div className="compProdWidgetCard__inner" >
-                                        <div className="compProdWidgetCard__img" >
-                                            {Object.values(card.attributes?.Images).map((img, index) => ( 
-                                                <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
-                                            ))}
-                                        </div>
-                                        <div className="compProdWidgetCard__content">
-                                            <h3 className='card__title'>{card.attributes.Name}</h3>
-                                            <span className='card__price'><span>£</span>{card.attributes.Price}.00</span>
-                                        </div>
-                                    </div>
-                                </div>
+                            {cartItems.map((card, index) => (
+                                <CartWidgetCard card={card} key={index} removeCard={removeCard} itemTotalPrice={itemTotalPrice}/>
                             ))}
                         </div>
                         <div className="cart-widget--dropdown__footer">
