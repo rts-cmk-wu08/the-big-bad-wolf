@@ -11,20 +11,20 @@ const CartWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    useEffect(() => {
-        const calculateTotalPrice = () => {
-            const totalPrice = cartItems.reduce((acc, cartItem) => {
-              return acc + cartItem.attributes.Price;
-            }, 0);
-            setTotalPrice(totalPrice);
-        }; calculateTotalPrice();
+    const updateTotalPrice = (price) => {
+        setTotalPrice(price);
+        console.log(price, 'price in CartWidget')
+    };
 
+    useEffect(() => {
         const handleClickOutside = event => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } };
         document.addEventListener("click", handleClickOutside);
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [dropdownRef, cartItems]);
+    }, [dropdownRef]);
+
+    
 
     const removeCard = (id) => {
         setCartItems(cartItems.filter(cartItem => cartItem.id !== id ));
@@ -51,7 +51,12 @@ const CartWidget = () => {
                         </div>
                         <div className="cart-widget--dropdown__body">
                             {cartItems.map((card, index) => (
-                                <CartWidgetCard card={card} key={index} removeCard={removeCard} itemTotalPrice={itemTotalPrice}/>
+                                <CartWidgetCard 
+                                    card={card} 
+                                    key={index} 
+                                    removeCard={removeCard} 
+                                    updateTotalPrice={updateTotalPrice}
+                                />
                             ))}
                         </div>
                         <div className="cart-widget--dropdown__footer">

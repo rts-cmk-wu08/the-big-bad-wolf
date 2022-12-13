@@ -1,22 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import classnames from 'classnames';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "../ProductCard/ProductCard.scss";
 
-const CartWidgetCard = ({card, removeCard}) => {
+const CartWidgetCard = ({card, removeCard, updateTotalPrice}) => {
 
-    const [itemCount, setItemCount] = useState(1);
     const itemPrice = card.attributes.Price;
-    const itemTotalPrice = itemCount * itemPrice;
+    const [itemCount, setItemCount] = useState(1);
+    const [itemTotalPrice, setItemTotalPrice] = useState(itemPrice);
+
+    console.log(itemTotalPrice, 'itemTotalPrice in CartWidgetCard');
+
+    useEffect(() => {
+        updateTotalPrice(itemTotalPrice);
+    }, [itemTotalPrice]);
+
 
     const addItem = () => {
         setItemCount(itemCount + 1);
+        setItemTotalPrice(itemTotalPrice + itemPrice);
+        updateTotalPrice(itemTotalPrice);
     };
 
     const removeItem = () => {
-        setItemCount(itemCount > 1 ? itemCount - 1 : 1);
+        if (itemCount > 1) {
+            setItemCount(itemCount - 1);
+            setItemTotalPrice(itemTotalPrice - itemPrice);
+            updateTotalPrice(itemTotalPrice);
+        }
     };
 
     return (
