@@ -6,15 +6,12 @@ import './CartWidget.scss';
 
 const CartWidget = () => {
 
-    const [cartItems, setCartItems] = useContext(CartContext);
+    const { cartItems, setCartItems, removeFromCart } = useContext(CartContext);
     const [totalPrice, setTotalPrice] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    const updateTotalPrice = (price) => {
-        setTotalPrice(price);
-        console.log(price, 'price in CartWidget')
-    };
+    console.log(cartItems, 'CartWidget');
 
     useEffect(() => {
         const handleClickOutside = event => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } };
@@ -25,10 +22,6 @@ const CartWidget = () => {
     }, [dropdownRef]);
 
     
-
-    const removeCard = (id) => {
-        setCartItems(cartItems.filter(cartItem => cartItem.id !== id ));
-    };
 
     return ( 
 
@@ -50,12 +43,10 @@ const CartWidget = () => {
                             <Link to={"/cart"} className="btn cart-widget__btn">Go to Cart</Link>
                         </div>
                         <div className="cart-widget--dropdown__body">
-                            {cartItems.map((card, index) => (
+                            {cartItems.map(item => (
                                 <CartWidgetCard 
-                                    card={card} 
-                                    key={index} 
-                                    removeCard={removeCard} 
-                                    updateTotalPrice={updateTotalPrice}
+                                    card={item} 
+                                    key={item.id}                                     
                                 />
                             ))}
                         </div>

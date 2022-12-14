@@ -12,7 +12,7 @@ const ProductCard = (product) => {
 
     const link = '/shop/' + product.id
     const [compCards, setCompCards] = useContext(CompareContext);
-    const [cartItems, setCartItems] = useContext(CartContext);
+    const { cartItems, setCartItems, addToCart, removeFromCart } = useContext(CartContext);
 
     // Get the current URL using the useLocation hook
     const location = useLocation();
@@ -51,21 +51,16 @@ const ProductCard = (product) => {
             <p className='card__price'><span>£</span>{product.attributes.Price}.00</p>
             <div className='card__submit'>
                 <button className="btn card__btn" 
-                    onClick={() => { 
-                        if ( cartItems === undefined && product.attributes.Stock !== "Out of stock" ) {
-                            setCartItems([ product ]);
-                        } else {
-                            // If the product is in the cart, remove it from the cart
-                            if ( cartItems.find(cartItem => cartItem.id === product.id) ) {
-                                setCartItems(prevArray => prevArray.filter(cartItem => cartItem.id !== product.id));
-                            } else if ( product.attributes.Stock !== "Out of stock" ) {
-                                // If the product is not in the cart, add it to the cart
-                                setCartItems(prevArray => [...prevArray, product]);
-                            }
-                        }
-                    }}
-                >
-                    { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from Cart" : "Add to Cart" }
+                    onClick={() => {addToCart({
+
+                        id: product.id,
+                        name: product.attributes.Name,
+                        price: product.attributes.Price,
+                        count: 1,
+                    
+                    });}}>
+
+                    Add to Cart
                 </button>
                 <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}></span></span>
             </div>

@@ -1,53 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import { useImmer } from 'use-immer';
+import { CartContext } from "../../contexts/CartContext";
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import classnames from 'classnames';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "../ProductCard/ProductCard.scss";
 
-const CartWidgetCard = ({card, removeCard, updateTotalPrice}) => {
+const CartWidgetCard = ({card}) => {
 
-    const itemPrice = card.attributes.Price;
-    const [itemCount, setItemCount] = useState(1);
-    const [itemTotalPrice, setItemTotalPrice] = useState(itemPrice);
-
-    console.log(itemTotalPrice, 'itemTotalPrice in CartWidgetCard');
-
-    useEffect(() => {
-        updateTotalPrice(itemTotalPrice);
-    }, [itemTotalPrice]);
-
+    const [itemCount, setItemCount] = useImmer(1);
+    const [itemTotalPrice, setItemTotalPrice] = useImmer(0);
+    const { cartItems, setCartItem, updateCartItems, removeFromCart } = useContext(CartContext);
 
     const addItem = () => {
-        setItemCount(itemCount + 1);
-        setItemTotalPrice(itemTotalPrice + itemPrice);
-        updateTotalPrice(itemTotalPrice);
+        updateCartItems(card.id);
     };
 
     const removeItem = () => {
-        if (itemCount > 1) {
-            setItemCount(itemCount - 1);
-            setItemTotalPrice(itemTotalPrice - itemPrice);
-            updateTotalPrice(itemTotalPrice);
-        }
+        // if (itemCount > 1) {
+        //     updateCartItems(cartItems - 1);
+        // }
     };
 
     return (
         <div className="card cartWidgetCard">
             <div className='cartWidgetCard__remove'>
-                <button className='cartWidgetCard__remove-btn' onClick={() => {removeCard(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
+                <button className='cartWidgetCard__remove-btn' onClick={() => {removeFromCart(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
             </div>
 
             <div className="cartWidgetCard__inner" >
                 <div className='cartWidgetCard__product'>
                     <div className="cartWidgetCard__img" >
-                        {Object.values(card.attributes?.Images).map((img, index) => ( 
-                            <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
-                        ))}
+                        <LazyLoadImage effect="opacity" src={card.img} alt={''} />
+                     
                     </div>
                     <div className="cartWidgetCard__details">
-                        <h3 className='cartWidgetCard__title'>{card.attributes.Name}</h3>
-                        <span className="addtocart__stock">{card.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': card.attributes.Stock === "Out of stock" })}></span></span>
+                        <h3 className='cartWidgetCard__title'>{card.Name}</h3>
+                        <span className="addtocart__stock">{card.Stock} <span className={classnames('inStock', { 'outOfStock': card.Stock === "Out of stock" })}></span></span>
                     </div>
                 </div>
                 
