@@ -1,6 +1,6 @@
 import { useContext} from 'react';
 import { CartContext } from "../../contexts/CartContext";
-import { IoCloseCircleOutline, IoAddOutline, IoRemoveOutline } from 'react-icons/io5';
+import { IoCloseCircleOutline, IoAdd, IoRemove } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import classnames from 'classnames';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
@@ -8,16 +8,14 @@ import "../ProductCard/ProductCard.scss";
 
 const CartWidgetCard = ({card}) => {
 
-    const [cartItems, setCartItems, updateCartItems, removeFromCart] = useContext(CartContext);
+    const [cartItems, setCartItems, updateCartItem, updateCart] = useContext(CartContext);
     
     let totalPrice = card.attributes.Price * card.count;
-
-    console.log(card, 'CartWidgetCard');
 
     return (
         <div className="card cartWidgetCard">
             <div className='cartWidgetCard__remove'>
-                <button className='cartWidgetCard__remove-btn' onClick={() => {removeFromCart(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
+                <button className='cartWidgetCard__remove-btn' onClick={() => {updateCart(card, 'remove')}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
             </div>
 
             <div className="cartWidgetCard__inner" >
@@ -34,15 +32,18 @@ const CartWidgetCard = ({card}) => {
                 <div className="cartWidgetCard__footer">
                     <div className='cartWidgetCard__counter'>
                         <div className="cart-amount cart-add__item">
-                            <button className="cart-amount__btn-minus" onClick={() => {updateCartItems(card.id, 'minus')}}><IoRemoveOutline className='icon-remove'/></button>
+                            <button className="cart-amount__btn" onClick={() => {updateCartItem(card.id, 'minus')}}><IoRemove className='icon-remove'/></button>
                             <input
                                 className="cart-amount__input"
                                 type="number"
                                 name="amount"
                                 value={card.count}
-                                readOnly
+                                onChange={(event) => {
+                                    const newCount = event.target.value;
+                                    updateCartItem(card.id, 'setTo', newCount);
+                                }}
                             />
-                            <button className="cart-amount__btn-plus" onClick={() => {updateCartItems(card.id, 'plus')}}><IoAddOutline className='icon-add'/></button>
+                            <button className="cart-amount__btn" onClick={() => {updateCartItem(card.id, 'plus')}}><IoAdd className='icon-add'/></button>
                         </div>
                     </div>
                

@@ -1,3 +1,5 @@
+import { IoAdd, IoRemove } from 'react-icons/io5';
+
 import "./AddToCart.scss";
 
 
@@ -42,9 +44,9 @@ const AddToCart = (details) => {
             <div className="amount form__fieldgroup">
 
                 <div className="cart-amount cart-add__item">
-                    <button className="cart-amount__btn">-</button>
+                    <button className="cart-amount__btn"><IoRemove className='icon-remove'/></button>
                     <input className="cart-amount__input" type="number" name="amount"  />
-                    <button className="cart-amount__btn">+</button>
+                    <button className="cart-amount__btn"><IoAdd className='icon-add'/></button>
                 </div>
 
                 <div className="cart-add__item">

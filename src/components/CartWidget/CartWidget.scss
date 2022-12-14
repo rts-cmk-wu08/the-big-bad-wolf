@@ -21,6 +21,7 @@
         line-height: 0;
     }
 }
+
 .cart-widget--dropdown--wrapper {
     position: absolute;
     top: calc( 89px + 1rem);
@@ -55,6 +56,29 @@
     &__item {
         margin-right: 0!important;
     }
+
+    &__btns,
+    &__total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    &__total {
+        padding: 0 .5rem;
+    }
+
+    &__total-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #ff6900;
+
+        span {
+            font-weight: 400;
+            margin-right: 0.15rem;
+        }
+    }
     
 }
 
@@ -77,26 +101,11 @@
 
     &__footer {
         justify-content: space-between;
-    }
-
-    &__remove {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        width: 100%;
-    }
-
-    &__remove-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #777;
-        font-size: 0.75rem;
-        transition: color 0.25s ease-in-out;
+        margin-top: 1rem;
     }
 
     &__img {
-        max-width: 33%;
+        max-width: 40%;
         margin-right: 1.5rem;
         img {
             max-height: 100%;
@@ -119,5 +128,81 @@
         font-size: 0.875rem;
     }
 
+
+    &__price {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0;
+
+        span {
+            font-weight: 400;
+            margin-right: 0.15rem;
+        }
+    }
+
+    &__remove {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    &__remove-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777;
+        font-size: 0.75rem;
+        transition: color 0.25s ease-in-out;
+    }
+
+   
+
     
+}
+
+/* Cart amount */
+
+
+.cart-amount {
+    display: flex;
+
+    &__input {
+       
+        background: #eee;
+        border: none;
+        height: 38px;
+        width: 38px;
+        text-align: center;
+        border-radius: 3px;
+        appearance: textfield;
+        -moz-appearance: textfield;
+
+        font-weight: 600;
+    
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+    
+        &:focus-visible {
+            border: none;
+            outline: none;
+        }
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 38px;
+        width: 38px;
+        font-size: 2rem;
+        line-height: 0;
+        font-size: 1.25rem;
+    }
+
 }

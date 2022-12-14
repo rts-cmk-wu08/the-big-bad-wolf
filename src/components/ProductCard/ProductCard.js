@@ -10,9 +10,9 @@ import "./ProductCard.scss";
 
 const ProductCard = ({product}) => {
 
-    const link = '/shop/' + product.id
+    const link = '/shop/' + product.id;
     const [compCards, setCompCards] = useContext(CompareContext);
-    const [cartItems, setCartItems] = useContext(CartContext);
+    const [cartItems, setCartItems, updateCartItem, updateCart] = useContext(CartContext);
 
     // Get the current URL using the useLocation hook
     const location = useLocation();
@@ -46,18 +46,15 @@ const ProductCard = ({product}) => {
             <h3 className="card__title"><Link to={link}>{product.attributes.Name}</Link></h3>
             <p className='card__price'><span>£</span>{product.attributes.Price}.00</p>
             <div className='card__submit'>
-                <button className="btn card__btn" 
-                    // add to cartItems and set count to 1 if it doesn't exist, otherwise increase count by 1
-                    onClick={() => {
-                        if (cartItems.find(cartItem => cartItem.id === product.id) === undefined) {
-                            setCartItems(prevArray => [...prevArray, {...product, count: 1}]);
+                <button className="btn card__btn" onClick={() => {
+                        if ( cartItems.find(cartItem => cartItem.id === product.id) !== undefined ) {
+                            updateCart(product, 'remove');
                         } else {
-                            setCartItems(prevArray => prevArray.map(cartItem => cartItem.id === product.id ? {...cartItem, count: cartItem.count + 1} : cartItem));
-                        }   
-                    }}
-                >
+                            updateCart(product, 'add');
+                        }
 
-                    Add to Cart
+                    }}> 
+                    {cartItems.find(cartItem => cartItem.id === product.id) !== undefined ? 'Remove from cart' : 'Add to cart'}
                 </button>
                 <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}></span></span>
             </div>

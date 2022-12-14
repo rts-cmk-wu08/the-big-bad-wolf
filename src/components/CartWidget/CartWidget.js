@@ -10,10 +10,21 @@ const CartWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    let totalCartPrice = cartItems.reduce((acc, item) => acc + item.attributes.Price * item.count, 0);
+    let totalCartPrice = cartItems !== [] ? cartItems.reduce((acc, item) => acc + item.attributes.Price * item.count, 0) : 0;
 
     useEffect(() => {
-        const handleClickOutside = event => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } };
+        const handleClickOutside = event => { 
+            // check if the user has clicked the remove button
+            if (['cartWidgetCard__remove-btn', 'card__btn'].some(className => event.target.classList.contains(className))) {
+                // do not close the dropdown menu if the user has clicked the remove button
+                return;
+            }
+  
+
+
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { 
+                setIsOpen(false); 
+            } };
         document.addEventListener("click", handleClickOutside);
         return () => {
             document.removeEventListener("click", handleClickOutside);
@@ -38,7 +49,6 @@ const CartWidget = () => {
                     <div ref={dropdownRef} className="cart-widget--dropdown">
                         <div className="cart-widget--dropdown__header">
                             <h3 className="cart-widget--dropdown__title">Cart <span>({cartItems.length} items)</span></h3>
-                            <Link to={"/cart"} className="btn cart-widget__btn">Go to Cart</Link>
                         </div>
                         <div className="cart-widget--dropdown__body">
                             {cartItems.map(item => (
@@ -49,7 +59,11 @@ const CartWidget = () => {
                             ))}
                         </div>
                         <div className="cart-widget--dropdown__footer">
-                            <span className="cart-widget--dropdown__total">Total: <span className="cart-widget--dropdown__total-price">£{totalCartPrice}.00</span></span>
+                            <div className="cart-widget--dropdown__total">Sub total: <span className="cart-widget--dropdown__total-price"><span>£</span>{totalCartPrice}.00</span></div>
+                            <div className="cart-widget--dropdown__btns">
+                                <Link to={"/cart"} className="btn cart-widget__btn">Go to cart</Link>
+                                <Link to={"/payment"} className="btn cart-widget__btn">Go to payment</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -9,16 +9,26 @@ export const CartProvider = (props) => {
     const initialCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const [cartItems, setCartItems] = useImmer([...initialCartItems]);    
 
-    const updateCartItems = (id, update) => {
-        if (update === 'minus' && cartItems.find(cartItem => cartItem.id === id).count > 1) {
-            setCartItems(cartItems.map(cartItem => cartItem.id === id ? {...cartItem, count: cartItem.count - 1} : cartItem));
-        } else if (update === 'plus' && cartItems.find(cartItem => cartItem.id === id).attributes.Stock === 'In stock') {
-            setCartItems(cartItems.map(cartItem => cartItem.id === id ? {...cartItem, count: cartItem.count + 1} : cartItem));
+    const updateCart = (item, action) => {
+        if (action === 'remove') {
+            setCartItems(cartItems.filter(cartItem => cartItem.id !== item.id ));
+        } else if (action === 'add') {
+            if (cartItems.find(cartItem => cartItem.id === item.id) === undefined) {
+                setCartItems(prevArray => [...prevArray, {...item, count: 1}]);
+            } else {
+                setCartItems(prevArray => prevArray.map(cartItem => cartItem.id === item.id ? {...cartItem, count: cartItem.count + 1} : cartItem));
+            } 
         }
     };
 
-    const removeFromCart = (id) => {
-        setCartItems(cartItems.filter(cartItem => cartItem.id !== id ));
+    const updateCartItem = (id, action, amount) => {
+        if (action === 'minus' && cartItems.find(cartItem => cartItem.id === id).count > 1) {
+            setCartItems(cartItems.map(cartItem => cartItem.id === id ? {...cartItem, count: cartItem.count - 1} : cartItem));
+        } else if (action === 'plus' && cartItems.find(cartItem => cartItem.id === id).attributes.Stock === 'In stock') {
+            setCartItems(cartItems.map(cartItem => cartItem.id === id ? {...cartItem, count: cartItem.count + 1} : cartItem));
+        } else if (action === 'setTo') {
+            setCartItems(cartItems.map(cartItem => cartItem.id === id ? {...cartItem, count: parseInt(amount)} : cartItem));
+        }
     };
 
     // Save the cart items to the local storage every time it changes
@@ -28,7 +38,7 @@ export const CartProvider = (props) => {
 
 
     return (
-        <CartContext.Provider value={[cartItems, setCartItems, updateCartItems, removeFromCart]}>
+        <CartContext.Provider value={[cartItems, setCartItems, updateCartItem, updateCart]}>
             {props.children}
         </CartContext.Provider>
     );
