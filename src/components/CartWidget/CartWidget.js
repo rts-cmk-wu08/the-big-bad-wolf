@@ -19,9 +19,6 @@ const CartWidget = () => {
                 // do not close the dropdown menu if the user has clicked the remove button
                 return;
             }
-  
-
-
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { 
                 setIsOpen(false); 
             } };
@@ -45,24 +42,28 @@ const CartWidget = () => {
             </span>
             
             {isOpen && (
-                <div className="cart-widget--dropdown--wrapper">
-                    <div ref={dropdownRef} className="cart-widget--dropdown">
-                        <div className="cart-widget--dropdown__header">
-                            <h3 className="cart-widget--dropdown__title">Cart <span>({cartItems.length} items)</span></h3>
-                        </div>
-                        <div className="cart-widget--dropdown__body">
-                            {cartItems.map(item => (
-                                <CartWidgetCard 
-                                    card={item} 
-                                    key={item.id}                                     
-                                />
-                            ))}
-                        </div>
-                        <div className="cart-widget--dropdown__footer">
-                            <div className="cart-widget--dropdown__total">Sub total: <span className="cart-widget--dropdown__total-price"><span>£</span>{totalCartPrice}.00</span></div>
-                            <div className="cart-widget--dropdown__btns">
-                                <Link to={"/cart"} className="btn cart-widget__btn">Go to cart</Link>
-                                <Link to={"/payment"} className="btn cart-widget__btn">Go to payment</Link>
+                <div className="cart-widget--dropdown--wrapper container">
+                    <div className="cart-widget--dropdown--inner alignfull">
+                        <div className="cart-widget--dropdown--inner__container">
+                            <div ref={dropdownRef} className="cart-widget--dropdown">
+                                <div className="cart-widget--dropdown__header">
+                                    <h3 className="cart-widget--dropdown__title">Cart <span>({cartItems.length} items)</span></h3>
+                                </div>
+                                <div className="cart-widget--dropdown__body">
+                                    {cartItems.map(item => (
+                                        <CartWidgetCard 
+                                            card={item} 
+                                            key={item.id}                                     
+                                        />
+                                    ))}
+                                </div>
+                                <div className="cart-widget--dropdown__footer">
+                                    <div className="cart-widget--dropdown__total">Sub total: <span className="cart-widget--dropdown__total-price"><span>£</span>{totalCartPrice}.00</span></div>
+                                    <div className="cart-widget--dropdown__btns">
+                                        <Link to={"/cart"} className="btn cart-widget__btn">Go to cart</Link>
+                                        <Link to={"/payment"} className="btn cart-widget__btn">Go to payment</Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
