@@ -73,7 +73,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 1rem;
     }
 
     &__title {   
@@ -111,7 +110,11 @@
 
 
 .cartWidgetCard {
-    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    box-shadow: none;
+    padding-top: .75rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
 
     &__inner {
         display: flex;
@@ -128,7 +131,7 @@
 
     &__footer {
         justify-content: space-between;
-        margin-top: 1rem;
+        margin-top: .75rem;
     }
 
     &__img {
