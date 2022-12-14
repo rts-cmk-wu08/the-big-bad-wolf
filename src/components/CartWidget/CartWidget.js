@@ -14,11 +14,7 @@ const CartWidget = () => {
 
     useEffect(() => {
         const handleClickOutside = event => { 
-            // check if the user has clicked the remove button
-            if (['cartWidgetCard__remove-btn', 'card__btn', 'icon-close', 'cartWidgetCard__remove'].some(className => event.target.classList.contains(className))) {
-                // do not close the dropdown menu if the user has clicked the remove button
-                return;
-            }
+            if (['cartWidgetCard__remove-btn', 'card__btn'].some(className => event.target.classList.contains(className))) { return; }
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { 
                 setIsOpen(false); 
             } };
