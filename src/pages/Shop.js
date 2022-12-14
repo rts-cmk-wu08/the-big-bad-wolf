@@ -5,6 +5,8 @@ import ProductCard from "../components/ProductCard/ProductCard";
 import CompareWidget from "../components/CompareWidget/CompareWidget";
 import ColorFilters from "../components/ProductFilters/ColorFilters";
 import BrandFilters from "../components/ProductFilters/BrandFilters";
+import PriceFilter from "../components/ProductFilters/PriceFilter";
+
 
 const Shop = () => {
 
@@ -110,26 +112,28 @@ const Shop = () => {
         }
     }
 
+
     return (
         <>  
             <header className="page-header">
                 <h1 className="page-header__title">Products</h1>
             </header>
             <article className="page-content sidebar-left">
-                    <div className="sidebar">
-                        <div className="sidebar__inner">
-                            <h3 className="sidebar__title">Sort by</h3>
-                            <div className="sidebar__content">                               
-                                <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
-                                <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
-                            </div>
-                        </div>
-                    </div>
                 
                 { isLoading && <p>Loading...</p> }
                 { error && <p>{error}</p>}
                 { shop && 
                     <>
+                        <div className="sidebar">
+                            <div className="sidebar__inner">
+                                <h3 className="sidebar__title">Sort by</h3>
+                                <div className="sidebar__content"> 
+                                    <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
+                                    <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
+                                    <PriceFilter onFilterChange={onFilterChange} shop={shop.data} />
+                                </div>
+                            </div>
+                        </div>
                         <div className="content grid">
 
                             {shop.data.length > 0 ? ( 

@@ -89,6 +89,38 @@
     }
 }
 
+
+.priceRange {
+
+    .acc-filters__option {
+        flex-direction: column;
+    }
+
+    &__range {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding:0rem;
+        margin-bottom: .5rem;
+
+        > input[type="range"] {
+            margin-right: 1rem;
+        }
+
+        > input[type="number"] {
+            width: 50%;
+            padding: 0.25rem;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            font-size: .875rem;
+            color: #555;
+            text-align: center;
+            padding-left: 1rem;
+        }
+    }
+}
+
 details > summary:first-of-type,
 details[open] > summary:first-of-type {
     list-style-type: none;
