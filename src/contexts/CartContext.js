@@ -5,32 +5,21 @@ export const CartContext = createContext();
 
 export const CartProvider = (props) => {
 
-    const [ cartItems, setCartItems ] = useImmer([
-        {
-            Id: 1,
-            Name: 'Product 1',
-            Price: 10,
-            count: 3,
-            img: 'https://images.unsplash.com/photo-1616484990928-8e1b5e2b1b1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-            Stock:  'In stock',
+    // Get the cart items from the local storage
+    const initialCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const [cartItems, setCartItems] = useImmer([...initialCartItems]);    
+
+    const updateCartItems = (id, update) => {
+        if (update === 'minus' && cartItems.find(cartItem => cartItem.id === id).count > 1) {
+            setCartItems(cartItems.map(cartItem => cartItem.id === id ? {...cartItem, count: cartItem.count - 1} : cartItem));
+        } else if (update === 'plus' && cartItems.find(cartItem => cartItem.id === id).attributes.Stock === 'In stock') {
+            setCartItems(cartItems.map(cartItem => cartItem.id === id ? {...cartItem, count: cartItem.count + 1} : cartItem));
         }
-    ]);
-
-    
-    console.log(cartItems, 'CartProvider');
-    
-
-    const updateCartItems = () => {};
-
-    const addToCart = () => {
-        console.log(cartItems, 'addToCart');
     };
-
 
     const removeFromCart = (id) => {
         setCartItems(cartItems.filter(cartItem => cartItem.id !== id ));
     };
-
 
     // Save the cart items to the local storage every time it changes
     useEffect(() => {
@@ -39,7 +28,7 @@ export const CartProvider = (props) => {
 
 
     return (
-        <CartContext.Provider value={{cartItems, setCartItems, updateCartItems, removeFromCart, addToCart}}>
+        <CartContext.Provider value={[cartItems, setCartItems, updateCartItems, removeFromCart]}>
             {props.children}
         </CartContext.Provider>
     );

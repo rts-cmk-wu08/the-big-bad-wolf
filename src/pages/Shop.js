@@ -133,7 +133,11 @@ const Shop = () => {
                         <div className="content grid">
 
                             {shop.data && shop.data.length > 0 ? ( 
-                                shop.data.map(product => <ProductCard {...product} key={product.id} />)
+                                shop.data.map(product => 
+                                    <ProductCard 
+                                        product={product} 
+                                        key={product.id} 
+                                    />)
                             ) : (
                                 <p>No results.</p>
                             )}

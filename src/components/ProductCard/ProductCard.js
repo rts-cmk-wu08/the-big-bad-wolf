@@ -8,11 +8,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./ProductCard.scss";
 
-const ProductCard = (product) => {
+const ProductCard = ({product}) => {
 
     const link = '/shop/' + product.id
     const [compCards, setCompCards] = useContext(CompareContext);
-    const { cartItems, setCartItems, addToCart, removeFromCart } = useContext(CartContext);
+    const [cartItems, setCartItems] = useContext(CartContext);
 
     // Get the current URL using the useLocation hook
     const location = useLocation();
@@ -41,24 +41,21 @@ const ProductCard = (product) => {
             </div>
 
             <div className="card__img" >
-                {Object.values(product.attributes.Images).map(img => ( 
-                    <Link to={link} key={img[0].id} >
-                        <LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={product.attributes.Name} />
-                    </Link>
-                ))}
+                <Link to={link}><LazyLoadImage effect="opacity" src={product.attributes.Images.data[0].attributes.url} alt={product.attributes.Name} /></Link>
             </div>
             <h3 className="card__title"><Link to={link}>{product.attributes.Name}</Link></h3>
             <p className='card__price'><span>£</span>{product.attributes.Price}.00</p>
             <div className='card__submit'>
                 <button className="btn card__btn" 
-                    onClick={() => {addToCart({
-
-                        id: product.id,
-                        name: product.attributes.Name,
-                        price: product.attributes.Price,
-                        count: 1,
-                    
-                    });}}>
+                    // add to cartItems and set count to 1 if it doesn't exist, otherwise increase count by 1
+                    onClick={() => {
+                        if (cartItems.find(cartItem => cartItem.id === product.id) === undefined) {
+                            setCartItems(prevArray => [...prevArray, {...product, count: 1}]);
+                        } else {
+                            setCartItems(prevArray => prevArray.map(cartItem => cartItem.id === product.id ? {...cartItem, count: cartItem.count + 1} : cartItem));
+                        }   
+                    }}
+                >
 
                     Add to Cart
                 </button>

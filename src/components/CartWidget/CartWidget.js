@@ -6,12 +6,11 @@ import './CartWidget.scss';
 
 const CartWidget = () => {
 
-    const { cartItems, setCartItems, removeFromCart } = useContext(CartContext);
-    const [totalPrice, setTotalPrice] = useState(0);
+    const [cartItems] = useContext(CartContext);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    console.log(cartItems, 'CartWidget');
+    let totalCartPrice = cartItems.reduce((acc, item) => acc + item.attributes.Price * item.count, 0);
 
     useEffect(() => {
         const handleClickOutside = event => { if (dropdownRef.current && !dropdownRef.current.contains(event.target)) { setIsOpen(false); } };
@@ -21,7 +20,6 @@ const CartWidget = () => {
         };
     }, [dropdownRef]);
 
-    
 
     return ( 
 
@@ -51,7 +49,7 @@ const CartWidget = () => {
                             ))}
                         </div>
                         <div className="cart-widget--dropdown__footer">
-                            <span className="cart-widget--dropdown__total">Total: <span className="cart-widget--dropdown__total-price">£{totalPrice}.00</span></span>
+                            <span className="cart-widget--dropdown__total">Total: <span className="cart-widget--dropdown__total-price">£{totalCartPrice}.00</span></span>
                         </div>
                     </div>
                 </div>
