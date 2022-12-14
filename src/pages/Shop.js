@@ -128,13 +128,17 @@ const Shop = () => {
                 
                 { isLoading && <p>Loading...</p> }
                 { error && <p>{error}</p>}
-                { shop && shop.data &&
+                { shop && 
                     <>
                         <div className="content grid">
 
-                            {shop.data && shop.data.length > 0 ? ( 
-                                shop.data.map(product => <ProductCard {...product} key={product.id} />)
-                            ) : (
+                            {shop.data.length > 0 ? ( 
+                                shop.data.map(product => 
+                                    <ProductCard 
+                                        product={product} 
+                                        key={product.id} 
+                                    />
+                            )) : (
                                 <p>No results.</p>
                             )}
 

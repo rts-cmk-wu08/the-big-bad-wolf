@@ -8,11 +8,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import "./ProductCard.scss";
 
-const ProductCard = (product) => {
+const ProductCard = ({product}) => {
 
-    const link = '/shop/' + product.id
+    const link = '/shop/' + product.id;
     const [compCards, setCompCards] = useContext(CompareContext);
-    const [cartItems, setCartItems] = useContext(CartContext);
+    const [cartItems, setCartItems, updateCartItem, updateCart] = useContext(CartContext);
 
     // Get the current URL using the useLocation hook
     const location = useLocation();
@@ -41,33 +41,21 @@ const ProductCard = (product) => {
             </div>
 
             <div className="card__img" >
-                {Object.values(product.attributes.Images).map(img => ( 
-                    <Link to={link} key={img[0].id} >
-                        <LazyLoadImage effect="opacity" src={img[0].attributes.url} alt={product.attributes.Name} />
-                    </Link>
-                ))}
+                <Link to={link}><LazyLoadImage effect="opacity" src={product.attributes.Images.data[0].attributes.url} alt={product.attributes.Name} /></Link>
             </div>
             <h3 className="card__title"><Link to={link}>{product.attributes.Name}</Link></h3>
             <p className='card__price'><span>£</span>{product.attributes.Price}.00</p>
             <div className='card__submit'>
-                <button className="btn card__btn" 
-                    onClick={() => {
-                        if ( cartItems === undefined && product.attributes.Stock !== "Out of stock" ) {
-                            setCartItems([ product ]);
+                <button className="btn card__btn" onClick={() => {
+                        if ( cartItems.find(cartItem => cartItem.id === product.id) !== undefined ) {
+                            updateCart(product, 'remove');
                         } else {
-                            // If the product is in the cart, remove it from the cart
-                            if ( cartItems.find(cartItem => cartItem.id === product.id) ) {
-                                setCartItems(prevArray => prevArray.filter(cartItem => cartItem.id !== product.id));
-                            } else if ( product.attributes.Stock !== "Out of stock" ) {
-                                // If the product is not in the cart, add it to the cart
-                                setCartItems(prevArray => [...prevArray, product]);
-                            }
+                            updateCart(product, 'add');
                         }
-                    }}
-                >
-                    { cartItems && cartItems.find(cartItem => cartItem.id === product.id) ? "Remove from Cart" : "Add to Cart" }
+                    }}> 
+                    {cartItems.find(cartItem => cartItem.id === product.id) !== undefined ? 'Remove from Cart' : 'Add to Cart'}
                 </button>
-                <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}>{console.log(product.attributes.Stock)} </span></span>
+                <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}></span></span>
             </div>
             <div className='card__readmore'>
                 <Link to={link} className="btn card__btn">Read more</Link>

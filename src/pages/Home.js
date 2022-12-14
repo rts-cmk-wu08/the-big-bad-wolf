@@ -6,18 +6,17 @@ import "./home.scss"
 import video from "../video/hero_video.mp4";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
-var url = baseUrl + '/api/products';
 
-const Shop = () => {
+const Home = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
-    const [shop, setShop] = useState(); 
+    const [featured, setFeatured] = useState(); 
 
     useEffect(() => {
         try {
-            axios.get(`${url}?populate=*`)
-                .then(response => setShop(response.data))
+            axios.get(`${baseUrl}/api/products?populate=*`)
+                .then(response => setFeatured(response.data))
                 .finally(() => setIsLoading(false))
         } catch (err) {
             setError("Something went wrong");
@@ -46,10 +45,13 @@ const Shop = () => {
 
                 { isLoading && <p>Loading...</p> }
                 { error && <p>{error}</p>}
-                { shop && 
+                { featured && 
                     <div className="grid">
-                        {shop.data.slice(0,4).map(product => ( 
-                            <ProductCard {...product} key={product.id} />
+                        {featured.data.slice(0,4).map(product => ( 
+                            <ProductCard 
+                                product={product} 
+                                key={product.id} 
+                            />
                         ))}
                     </div> 
                 }
@@ -95,4 +97,4 @@ const Shop = () => {
      
 }
 
-export default Shop;
+export default Home;

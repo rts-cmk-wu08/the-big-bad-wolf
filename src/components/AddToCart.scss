@@ -16,12 +16,13 @@
 
         .outOfStock,
         .inStock {
-            width: 1rem;
-            height: 1rem;
+            width: 12px;
+            height: 12px;
             background-color: green;
             border-radius: 50%;
             display: inline-block;
             margin-left: .5rem;
+            transform: translateY(1px);
         }
 
         .outOfStock {
@@ -142,44 +143,4 @@
     
 }
 
-/* add to cart - amount */
 
-
-.cart-amount {
-    display: flex;
-
-    &__input {
-       
-        background: #eee;
-        border: none;
-        height: 40px;
-        width: 40px;
-        text-align: center;
-        border-radius: 3px;
-        appearance: textfield;
-        -moz-appearance: textfield;
-    
-        &::-webkit-inner-spin-button,
-        &::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            appearance: none;
-            margin: 0;
-        }
-    
-        &:focus-visible {
-            border: none;
-            outline: none;
-        }
-    }
-
-    &__btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 40px;
-        width: 40px;
-        font-size: 2rem;
-        line-height: 0;
-    }
-
-}
