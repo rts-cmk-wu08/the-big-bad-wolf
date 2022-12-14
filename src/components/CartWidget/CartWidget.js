@@ -60,8 +60,8 @@ const CartWidget = () => {
                                 <div className="cart-widget--dropdown__footer">
                                     <div className="cart-widget--dropdown__total">Sub total: <span className="cart-widget--dropdown__total-price"><span>£</span>{totalCartPrice}.00</span></div>
                                     <div className="cart-widget--dropdown__btns">
-                                        <Link to={"/cart"} className="btn cart-widget__btn">Go to cart</Link>
-                                        <Link to={"/payment"} className="btn cart-widget__btn">Go to payment</Link>
+                                        <Link to={"/cart"} className="btn cart-widget__btn">Go to Cart</Link>
+                                        <Link to={"/payment"} className="btn cart-widget__btn">Go to Payment</Link>
                                     </div>
                                 </div>
                             </div>

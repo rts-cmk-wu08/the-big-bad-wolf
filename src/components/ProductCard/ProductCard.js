@@ -52,9 +52,8 @@ const ProductCard = ({product}) => {
                         } else {
                             updateCart(product, 'add');
                         }
-
                     }}> 
-                    {cartItems.find(cartItem => cartItem.id === product.id) !== undefined ? 'Remove from cart' : 'Add to cart'}
+                    {cartItems.find(cartItem => cartItem.id === product.id) !== undefined ? 'Remove from Cart' : 'Add to Cart'}
                 </button>
                 <span className="addtocart__stock">{product.attributes.Stock} <span className={classnames('inStock', { 'outOfStock': product.attributes.Stock === "Out of stock" })}></span></span>
             </div>
