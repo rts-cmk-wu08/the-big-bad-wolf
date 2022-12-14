@@ -2,40 +2,34 @@
     background-color: black;
     padding: 1rem 0;
 
-    > .container {
+
+   > .container {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-
+    
     &__main,
     &__right {
         display: flex;
         align-items: center;
     }
-
     .header-search {
         margin-right: 3rem;
     }
-    
     .main-logo {
         margin-right: 2rem;
-
         img {
             float: left;
         }
     }
-
     .main-menu {
         display: flex;
         margin: 0;
         padding: 0;
-    
-    
         &__item {
             list-style: none;
             margin-right: 2rem;
-    
             a {
                 text-decoration: none;
                 color: white;
@@ -44,33 +38,28 @@
             }
         }
     }
-
     .header-icons {
         display: flex;
         align-items: center;
         list-style: none;
         padding: 0;
         margin: 0;
-
-   
         &__link {
             height: 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #F4F4F2;
-
         }
-
         li {
             overflow: visible;
             margin-right: 1.5rem;
-            &:last-child { margin-right: 0; }
+            &:last-child {
+                margin-right: 0;
+            }
         }
-    
         i {
             font-size: 1.5rem;
         }
     }
-
 }
