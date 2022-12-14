@@ -1,5 +1,4 @@
-import { createContext, useEffect } from 'react';
-import { useImmer } from 'use-immer';
+import { createContext, useEffect, useState } from 'react';
 
 export const CartContext = createContext();
 
@@ -7,7 +6,7 @@ export const CartProvider = (props) => {
 
     // Get the cart items from the local storage
     const initialCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const [cartItems, setCartItems] = useImmer([...initialCartItems]);    
+    const [cartItems, setCartItems] = useState([...initialCartItems]);    
 
     const updateCart = (item, action) => {
         if (action === 'remove') {
