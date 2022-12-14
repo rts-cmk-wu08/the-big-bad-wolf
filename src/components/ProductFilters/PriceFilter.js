@@ -4,13 +4,11 @@ import "./Filters.scss";
 
 function PriceFilter({onFilterChange, shop}) {
    
-    const shopMin = shop.length ? Math.min(...shop.map(product => product.attributes.Price)) : 0;
-    const shopMax = shop.length ? Math.max(...shop.map(product => product.attributes.Price)) : 0;
+    const shopMin = Math.min(...shop.map(product => product.attributes.Price));
+    const shopMax = Math.max(...shop.map(product => product.attributes.Price));
       
     const [minPrice, setMinPrice] = useState(shopMin);
     const [maxPrice, setMaxPrice] = useState(shopMax);
-
-    console.log(shopMin, shopMax, 'pricefilter');
 
     const handleMinPriceChange = (event) => {
         setMinPrice(event.target.value);
@@ -36,7 +34,7 @@ function PriceFilter({onFilterChange, shop}) {
                             name="minPrice"
                             value={minPrice}
                             min={shopMin}
-                            max={maxPrice - 10}
+                            max={maxPrice - 1}
                             step="10"
                             onChange={handleMinPriceChange}
                         />
@@ -46,7 +44,7 @@ function PriceFilter({onFilterChange, shop}) {
                             name="minPrice"
                             value={minPrice}
                             min={shopMin}
-                            max={maxPrice - 10}
+                            max={maxPrice - 1}
                             step="10"
                             onChange={handleMinPriceChange}
                         />

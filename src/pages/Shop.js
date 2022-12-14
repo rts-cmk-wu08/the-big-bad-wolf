@@ -128,9 +128,13 @@ const Shop = () => {
                             <div className="sidebar__inner">
                                 <h3 className="sidebar__title">Sort by</h3>
                                 <div className="sidebar__content"> 
-                                    <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
-                                    <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
-                                    <PriceFilter onFilterChange={onFilterChange} shop={shop.data} />
+                                    {shop.data.length > 0 ? ( 
+                                        <>
+                                        <ColorFilters onFilterChange={onFilterChange} selectedColors={selectedColors} />
+                                        <BrandFilters onFilterChange={onFilterChange} selectedBrands={selectedBrands} />
+                                        <PriceFilter onFilterChange={onFilterChange} shop={shop.data} />
+                                        </>
+                                    ) : null}
                                 </div>
                             </div>
                         </div>
