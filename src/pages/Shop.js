@@ -126,7 +126,7 @@ const Shop = () => {
                     <>
                         <div className="sidebar">
                             <div className="sidebar__inner">
-                                <h3 className="sidebar__title">Sort by</h3>
+                                <h3 className="sidebar__title">Filter by</h3>
                                 <div className="sidebar__content"> 
                                     {shop.data.length > 0 ? ( 
                                         <>
