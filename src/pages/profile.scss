@@ -1,0 +1,46 @@
+.grey__line {
+    border-bottom: 2px solid lightgrey;
+}
+.profile {
+    margin-top: 2rem;
+    box-shadow: 3px 3px 3px rgba($color: #000000, $alpha: .25);
+
+}
+
+.profile__information {
+    padding: 1rem 3rem;
+    background-color: white;
+}
+
+.profile__btns {
+    display: flex;
+    justify-content: space-evenly;
+}
+.profile__btn--profile {
+    background-color: #495464;
+    color: white;
+    width: 39rem;
+    height: 4rem;
+    font-size: 2rem;
+}
+.profile__btn--orders {
+    background-color: #E8E8E8;
+    width: 39rem;
+    height: 4rem;
+    font-size: 2rem;
+}
+
+
+
+.profile__icons {
+    display: flex;
+    padding: 2rem 0;
+}
+.profile__info {
+    line-height: 0;
+    padding-top: 1rem; 
+}
+.profile__icon {
+    font-size: 2rem;
+    padding: 1rem;
+}

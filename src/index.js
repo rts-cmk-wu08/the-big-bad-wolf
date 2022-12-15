@@ -12,6 +12,8 @@ import Cart from "./pages/Cart";
 import NotFound from './pages/NotFound';
 import LoginPage from './pages/Login';
 import CreateUser from './pages/CreateUser';
+import Profile from './pages/Profile';
+import Orders from './pages/Orders';
 
 import './index.scss';
 import App from './App';
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<LoginPage />}/>
             <Route path="/createUser" element={<CreateUser />}/>
+            <Route path="/profile" element={<Profile />}/>
+            <Route path="/orders" element={<Orders />}/>
 
             <Route path="*" element={<NotFound />} />
 
