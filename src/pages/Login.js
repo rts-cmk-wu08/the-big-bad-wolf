@@ -23,7 +23,7 @@ const LoginPage = () => {
                 <input type="checkbox" name="rememberMe" id="rememberMe" />
                 <p className="smaller">Remember me</p>
             </div>
-            <button className="btn shadow">Sign in</button>
+            <Link to="/profile"><button className="btn shadow">Sign in</button></Link>            
             <p className="smaller">Forgot your Password?</p>
         </section>
 
