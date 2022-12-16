@@ -2,21 +2,21 @@ import { useState, useEffect } from 'react';
 import { IoChevronDownOutline } from 'react-icons/io5';
 import "./Filters.scss";
 
-function PriceFilter({onFilterChange, shop}) {
+function PriceFilter({onFilterChange, shop, selectedMaxPrice, selectedMinPrice}) {
    
     const shopMin = Math.min(...shop.map(product => product.attributes.Price));
     const shopMax = Math.max(...shop.map(product => product.attributes.Price));
       
-    const [minPrice, setMinPrice] = useState(shopMin);
-    const [maxPrice, setMaxPrice] = useState(shopMax);
+    // const [minPrice, setMinPrice] = useState(shopMin);
+    // const [maxPrice, setMaxPrice] = useState(shopMax);
 
-    const handleMinPriceChange = (event) => {
-        setMinPrice(event.target.value);
-    };
+    // const handleMinPriceChange = (event) => {
+    //     setMinPrice(event.target.value);
+    // };
     
-    const handleMaxPriceChange = (event) => {
-        setMaxPrice(event.target.value);
-    };
+    // const handleMaxPriceChange = (event) => {
+    //     setMaxPrice(event.target.value);
+    // };
 
     return (
 
@@ -32,21 +32,21 @@ function PriceFilter({onFilterChange, shop}) {
                             type="range"
                             id="minPrice"
                             name="minPrice"
-                            value={minPrice}
+                            value={selectedMinPrice.length > 0 ? selectedMinPrice : shopMin}
                             min={shopMin}
-                            max={maxPrice - 1}
+                            max={selectedMaxPrice.length > 0 ? selectedMaxPrice - 1 : shopMax - 1}
                             step="10"
-                            onChange={handleMinPriceChange}
+                            onChange={onFilterChange}
                         />
                         <input
                             type="number"
                             id="minPrice"
                             name="minPrice"
-                            value={minPrice}
+                            value={selectedMinPrice.length > 0 ? selectedMinPrice : shopMin}
                             min={shopMin}
-                            max={maxPrice - 1}
+                            max={selectedMaxPrice.length > 0 ? selectedMaxPrice - 1 : shopMax - 1}
                             step="10"
-                            onChange={handleMinPriceChange}
+                            onChange={onFilterChange}
                         />
                     </div>
                 </div>
@@ -57,21 +57,21 @@ function PriceFilter({onFilterChange, shop}) {
                             type="range"
                             id="maxPrice"
                             name="maxPrice"
-                            value={maxPrice}
-                            min={minPrice}
+                            value={selectedMaxPrice.length > 0 ? selectedMaxPrice : shopMax}
+                            min={selectedMinPrice.length > 0 ? selectedMinPrice : shopMin}
                             max={shopMax}
                             step="10"
-                            onChange={handleMaxPriceChange}
+                            onChange={onFilterChange}
                         />
                         <input
                             type="number"
                             id="maxPrice"
                             name="maxPrice"
-                            value={maxPrice}
-                            min={minPrice}
+                            value={selectedMaxPrice.length > 0 ? selectedMaxPrice : shopMax}
+                            min={selectedMinPrice.length > 0 ? selectedMinPrice : shopMin}
                             max={shopMax}
                             step="10"
-                            onChange={handleMaxPriceChange}
+                            onChange={onFilterChange}
                         />
                     </div>
                 </div>

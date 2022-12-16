@@ -11,6 +11,7 @@ const CartWidgetCard = ({card}) => {
     const [cartItems, setCartItems, updateCartItem, updateCart] = useContext(CartContext);
     
     let totalPrice = card.attributes.Price * card.count;
+    
 
     return (
         <div className="card cartWidgetCard">
