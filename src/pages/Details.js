@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import axios from "axios";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
-import "./details.scss"
+import axios from "axios";
 import Chat from "../components/ChatFunction";
-
-
-
 import AddToCart from "../components/AddToCart";
+import "./details.scss";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
@@ -65,7 +62,7 @@ const Details = () => {
                             <h3 className="detail__subtitle">(Digital Output)</h3>
                             <p>{details.data.attributes.Description}</p>
 
-                            <AddToCart {...details.data.attributes} />
+                            <AddToCart {...details.data} />
 
                         </div>
 

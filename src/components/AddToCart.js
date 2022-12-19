@@ -1,9 +1,14 @@
+import { useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
 import { IoAdd, IoRemove } from 'react-icons/io5';
-
 import "./AddToCart.scss";
 
 
-const AddToCart = (details) => { 
+const AddToCart = (product) => { 
+
+    const [cartItems, setCartItems, updateCartItem, updateCart] = useContext(CartContext);
+
+    console.log(product);
 
 
     return (
@@ -36,17 +41,28 @@ const AddToCart = (details) => {
 
 
             <div className="price form__fieldgroup">
-                    <span className="addtocart__price">£ {details.Price}.00</span>
-                    <span className="addtocart__stock">{details.Stock} <span className="inStock"></span></span>
+                    <span className="addtocart__price">£ {product.attributes.Price}.00</span>
+                    <span className="addtocart__stock">{product.attributes.Stock} <span className="inStock"></span></span>
             </div>
 
 
             <div className="amount form__fieldgroup">
 
                 <div className="cart-amount cart-add__item">
-                    <button className="cart-amount__btn"><IoRemove className='icon-remove'/></button>
-                    <input className="cart-amount__input" type="number" name="amount"  />
-                    <button className="cart-amount__btn"><IoAdd className='icon-add'/></button>
+                        <div className="cart-amount cart-add__item">
+                            <button className="cart-amount__btn" onClick={() => {updateCartItem(product.id, 'minus')}}><IoRemove className='icon-remove'/></button>
+                            <input
+                                className="cart-amount__input"
+                                type="number"
+                                name="amount"
+                                value={product.count}
+                                onChange={(event) => {
+                                    const newCount = event.target.value;
+                                    updateCartItem(product.id, 'setTo', newCount);
+                                }}
+                            />
+                            <button className="cart-amount__btn" onClick={() => {updateCartItem(product.id, 'plus')}}><IoAdd className='icon-add'/></button>
+                        </div>
                 </div>
 
                 <div className="cart-add__item">
