@@ -1,4 +1,6 @@
 import "./about.scss"
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 import Image1 from "../images/about1.png";
 import Image2 from "../images/about2.png";
 import Image3 from "../images/about3.png";
@@ -15,7 +17,7 @@ const About = () => {
     <section className="page-content white shadow center">
         <div class="item">
                 
-            <div class="item__img"><img src={Image1} alt="image 1"/></div>
+            <div class="item__img"><LazyLoadImage effect="opacity" src={Image1} alt=""/></div>
             <article class="item__info">
                 <h2 className="bold">History</h2>
                 <p class="p-col bold">Established in the late 1960s, our family owned business is based in Edinburgh and Falkirk, but services customers across the UK. </p>
@@ -33,12 +35,12 @@ const About = () => {
                 <p>It's our aim to get the right product for you.</p>
                 <p>Our experts are on hand to guide you through the differences between speakers, amplifiers and sources and provide simple solutions that suit your needs.</p>
                 </article>
-            <div class="item__img"><img src={Image2} alt="image 1"/></div>
+            <div class="item__img"><img src={Image2} alt=""/></div>
         </div>
 
 
         <div class="item">
-            <div class="item__img"><img src={Image3} alt="image 3"/></div>
+            <div class="item__img"><img src={Image3} alt=""/></div>
             <article class="item__info">
                 <h2 className="bold">Services</h2>
                 <p class="p-col bold">Our passion for the products we sell and, for our customers’ satisfaction simply means that we happily offer additional services not found on the high-street. </p>
@@ -60,7 +62,7 @@ const About = () => {
                 <p>If you are looking for a product not found in our demonstration showrooms or our online site, don’t fret as we have access to hundreds of brands.</p>
                 <p>One of our biggest pleasures of working in this industry is to see the smile on our customers’ faces when they finally hear and see the system of their dreams.   </p>
             </article>
-            <div class="item__img"><img src={Image4} alt="image 4"/></div>
+            <div class="item__img"><img src={Image4} alt=""/></div>
         </div>
     </section>
     
