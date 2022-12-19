@@ -4,7 +4,7 @@ const FAQ = () => {
         <>
 
             <header className="page-header">
-                <h1 className="page-header__title">FAQ</h1>
+                <h1 className="page-header__title" id="privacy">FAQ</h1>
             </header>
 
             <article className="page-content whitebox">
@@ -19,7 +19,7 @@ const FAQ = () => {
 
                 <p>Please note that if it is after the initial 30 days of purchase you must be able to certify the fault was present upon delivery and not by misuse.</p>
 
-                <h2 className="subhead">Refunds</h2>
+                <h2 className="subhead" id="refunds">Refunds</h2>
 
                 <p>Once your returned item is received and inspected, we will send you an email or phone call to notify you that we have received your returned item.We will also notify you of the approval or rejection of your refund.</p>
 
@@ -35,12 +35,12 @@ const FAQ = () => {
 
                 <p>If you are shipping an item over £100, we would advise using a trackable shipping service or purchasing shipping insurance. We cannot guarantee that we will receive your returned item.</p>
 
-                <h2 className="subhead">Delivery</h2>
+                <h2 className="subhead" id="delivery">Delivery</h2>
 
                 <p>Please check the condition of all products delivered as soon as they are received. This does not affect your statutory rights. If there is a problem we would like to deal with this as soon as possible to alleviate any inconvenience to yourself.<br/>
                 As soon as we have delivered the goods to you, you will be responsible for them and any damage occasioned whilst in your possession. The majority of goods we send will require you to sign for them upon delivery. If you are not able to sign for a delivery, we will do our utmost to contact you to arrange when it is convenient to redeliver. Our responsibility for everything other than damage due to our negligence will end at the time the carrier tried to delivery the goods to you. If your product is visibly damaged in transit, please sign for the delivery as ‘damaged’ and let us know as soon as possible.</p>
 
-                <h2 className="subhead">Returns process/your statutory rights</h2>
+                <h2 className="subhead" id="termsConditions">Returns process/your statutory rights</h2>
 
                 <p>If you wish to return goods purchased online or over the phone, you should notify Hi-Fi Corner of your intention to do so within 14 days of the date of receipt.</p>
 
