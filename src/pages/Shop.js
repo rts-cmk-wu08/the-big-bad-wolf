@@ -111,10 +111,11 @@ const Shop = () => {
 
                 // Update the URL query string
                 navigate(queryParams, { replace: true });
+                
 
                 // Add the populateImages parameter to the end of the fetch URL
                 fetchUrl += (hasFilters ? `&` : `?`) + populateImages;
-
+            
                 const response = await axios.get(fetchUrl);
                 setShop(response.data);
                 setIsLoading(false);

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import axios from "axios";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
-import "./details.scss"
+import axios from "axios";
 import Chat from "../components/ChatFunction";
 import AddToCart from "../components/AddToCart";
+import "./details.scss";
 
 var baseUrl = 'https://cryptic-genre-365612.appspot.com';
 var url = baseUrl + '/api/products';
@@ -16,11 +16,11 @@ const Details = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
-    const [details, setDetails] = useState();
+    const [product, setProduct] = useState();
 
     useEffect(() => {
         axios.get(`${url}/${id}?populate[0]=Images`)
-            .then(response => setDetails(response.data))
+            .then(response => setProduct(response.data))
             .catch(() => setError("Something went wrong"))
             .finally(() => setIsLoading(false))
             
@@ -38,19 +38,19 @@ const Details = () => {
 
                 { isLoading && <p>Loading</p> }
                 { error && <p>{error}</p>}
-                { details && (
+                { product && (
 
                     <div className="detail grid"> 
 
                         <div className="detail__img">
 
-                            {details.data.attributes.Images && 
-                                Object.values(details.data.attributes.Images).map(img => ( 
+                            {product.data.attributes.Images && 
+                                Object.values(product.data.attributes.Images).map(img => ( 
                                     <LazyLoadImage 
                                         effect="opacity" 
                                         key={img[0].id} 
                                         src={img[0].attributes.url} 
-                                        alt={details.data.attributes.Name} 
+                                        alt={product.data.attributes.Name} 
                                     />
                             ))}
 
@@ -58,11 +58,11 @@ const Details = () => {
 
                         <div className="detail__info">
 
-                            <h2 className="detail__title mb-0">{details.data.attributes.Name}</h2>
+                            <h2 className="detail__title mb-0">{product.data.attributes.Name}</h2>
                             <h3 className="detail__subtitle">(Digital Output)</h3>
-                            <p>{details.data.attributes.Description}</p>
+                            <p>{product.data.attributes.Description}</p>
 
-                            <AddToCart {...details.data.attributes} />
+                            <AddToCart product={product.data} />
 
                         </div>
 
