@@ -8,12 +8,12 @@ export const CartProvider = (props) => {
     const initialCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const [cartItems, setCartItems] = useState([...initialCartItems]);    
 
-    const updateCart = (item, action) => {
+    const updateCart = (item, action, amount, color) => {
         if (action === 'remove') {
             setCartItems(cartItems.filter(cartItem => cartItem.id !== item.id ));
         } else if (action === 'add') {
             if (cartItems.find(cartItem => cartItem.id === item.id) === undefined) {
-                setCartItems(prevArray => [...prevArray, {...item, count: 1}]);
+                setCartItems(prevArray => [...prevArray, {...item, count: amount ? amount : 1} ]);
             } else {
                 setCartItems(prevArray => prevArray.map(cartItem => cartItem.id === item.id ? {...cartItem, count: cartItem.count + 1} : cartItem));
             } 

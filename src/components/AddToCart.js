@@ -1,19 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { IoAdd, IoRemove } from 'react-icons/io5';
+import classnames from 'classnames';
 import "./AddToCart.scss";
 
 
-const AddToCart = (product) => { 
+const AddToCart = ({product}) => { 
 
     const [cartItems, setCartItems, updateCartItem, updateCart] = useContext(CartContext);
+    const [amount, setAmount] = useState(1);
+    const [color, setColor] = useState('black');
 
     console.log(product);
 
 
     return (
         
-        <form className="form addtocart">
+        <div className="form addtocart">
 
             <div className="color-select form__fieldgroup">
 
@@ -37,7 +40,7 @@ const AddToCart = (product) => {
                         Gold
                     </label>
                 </div>
-            </div>
+            </div> 
 
 
             <div className="price form__fieldgroup">
@@ -47,33 +50,37 @@ const AddToCart = (product) => {
 
 
             <div className="amount form__fieldgroup">
-
                 <div className="cart-amount cart-add__item">
-                        <div className="cart-amount cart-add__item">
-                            <button className="cart-amount__btn" onClick={() => {updateCartItem(product.id, 'minus')}}><IoRemove className='icon-remove'/></button>
-                            <input
-                                className="cart-amount__input"
-                                type="number"
-                                name="amount"
-                                value={product.count}
-                                onChange={(event) => {
-                                    const newCount = event.target.value;
-                                    updateCartItem(product.id, 'setTo', newCount);
-                                }}
-                            />
-                            <button className="cart-amount__btn" onClick={() => {updateCartItem(product.id, 'plus')}}><IoAdd className='icon-add'/></button>
-                        </div>
+                    <button className="cart-amount__btn" onClick={() => {setAmount(amount > 1 ? amount - 1 : amount )}}><IoRemove className='icon-remove'/></button>
+                        <input
+                            className="cart-amount__input"
+                            type="number"
+                            name="amount"
+                            value={amount}
+                            onChange={(event) => {
+                                setAmount(parseInt(event.target.value));
+                            }}
+                        />
+                    <button className="cart-amount__btn" onClick={() => {setAmount(amount + 1)}}><IoAdd className='icon-add'/></button>
                 </div>
-
+               
                 <div className="cart-add__item">
-                    <button className="btn cart-add__btn">Add to cart</button>
+                    <button className="btn card__btn" onClick={() => {
+                            if ( cartItems.find(cartItem => cartItem.id === product.id) !== undefined ) {
+                                updateCart(product, 'remove');
+                            } else {
+                                updateCart(product, 'add', amount, color);
+                            }
+                        }}> 
+                        {cartItems.find(cartItem => cartItem.id === product.id) !== undefined ? 'Remove from Cart' : 'Add to Cart'}
+                    </button>
                 </div>
 
             </div>
 
 
 
-        </form>
+        </div>
 
 
 
