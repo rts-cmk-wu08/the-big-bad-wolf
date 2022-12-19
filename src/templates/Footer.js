@@ -2,6 +2,7 @@ import "./footer.scss";
 import { Link } from "react-router-dom";
 import "https://kit.fontawesome.com/9c2542a137.js";
 import Image from "../images/cards1.png";
+import { HashLink } from "react-router-hash-link"
 
 const Footer = () => {
 
@@ -26,10 +27,11 @@ const Footer = () => {
   
 
     <ul className="footer-list">
-       <li>Returns & Refunds</li> 
-       <li>Delivery</li> 
-       <li>Privacy Policy</li> 
-       <li>Terms & Conditions</li> 
+        <HashLink to={"/faq/#refunds"}><li>Returns & Refunds</li> </HashLink>
+        <HashLink to={"/faq/#delivery"}><li>Delivery</li> </HashLink>
+        <HashLink to={"/faq/#privacy"}><li>Privacy Policy</li> </HashLink>
+        <HashLink to={"/faq/#termsConditions"}><li>Terms & Conditions</li></HashLink>
+        
     </ul>
 
     <div className="footer-contact">
