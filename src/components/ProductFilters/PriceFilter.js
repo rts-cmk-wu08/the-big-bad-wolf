@@ -1,22 +1,30 @@
 import { useState, useEffect } from 'react';
 import { IoChevronDownOutline } from 'react-icons/io5';
+import axios from "axios";
 import "./Filters.scss";
 
-function PriceFilter({onFilterChange, shop, selectedMaxPrice, selectedMinPrice}) {
+function PriceFilter({onFilterChange, selectedMaxPrice, selectedMinPrice}) {
    
-    const shopMin = Math.min(...shop.map(product => product.attributes.Price));
-    const shopMax = Math.max(...shop.map(product => product.attributes.Price));
-      
-    // const [minPrice, setMinPrice] = useState(shopMin);
-    // const [maxPrice, setMaxPrice] = useState(shopMax);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState();
+    const [products, setProducts] = useState([]);
 
-    // const handleMinPriceChange = (event) => {
-    //     setMinPrice(event.target.value);
-    // };
-    
-    // const handleMaxPriceChange = (event) => {
-    //     setMaxPrice(event.target.value);
-    // };
+    const [shopMin, setShopMin] = useState(0);
+    const [shopMax, setShopMax] = useState(0);
+
+    useEffect(() => {
+        axios.get('https://cryptic-genre-365612.appspot.com/api/products')
+            .then(response => setProducts(response.data))
+            .finally(() => setIsLoading(false))
+            .catch(error => setError(error));
+
+            if (products.data) {
+                setShopMin(Math.min(...products.data?.map(product => product.attributes.Price)));
+                setShopMax(Math.max(...products.data?.map(product => product.attributes.Price)));
+            }
+
+    }, [products]);
+
 
     return (
 
@@ -25,6 +33,12 @@ function PriceFilter({onFilterChange, shop, selectedMaxPrice, selectedMinPrice})
             <summary className="acc-filters__title">Price <IoChevronDownOutline /></summary>
 
             <div className='acc-filters__options'>
+
+            { isLoading && <p>Loading filters...</p> }
+            { error && <p>{error}</p>}
+            { products.data &&
+
+                <>
                 <div className="acc-filters__option">
                     <label htmlFor="minPrice">Min price</label>
                     <div className="priceRange__range">
@@ -75,6 +89,14 @@ function PriceFilter({onFilterChange, shop, selectedMaxPrice, selectedMinPrice})
                         />
                     </div>
                 </div>
+                {/* <div className="acc-filters__option">
+                    <button className='btn'>Set pricerange</button>
+                    <button  className='btn'>Clear pricerange</button>
+                </div> */}
+                
+                </>
+            }
+
             </div>
 
         </details>
