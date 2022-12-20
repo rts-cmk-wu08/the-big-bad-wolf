@@ -41,7 +41,7 @@ const CompareWidget = () => {
 
                 </div>
                 <div className="compProdWidget__btn-compare">
-                    <Link to={"/Comparison"} className="btn">Compare <IoOptionsOutline /></Link>
+                    <Link to={"/comparison"} className="btn">Compare <IoOptionsOutline /></Link>
                 </div>
 
             </div>

@@ -18,7 +18,7 @@ const Shop = () => {
     const extractParams = (paramName) => { 
         if (!urlParams.has(paramName)) { return []; } 
         return urlParams.getAll(paramName)[0].split(',').filter((param) => param !== '');
-      }
+    }
 
     const colorParams = extractParams('colors');
     const brandParams = extractParams('brands');
@@ -32,9 +32,6 @@ const Shop = () => {
     const [selectedType, setSelectedType] = useContext(TypeContext);
     const [selectedMaxPrice, setSelectedMaxPrice] = useState(maxPriceParams ? maxPriceParams : []);
     const [selectedMinPrice, setSelectedMinPrice] = useState(minPriceParams ? minPriceParams : []);
-
-    console.log(selectedType, 'selectedType - shop');
-    console.log(selectedBrands, 'selectedBrands - shop');
 
     const [search] = useState(isNaN(searchParams) ? searchParams : []);
 
@@ -60,8 +57,6 @@ const Shop = () => {
 
                 // Use the reduce() method to build the fetch URL based on the filter values
                 let fetchUrl = dependencies.reduce((url, filterValues, i) => {
-                    console.log(filterValues, i, 'reduced dependencies');
-
                     if (filterValues.length === 0) { return url; }
                         hasFilters = true;
 

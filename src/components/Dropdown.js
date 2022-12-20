@@ -9,8 +9,6 @@ const Dropdown = () => {
     const [selectedType, setSelectedType] = useContext(TypeContext);
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
-
-    console.log(selectedType, 'selectedType');
     
     let navigate = useNavigate();
     const location = useLocation();
