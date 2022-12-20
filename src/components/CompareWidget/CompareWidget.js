@@ -1,6 +1,7 @@
 import { IoCloseCircleOutline, IoOptionsOutline } from 'react-icons/io5';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useContext } from "react";
+import { Link } from 'react-router-dom';
 import { CompareContext } from "../../contexts/CompareContext";
 import "./CompareWidget.scss";
 
@@ -40,7 +41,7 @@ const CompareWidget = () => {
 
                 </div>
                 <div className="compProdWidget__btn-compare">
-                    <button className="btn">Compare <IoOptionsOutline /></button>
+                    <Link to={"/Comparison"} className="btn">Compare <IoOptionsOutline /></Link>
                 </div>
 
             </div>
