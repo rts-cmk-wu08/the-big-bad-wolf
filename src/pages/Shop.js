@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/ProductCard/ProductCard";
@@ -6,7 +6,7 @@ import CompareWidget from "../components/CompareWidget/CompareWidget";
 import ColorFilters from "../components/ProductFilters/ColorFilters";
 import BrandFilters from "../components/ProductFilters/BrandFilters";
 import PriceFilter from "../components/ProductFilters/PriceFilter";
-
+import { TypeContext } from "../contexts/TypeContext";
 
 const Shop = () => {
 
@@ -22,14 +22,19 @@ const Shop = () => {
 
     const colorParams = extractParams('colors');
     const brandParams = extractParams('brands');
+    const typeParams = extractParams('type');
     const maxPriceParams = extractParams('max');
     const minPriceParams = extractParams('min');
     const searchParams = extractParams('search');
 
     const [selectedColors, setSelectedColors] = useState(colorParams);
     const [selectedBrands, setSelectedBrands] = useState(brandParams);
+    const [selectedType, setSelectedType] = useContext(TypeContext);
     const [selectedMaxPrice, setSelectedMaxPrice] = useState(maxPriceParams ? maxPriceParams : []);
     const [selectedMinPrice, setSelectedMinPrice] = useState(minPriceParams ? minPriceParams : []);
+
+    console.log(selectedType, 'selectedType - shop');
+    console.log(selectedBrands, 'selectedBrands - shop');
 
     const [search] = useState(isNaN(searchParams) ? searchParams : []);
 
@@ -44,13 +49,14 @@ const Shop = () => {
                 let baseUrl = 'https://cryptic-genre-365612.appspot.com/api/products';
                 let colorFilters = 'filters[Colors][Name][$containsi]=';
                 let brandFilters = 'filters[Brand][Name][$containsi]=';
+                let typeFilter = 'filters[category][Name][$containsi]=';
                 let priceMinFilter = 'filters[Price][$gte]=';
                 let priceMaxFilter = 'filters[Price][$lte]=';
                 let searchFilters = 'filters[Name][$containsi]=';
                 let populateImages = 'populate[0]=Images';
                 let hasFilters = false;
 
-                const dependencies = [selectedColors, selectedBrands, selectedMinPrice, selectedMaxPrice, search];
+                const dependencies = [selectedColors, selectedBrands, selectedType, selectedMinPrice, selectedMaxPrice, search];
 
                 // Use the reduce() method to build the fetch URL based on the filter values
                 let fetchUrl = dependencies.reduce((url, filterValues, i) => {
@@ -71,14 +77,18 @@ const Shop = () => {
                                 const brandQueryString = filterValues.map(brand => brandFilters + brand).join('&');
                                 return `${url}${url !== baseUrl ? "&" : "?"}${brandQueryString}`;
                             case 2:
+                                // Handle the type filter
+                                const typeQueryString = filterValues.map(type => typeFilter + type).join('&');
+                                return `${url}${url !== baseUrl ? "&" : "?"}${typeQueryString}`;
+                            case 3:
                                 // Handle the minPrice filter
                                 const minPriceQueryString = filterValues.map(minPrice => priceMinFilter + minPrice).join('&');
                                 return `${url}${url !== baseUrl ? "&" : "?"}${minPriceQueryString}`;
-                            case 3:
+                            case 4:
                                 // Handle the maxPrice filter
                                 const maxPriceQueryString = filterValues.map(maxPrice => priceMaxFilter + maxPrice).join('&');
                                 return `${url}${url !== baseUrl ? "&" : "?"}${maxPriceQueryString}`;
-                            case 4:
+                            case 5:
                                 // Handle the search filter
                                 const searchQueryString = filterValues.map(searchTerm => searchFilters + searchTerm).join('&');
                                 return `${url}${url !== baseUrl ? "&" : "?"}${searchQueryString}`;
@@ -102,9 +112,10 @@ const Shop = () => {
                     switch (i) {
                         case 0: queryParams += `${prefix}colors=${filterValues.join(',')}`; break;
                         case 1: queryParams += `${prefix}brands=${filterValues.join(',')}`; break;
-                        case 2: queryParams += `${prefix}min=${filterValues.find(minPrice => minPrice)}`; break;
-                        case 3: queryParams += `${prefix}max=${filterValues.find(maxPrice => maxPrice)}`; break;
-                        case 4: queryParams += `${prefix}search=${filterValues.join(',')}`; break;
+                        case 2: queryParams += `${prefix}type=${filterValues.find(type => type)}`; break;
+                        case 3: queryParams += `${prefix}min=${filterValues.find(minPrice => minPrice)}`; break;
+                        case 4: queryParams += `${prefix}max=${filterValues.find(maxPrice => maxPrice)}`; break;
+                        case 5: queryParams += `${prefix}search=${filterValues.join(',')}`; break;
                         default: break;
                     }
                 });
@@ -126,7 +137,7 @@ const Shop = () => {
             }
             
         })();
-    }, [selectedColors, selectedBrands, search, selectedMinPrice, selectedMaxPrice, navigate]);
+    }, [selectedColors, selectedBrands, selectedType, selectedMinPrice, selectedMaxPrice, search, navigate]);
     
     const onFilterChange = (event) => {
         const { name, checked, value } = event.target;
@@ -139,6 +150,11 @@ const Shop = () => {
             if (checked) { setSelectedBrands([...selectedBrands, value]); } 
             else { setSelectedBrands(selectedBrands.filter(filter => filter !== value)); }
         }
+
+        if (name.includes("type")) {
+            setSelectedMinPrice([value]);
+        }
+
 
         if (name.includes("minPrice")) {
             setSelectedMinPrice([value]);
@@ -153,7 +169,8 @@ const Shop = () => {
     return (
         <>  
             <header className="page-header">
-                <h1 className="page-header__title">Products</h1>
+                <h1 className="page-header__title">Products <span className="selected-type">{selectedType.length !== 0 ? `${selectedType}` : ''}</span></h1>
+                 
             </header>
             <article className="page-content sidebar-left">
                 
