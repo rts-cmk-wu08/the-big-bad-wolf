@@ -14,15 +14,15 @@ const Footer = () => {
     <div className="container"> 
 
 
-   <div className="footer-txt">
+   <div className="footer-txt grid">
    
-    <nav className="footer-nav">
+    <ul className="footer-nav">
     
     <Link to={"/"}>Home</Link>
                 <Link to={"/shop"}>Shop</Link>
                 <Link to={"/about"}>About Us</Link>
                 
-            </nav>
+            </ul>
  
   
 
@@ -51,11 +51,11 @@ const Footer = () => {
 
     </div>
     </div>
-    <hr/>
+    <hr className="alignfull"/>
     <img src={Image} alt="visa cards" />
                  
            
-    <div className="footer-bottom">
+    <div className="footer-bottom grid">
      
 <p>Hi Fi Corner Edinburgh Ltd is registered in Scotland. No: SC049298. Registered office: 2 Joppa Rd, Edinburgh EH15 2EU</p>
 <p>Designed & Built by WU07</p>
