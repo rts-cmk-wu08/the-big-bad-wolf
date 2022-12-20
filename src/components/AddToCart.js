@@ -50,6 +50,7 @@ const AddToCart = ({product}) => {
 
 
             <div className="amount form__fieldgroup">
+                <div className="cart-add">
                 <div className="cart-amount cart-add__item">
                     <button className="cart-amount__btn" onClick={() => {setAmount(amount > 1 ? amount - 1 : amount )}}><IoRemove className='icon-remove'/></button>
                         <input
@@ -65,7 +66,7 @@ const AddToCart = ({product}) => {
                 </div>
                
                 <div className="cart-add__item">
-                    <button className="btn card__btn" onClick={() => {
+                    <button className="btn cart-add__btn" onClick={() => {
                             if ( cartItems.find(cartItem => cartItem.id === product.id) !== undefined ) {
                                 updateCart(product, 'remove');
                             } else {
@@ -74,6 +75,7 @@ const AddToCart = ({product}) => {
                         }}> 
                         {cartItems.find(cartItem => cartItem.id === product.id) !== undefined ? 'Remove from Cart' : 'Add to Cart'}
                     </button>
+                </div>
                 </div>
 
             </div>
