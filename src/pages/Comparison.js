@@ -4,7 +4,7 @@ import CompareWidget from "../components/CompareWidget/CompareWidget";
 
 const Comparison = () => {
 
-    const [compCards, setCompCards] = useContext(CompareContext);
+    const [compCards] = useContext(CompareContext);
 
     return (
         <>
