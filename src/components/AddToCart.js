@@ -11,9 +11,6 @@ const AddToCart = ({product}) => {
     const [amount, setAmount] = useState(1);
     const [color, setColor] = useState('black');
 
-    console.log(product);
-
-
     return (
         
         <div className="form addtocart">

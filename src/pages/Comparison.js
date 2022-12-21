@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { CompareContext } from "../contexts/CompareContext";
-import CompareWidget from "../components/CompareWidget/CompareWidget";
 
 const Comparison = () => {
 
@@ -38,7 +37,6 @@ const Comparison = () => {
                     ) : (<p>Please select a product to compare</p>)}               
                 </div>
             </article>
-            <CompareWidget />
         </>
     );
 }

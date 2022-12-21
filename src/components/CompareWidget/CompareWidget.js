@@ -20,15 +20,15 @@ const CompareWidget = () => {
                 <div className="compProdWidget__cards">
                 
                     {compCards?.map((card, index) => (
+                        
                         <div className="card compProdWidgetCard" key={index}>
+                            {console.log(card, 'card')} 
                             <div className='card_compare compProdWidgetCard__compare'>
                                 <button className='card__compare-btn' onClick={() => {removeCard(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
                             </div>
                             <div className="compProdWidgetCard__inner" >
                                 <div className="compProdWidgetCard__img" >
-                                    {Object.values(card.attributes?.Images).map((img, index) => ( 
-                                        <LazyLoadImage effect="opacity" src={img[0].attributes.url} key={index} alt={''} />
-                                    ))}
+                                    <LazyLoadImage effect="opacity" src={card.attributes.Images.data[0].attributes.url} alt={''} />
                                 </div>
                                 <div className="compProdWidgetCard__content">
                                     <h3 className='card__title'>{card.attributes.Name}</h3>
