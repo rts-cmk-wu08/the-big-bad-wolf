@@ -40,6 +40,12 @@
         font-size: 1.7rem;
     }
 
+    .cart-add {
+        &__item:last-child {
+            margin-left: 2rem;
+        }
+    }
+
 }
 
 
@@ -137,14 +143,12 @@
         &:last-child {
             flex-grow: 2;
             width: 100%;
-            margin-left: 2rem;
         }
     }
 
     &__btn {
         width: 100%;
     }
-    
 }
 
 
