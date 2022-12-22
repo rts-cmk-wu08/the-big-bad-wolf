@@ -49,7 +49,8 @@ const ProductCard = ({product}) => {
                 <button className="btn card__btn" onClick={() => {
                         if ( cartItems.find(cartItem => cartItem.id === product.id) !== undefined ) {
                             updateCart(product, 'remove');
-                        } else {
+                        } else if ( product.attributes.Stock !== "Out of stock" ) {
+
                             updateCart(product, 'add');
                         }
                     }}> 
