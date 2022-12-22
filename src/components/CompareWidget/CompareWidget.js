@@ -22,7 +22,6 @@ const CompareWidget = () => {
                     {compCards?.map((card, index) => (
                         
                         <div className="card compProdWidgetCard" key={index}>
-                            {console.log(card, 'card')} 
                             <div className='card_compare compProdWidgetCard__compare'>
                                 <button className='card__compare-btn' onClick={() => {removeCard(card.id)}}>Remove <IoCloseCircleOutline className='icon-close'/></button>
                             </div>
